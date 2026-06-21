@@ -1,0 +1,203 @@
+/* =============================================================
+   Aronix Design System -- Foundations
+   colors_and_type.css
+   ============================================================= */
+
+:root {
+  /* BRAND CORE */
+  --ax-primary:       #EA4B71;   /* brand pink */
+  --ax-primary-dark:  #A82949;   /* primary hover/pressed */
+  --ax-primary-deep:  #5C1126;   /* dark surface base */
+  --ax-accent:        #6475BD;   /* indigo accent */
+  --ax-accent-dark:   #4A5A9E;   /* accent hover */
+  --ax-accent-deep:   #2E3A73;   /* high-contrast accent text */
+
+  /* BRAND EXTENDED */
+  --ax-pink-50:   #FFF0F4;
+  --ax-pink-100:  #FFDFF0;
+  --ax-pink-200:  #FFAFC8;
+  --ax-pink-300:  #FF7FA5;
+  --ax-pink-400:  #F05C82;
+  --ax-pink-500:  #EA4B71;
+  --ax-pink-600:  #C9375A;
+  --ax-pink-700:  #A82949;
+  --ax-pink-800:  #871E39;
+  --ax-pink-900:  #5C1126;
+
+  --ax-sky-blue:  #98CCE7;
+  --ax-indigo:    #6475BD;
+  --ax-yellow:    #FFED75;
+  --ax-orange:    #FFB54F;
+
+  /* NEUTRALS */
+  --ax-bg:          #FFFFFF;   /* application background */
+  --ax-surface:     #FFFFFF;   /* card/panel */
+  --ax-soft-blush:  #EBDCE0;   /* tinted surface */
+  --ax-pale-pink:   #FFDFF0;   /* elevated surface */
+
+  --ax-slate-100:   #FAFAFA;
+  --ax-slate-200:   #F5F5F5;
+  --ax-slate-300:   #E2E2E2;
+  --ax-slate-400:   #ADADAD;
+  --ax-slate-500:   #9CA3AF;
+  --ax-slate-600:   #6B6B6B;
+  --ax-slate-700:   #3D3D3D;
+  --ax-slate-800:   #2A2A2A;
+  --ax-slate-900:   #0A0A0A;
+
+  /* SURFACES */
+  --ax-surface-dark:     #0A0A0A;
+  --ax-surface-dark-alt: #141414;
+  --ax-surface-tint:     #FFF0F4;
+
+  /* SEMANTIC */
+  --ax-success:       #22C55E;
+  --ax-success-text:  #15532B;
+  --ax-error:         #DC2626;
+  --ax-error-bg:      #FEF2F2;
+  --ax-warning:       #FFB54F;
+  --ax-warning-text:  #7A4A00;
+  --ax-info:          #98CCE7;
+  --ax-info-bg:       #EFF8FD;
+  --ax-info-text:     #1A5F80;
+
+  /* TEXT */
+  --ax-fg-1:          var(--ax-slate-900);
+  --ax-fg-2:          var(--ax-slate-700);
+  --ax-fg-3:          var(--ax-slate-600);
+  --ax-fg-on-dark:    #FFFFFF;
+  --ax-fg-on-dark-2:  #C8C8C8;
+
+  --ax-border:        var(--ax-slate-300);
+  --ax-border-strong: var(--ax-slate-400);
+
+  /* TYPOGRAPHY */
+  --ax-font-display:  'Manrope', 'Inter', Arial, sans-serif;
+  --ax-font-body:     'Inter', Arial, sans-serif;
+  --ax-font-mono:     'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  /* TYPE SCALE */
+  --ax-fs-hero:     clamp(56px, 6vw, 80px);
+  --ax-fs-display:  clamp(44px, 5vw, 64px);
+  --ax-fs-h1:       clamp(36px, 4vw, 52px);
+  --ax-fs-h2:       clamp(28px, 3vw, 40px);
+  --ax-fs-h3:       clamp(22px, 2.5vw, 30px);
+  --ax-fs-h4:       clamp(18px, 2vw, 24px);
+  --ax-fs-body-lg:  18px;
+  --ax-fs-body:     16px;
+  --ax-fs-body-sm:  14px;
+  --ax-fs-caption:  12px;
+
+  --ax-lh-tight:    1.05;
+  --ax-lh-snug:     1.2;
+  --ax-lh-normal:   1.5;
+  --ax-lh-relaxed:  1.65;
+
+  --ax-tracking-tight:   -0.025em;
+  --ax-tracking-normal:  0;
+  --ax-tracking-eyebrow: 0.18em;
+
+  /* SPACING (8px grid) */
+  --ax-space-1:  4px;
+  --ax-space-2:  8px;
+  --ax-space-3:  12px;
+  --ax-space-4:  16px;
+  --ax-space-5:  20px;
+  --ax-space-6:  24px;
+  --ax-space-8:  32px;
+  --ax-space-10: 40px;
+  --ax-space-12: 48px;
+  --ax-space-16: 64px;
+  --ax-space-20: 80px;
+  --ax-space-24: 96px;
+
+  /* LAYOUT */
+  --ax-container: 1280px;
+  --ax-reading-width: 720px;
+  --ax-page-gutter: 48px;
+  --ax-page-gutter-mobile: 20px;
+
+  /* RADII */
+  --ax-radius-xs:   4px;
+  --ax-radius-sm:   8px;
+  --ax-radius-md:   12px;
+  --ax-radius-lg:   16px;
+  --ax-radius-xl:   24px;
+  --ax-radius-2xl:  32px;
+  --ax-radius-pill: 9999px;
+
+  /* SHADOWS */
+  --ax-shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --ax-shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --ax-shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --ax-shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --ax-shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
+  --ax-shadow-pink: 0 4px 20px rgba(234,75,113,0.20);
+
+  /* GRADIENTS */
+  --ax-gradient-underline: linear-gradient(90deg, #FFDFF0 0%, #EA4B71 40%, #EA4B71 60%, #FFDFF0 100%);
+  --ax-gradient-hero-wash: linear-gradient(180deg, #FFFFFF 0%, #EBDCE0 100%);
+  --ax-gradient-dark-cta:  linear-gradient(135deg, #1A0A0E 0%, #2D0E1A 50%, #1A0A0E 100%);
+
+  /* MOTION */
+  --ax-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ax-ease-smooth: cubic-bezier(0.2, 0, 0, 1);
+  --ax-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ax-dur-fast:    140ms;
+  --ax-dur-base:    220ms;
+  --ax-dur-slow:    380ms;
+
+  /* WORKFLOW NODES */
+  --ax-node-source-bg:   #EFF8FD;
+  --ax-node-source-bd:   #98CCE7;
+  --ax-node-action-bg:   #FFFFFF;
+  --ax-node-action-bd:   var(--ax-border);
+  --ax-node-decision-bg: #FFF0F4;
+  --ax-node-decision-bd: #EA4B71;
+  --ax-node-output-bg:   #E8EBFB;
+  --ax-node-output-bd:   #6475BD;
+  --ax-node-human-bg:    #FFFBEB;
+  --ax-node-human-bd:    #FFED75;
+}
+
+/* SEMANTIC TYPE PRIMITIVES */
+.s-hero, .s-display {
+  font-family: var(--ax-font-display);
+  font-weight: 800;
+  letter-spacing: var(--ax-tracking-tight);
+  line-height: var(--ax-lh-tight);
+  color: var(--ax-fg-1);
+}
+.s-hero    { font-size: var(--ax-fs-hero); }
+.s-display { font-size: var(--ax-fs-display); }
+
+.s-h1, .s-h2, .s-h3, .s-h4 {
+  font-family: var(--ax-font-display);
+  letter-spacing: var(--ax-tracking-tight);
+  line-height: var(--ax-lh-snug);
+  color: var(--ax-fg-1);
+}
+.s-h1 { font-size: var(--ax-fs-h1); font-weight: 800; }
+.s-h2 { font-size: var(--ax-fs-h2); font-weight: 800; }
+.s-h3 { font-size: var(--ax-fs-h3); font-weight: 700; }
+.s-h4 { font-size: var(--ax-fs-h4); font-weight: 700; }
+
+.s-body-lg, .s-body, .s-body-sm {
+  font-family: var(--ax-font-body);
+  color: var(--ax-fg-2);
+  line-height: var(--ax-lh-relaxed);
+}
+.s-body-lg { font-size: var(--ax-fs-body-lg); }
+.s-body    { font-size: var(--ax-fs-body); }
+.s-body-sm { font-size: var(--ax-fs-body-sm); }
+
+.s-eyebrow {
+  font-family: var(--ax-font-body);
+  font-size: var(--ax-fs-caption);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-eyebrow);
+  color: var(--ax-fg-3);
+}
+
+::selection { background: var(--ax-pale-pink); color: var(--ax-primary); }

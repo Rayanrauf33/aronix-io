@@ -34,3 +34,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude
+.env.local
+.env*.local
+.claude/settings.local.json
+
+# design system extraction (working directory, not committed)
+_design_system_temp/
+*.zip
