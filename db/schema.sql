@@ -13,6 +13,11 @@ create table if not exists blog_posts (
   content      text not null default '',
   excerpt      text not null default '',
   cover_image  text,
+  category     text not null default 'Strategy',
+  author       text not null default 'Aronix',
+  author_role  text,
+  read_time    text not null default '5 min',
+  featured     boolean not null default false,
   published    boolean not null default false,
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()
@@ -21,6 +26,7 @@ create table if not exists blog_posts (
 -- Index for public slug lookups
 create index if not exists blog_posts_slug_idx on blog_posts(slug);
 create index if not exists blog_posts_published_idx on blog_posts(published, created_at desc);
+create index if not exists blog_posts_category_idx on blog_posts(category);
 
 -- RLS
 alter table blog_posts enable row level security;

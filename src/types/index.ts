@@ -5,6 +5,11 @@ export interface BlogPost {
   content: string
   excerpt: string
   cover_image: string | null
+  category: string
+  author: string
+  author_role: string | null
+  read_time: string
+  featured: boolean
   published: boolean
   created_at: string
   updated_at: string
