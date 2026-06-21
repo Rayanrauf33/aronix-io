@@ -3,7 +3,7 @@
 ## Project
 Blog-focused website with a protected dashboard for blog management.
 - Domain: aronix.io
-- GitHub: https://github.com/urban-essentials/aronix-io
+- GitHub: https://github.com/rayanrauf33/aronix-io
 
 ## Stack
 - Next.js 15 (App Router) + TypeScript
