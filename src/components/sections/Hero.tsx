@@ -66,7 +66,7 @@ export function Hero() {
           >
             Book an Automation Audit
           </Button>
-          <Button href="/case-study" variant="outline" size="lg">
+          <Button href="/case-studies" variant="outline" size="lg">
             See a case study
           </Button>
         </div>

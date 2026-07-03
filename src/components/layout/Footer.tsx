@@ -39,7 +39,7 @@ const columns = [
     heading: "Company",
     links: [
       { label: "About",        href: "/about" },
-      { label: "Case Studies", href: "/case-study" },
+      { label: "Case Studies", href: "/case-studies" },
       { label: "Process",      href: "/services#process" },
       { label: "Blog",         href: "/blog" },
       { label: "Careers",      href: "/careers" },

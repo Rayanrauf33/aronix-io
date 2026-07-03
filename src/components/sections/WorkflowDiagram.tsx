@@ -39,7 +39,7 @@ export function WorkflowDiagram() {
             We diagram each automation step so your team can see exactly what runs,
             when it runs, and who&apos;s responsible when something needs review.
           </p>
-          <Button href="/case-study" variant="outline" size="md" trailingArrow>
+          <Button href="/case-studies" variant="outline" size="md" trailingArrow>
             Read a case study
           </Button>
         </div>
