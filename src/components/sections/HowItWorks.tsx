@@ -12,14 +12,14 @@ export function HowItWorks() {
     <section
       className="px-12 py-24"
       aria-labelledby="hiw-heading"
-      style={{ background: "var(--ax-soft-blush)" }}
+      style={{ background: "var(--ax-surface-dark)" }}
     >
       <div className="max-w-[1280px] mx-auto">
         <div className="text-center mb-14 mx-auto max-w-[640px]">
           <Eyebrow className="mb-3.5">Our process</Eyebrow>
           <h2
             id="hiw-heading"
-            className="text-[var(--ax-fg-1)] mb-4"
+            className="text-[var(--ax-fg-on-dark)] mb-4"
             style={{
               fontFamily: "var(--ax-font-display)",
               fontWeight: 700,
@@ -30,7 +30,7 @@ export function HowItWorks() {
           >
             From audit to automation in four weeks
           </h2>
-          <p className="text-[18px] leading-[1.6] text-[var(--ax-fg-2)]">
+          <p className="text-[18px] leading-[1.6] text-[var(--ax-fg-on-dark-2)]">
             We work alongside your team, not around them. Every automation is tested and
             monitored before it touches live data.
           </p>
@@ -39,24 +39,19 @@ export function HowItWorks() {
         {/* Steps with horizontal connector line */}
         <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-0">
           <div
-            className="hidden lg:block absolute top-[22px] left-[10%] right-[10%] h-px bg-[var(--ax-border)]"
+            className="hidden lg:block absolute top-[22px] left-[10%] right-[10%] h-px bg-white/10"
             aria-hidden="true"
           />
           {steps.map(({ n, t, d }) => (
-            <div key={n} className="text-center px-5 relative z-10">
-              <div
-                className="w-11 h-11 rounded-full bg-white border border-[var(--ax-border)] flex items-center justify-center mx-auto mb-5 text-[14px] font-medium text-[var(--ax-fg-2)]"
-                style={{ fontFamily: "var(--ax-font-mono)" }}
-              >
-                {n}
-              </div>
+            <div key={n} className="hiw-step text-center px-5 relative z-10">
+              <div className="hiw-badge">{n}</div>
               <h3
-                className="mb-2.5 text-[18px] text-[var(--ax-fg-1)]"
+                className="mb-2.5 text-[18px] text-[var(--ax-fg-on-dark)]"
                 style={{ fontFamily: "var(--ax-font-display)", fontWeight: 600 }}
               >
                 {t}
               </h3>
-              <p className="text-[14px] leading-[1.6] text-[var(--ax-fg-2)]">{d}</p>
+              <p className="text-[14px] leading-[1.6] text-[var(--ax-fg-on-dark-2)]">{d}</p>
             </div>
           ))}
         </div>
