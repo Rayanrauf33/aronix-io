@@ -545,8 +545,10 @@ body {
 }
 
 @media (max-width: 640px) {
+  /* Shorter pin on phones: the same phases play over less scroll, so
+     the section never feels stuck under the finger */
   .scatter-runway {
-    height: 280vh;
+    height: 220vh;
   }
 
   .scatter-metrics {

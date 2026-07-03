@@ -4,7 +4,10 @@ import { useEffect, useRef } from "react"
 
 // Response rate for exponential smoothing: higher = snappier settle.
 // Time-based so the feel is identical at 60Hz and 120Hz.
+// Phones track the finger much more tightly: the lazy desktop glide
+// reads as lag under direct touch.
 const RESPONSE = 9
+const RESPONSE_MOBILE = 15
 
 export function useScrollProgress(
   onProgress: (progress: number) => void,
@@ -27,6 +30,8 @@ export function useScrollProgress(
       return
     }
 
+    const response = window.innerWidth < 640 ? RESPONSE_MOBILE : RESPONSE
+
     const tick = (now: number) => {
       if (!activeRef.current) return
       const dt = Math.min((now - lastTimeRef.current) / 1000, 0.05)
@@ -46,7 +51,7 @@ export function useScrollProgress(
         snapRef.current = false
       } else {
         // Frame-rate independent inertia: glide towards the target
-        const alpha = 1 - Math.exp(-dt * RESPONSE)
+        const alpha = 1 - Math.exp(-dt * response)
         current += (target - current) * alpha
         if (Math.abs(target - current) < 0.0004) current = target
       }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useImperativeHandle, forwardRef } from "react"
+import { useRef, useImperativeHandle, forwardRef, useEffect } from "react"
 
 export type MetricsRevealHandle = {
   applyProgress: (progress: number) => void
@@ -38,6 +38,14 @@ export const MetricsReveal = forwardRef<MetricsRevealHandle>(
     const glowRef = useRef<HTMLDivElement>(null)
     const lastWrittenRef = useRef<string[]>([])
     const lastGlowRef = useRef("")
+    // Blur-to-sharp is desktop-only: animating filter is the costliest
+    // part of the reveal, and at phone sizes the rise + fade + count-up
+    // carry the effect on their own
+    const mobileRef = useRef(false)
+
+    useEffect(() => {
+      mobileRef.current = window.innerWidth < 640
+    }, [])
 
     useImperativeHandle(ref, () => ({
       applyProgress(progress: number) {
@@ -54,7 +62,7 @@ export const MetricsReveal = forwardRef<MetricsRevealHandle>(
           // lingers.
           const scale = 0.96 + 0.04 * backOut(raw)
           const y = (1 - t) * 28
-          const blur = raw >= 1 ? 0 : (1 - t) * 6
+          const blur = raw >= 1 || mobileRef.current ? 0 : (1 - t) * 6
 
           const transform = `translate3d(0, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`
           const key = `${transform}|${t.toFixed(3)}|${blur.toFixed(2)}`
