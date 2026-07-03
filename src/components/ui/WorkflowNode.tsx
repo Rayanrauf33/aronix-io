@@ -19,10 +19,10 @@ type Props = {
 export function WorkflowNode({ type, label, icon: Icon }: Props) {
   const s = styles[type]
   return (
-    <div className="flex flex-col items-center gap-2 shrink-0">
+    <div className="wf-node flex flex-col items-center gap-2 shrink-0">
       <div
-        className="w-12 h-12 rounded-full flex items-center justify-center border-2"
-        style={{ background: s.bg, borderColor: s.border, color: s.fg }}
+        className="wf-node-circle"
+        style={{ "--wf-bg": s.bg, "--wf-bd": s.border, color: s.fg } as React.CSSProperties}
       >
         <Icon size={18} strokeWidth={1.75} />
       </div>
