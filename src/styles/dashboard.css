@@ -53,12 +53,86 @@
   color: var(--ax-pink-400);
 }
 
+.dash-sidebar-footer {
+  margin-top: auto;
+  padding-top: var(--ax-space-6);
+}
+
+/* RESPONSIVE LAYOUT: sidebar collapses to a top bar on small screens */
+@media (max-width: 768px) {
+  .dash-root {
+    flex-direction: column;
+  }
+
+  .dash-sidebar {
+    width: 100%;
+    min-height: 0;
+    padding: var(--ax-space-3) var(--ax-space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--ax-space-4);
+    overflow-x: auto;
+  }
+
+  .dash-section-label {
+    display: none;
+  }
+
+  .dash-nav {
+    flex-direction: row;
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .dash-nav-item {
+    white-space: nowrap;
+    padding: var(--ax-space-2);
+  }
+
+  .dash-sidebar-footer {
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Sign-out button carries an inline width for the vertical sidebar */
+  .dash-sidebar-footer button {
+    width: auto !important;
+  }
+
+  .dash-main {
+    padding: var(--ax-space-4);
+  }
+}
+
 /* DASHBOARD HEADER */
 .dash-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--ax-space-6);
+}
+
+@media (max-width: 640px) {
+  .dash-header {
+    flex-wrap: wrap;
+    gap: var(--ax-space-3);
+  }
+}
+
+/* CHARTS GRID */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ax-space-4);
+  margin-top: var(--ax-space-4);
+}
+
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* STATS CARDS */

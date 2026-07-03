@@ -45,14 +45,7 @@ export default async function DashboardPage() {
 
       <BlogStatsCards stats={stats} />
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "var(--ax-space-4)",
-          marginTop: "var(--ax-space-4)",
-        }}
-      >
+      <div className="charts-grid">
         <CategoryChart data={categories} />
         <MonthlyChart data={months} />
       </div>
