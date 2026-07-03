@@ -6,13 +6,11 @@ import { ArrowLeft } from "lucide-react"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
-import { caseStudies, getCaseStudy } from "@/lib/case-studies"
+import { getCaseStudyBySlug } from "@/lib/supabase/case-studies"
 
 type Params = { slug: string }
 
-export function generateStaticParams(): Params[] {
-  return caseStudies.map(({ slug }) => ({ slug }))
-}
+export const revalidate = 60
 
 export async function generateMetadata({
   params,
@@ -20,7 +18,7 @@ export async function generateMetadata({
   params: Promise<Params>
 }): Promise<Metadata> {
   const { slug } = await params
-  const cs = getCaseStudy(slug)
+  const cs = await getCaseStudyBySlug(slug)
   if (!cs) return { title: "Case Study | Aronix" }
   return {
     title: `${cs.title} | Aronix`,
@@ -42,7 +40,7 @@ export default async function CaseStudyPage({
   params: Promise<Params>
 }) {
   const { slug } = await params
-  const cs = getCaseStudy(slug)
+  const cs = await getCaseStudyBySlug(slug)
   if (!cs) notFound()
 
   return (
@@ -120,7 +118,7 @@ export default async function CaseStudyPage({
             >
               The challenge
             </h2>
-            <p className="text-[16px] leading-[1.7] text-[var(--ax-fg-2)]">
+            <p className="text-[16px] leading-[1.7] text-[var(--ax-fg-2)] whitespace-pre-line">
               {cs.challenge}
             </p>
           </div>
@@ -142,7 +140,7 @@ export default async function CaseStudyPage({
             >
               What we built
             </h2>
-            <p className="text-[16px] leading-[1.7] text-[var(--ax-fg-2)] mb-8">
+            <p className="text-[16px] leading-[1.7] text-[var(--ax-fg-2)] mb-8 whitespace-pre-line">
               {cs.solution}
             </p>
             <div className="flex flex-wrap gap-2">

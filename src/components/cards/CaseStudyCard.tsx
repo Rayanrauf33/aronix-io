@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { Badge } from "@/components/ui/Badge"
-import type { CaseStudy } from "@/lib/case-studies"
+import type { CaseStudy } from "@/types"
 
 type Props = {
   caseStudy: CaseStudy
@@ -16,7 +15,7 @@ export function CaseStudyCard({ caseStudy }: Props) {
       aria-label={`Read case study: ${title}`}
     >
       <div className="flex items-center gap-3 mb-5">
-        <Badge variant="pink">{industry}</Badge>
+        <span className="glass-chip">{industry}</span>
         <span className="text-[13px] text-[var(--ax-fg-3)]">{client}</span>
       </div>
 

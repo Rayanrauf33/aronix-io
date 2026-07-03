@@ -3,7 +3,9 @@ import { CaseStudiesHero } from "@/components/sections/CaseStudiesHero"
 import { CaseStudyCard } from "@/components/cards/CaseStudyCard"
 import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
-import { caseStudies } from "@/lib/case-studies"
+import { getPublishedCaseStudies } from "@/lib/supabase/case-studies"
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Case Studies | Aronix",
@@ -20,7 +22,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://aronix.io/case-studies" },
 }
 
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  const caseStudies = await getPublishedCaseStudies()
   return (
     <>
       <Reveal>
