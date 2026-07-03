@@ -1,23 +1,33 @@
 import { Button } from "@/components/ui/Button"
-import { Chip } from "@/components/ui/Chip"
+import { ToolMarquee } from "@/components/sections/ToolMarquee"
+import { HeroGradient } from "@/components/sections/HeroGradient"
 
-const tools = [
-  "HubSpot", "Salesforce", "Slack", "Notion", "Stripe",
-  "Xero", "Airtable", "Make", "Zapier", "Pipedrive",
+const heroTools = [
+  { name: "HubSpot",    icon: "/Assets/icons/icons/hubspot.png" },
+  { name: "Salesforce",  icon: "/Assets/icons/icons/salesforce.png" },
+  { name: "Slack",       icon: "/Assets/icons/icons/slack.png" },
+  { name: "Notion",      icon: "/Assets/icons/icons/notion.png" },
+  { name: "Stripe",      icon: "/Assets/icons/icons/stripe.svg" },
+  { name: "n8n",         icon: "/Assets/icons/icons/n8n.png" },
+  { name: "Airtable",    icon: "/Assets/icons/icons/airtable.svg" },
+  { name: "Make",        icon: "/Assets/icons/icons/make.png" },
+  { name: "Zapier",      icon: "/Assets/icons/icons/zapier.png" },
+  { name: "Shopify",     icon: "/Assets/icons/icons/shopify-icon-3.svg" },
 ]
 
 export function Hero() {
   return (
     <section
-      className="text-center px-12 pt-[164px] pb-20"
+      className="relative overflow-hidden text-center px-12 pt-[164px] pb-20"
       style={{ background: "var(--ax-gradient-hero-wash)" }}
       aria-labelledby="hero-heading"
     >
-      <div className="max-w-[760px] mx-auto">
+      <HeroGradient />
+      <div className="relative z-10 max-w-[760px] mx-auto">
 
         {/* Eyebrow */}
         <div
-          className="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 bg-white rounded-full border border-[var(--ax-border)] text-[11px] font-medium uppercase text-[var(--ax-fg-2)]"
+          className="glass-pill inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 rounded-full text-[11px] font-medium uppercase text-[var(--ax-fg-2)]"
           style={{ fontFamily: "var(--ax-font-mono)", letterSpacing: "0.08em" }}
         >
           <span className="pulse-dot" aria-hidden="true" />
@@ -61,22 +71,10 @@ export function Hero() {
           </Button>
         </div>
 
-        {/* Tools */}
-        <div className="mt-14">
-          <div
-            className="text-[11px] uppercase text-[var(--ax-fg-3)] mb-3.5"
-            style={{ fontFamily: "var(--ax-font-mono)", letterSpacing: "0.06em" }}
-          >
-            Connects with the tools you already use
-          </div>
-          <div className="flex flex-wrap justify-center gap-2" role="list" aria-label="Supported integrations">
-            {tools.map((t) => (
-              <Chip key={t} variant="outline" size="sm">
-                {t}
-              </Chip>
-            ))}
-          </div>
-        </div>
+      </div>
+
+      <div className="relative z-10">
+        <ToolMarquee tools={heroTools} label="Connects with the tools you already use" pauseOnHover={false} />
       </div>
     </section>
   )
