@@ -401,7 +401,8 @@ body {
 
 .scatter-runway {
   position: relative;
-  height: 300vh;
+  /* Three phases share the runway: gather, scatter, metric reveals */
+  height: 340vh;
 }
 
 .scatter-sticky {
@@ -484,6 +485,25 @@ body {
   animation-play-state: paused;
 }
 
+/* Soft radial bloom behind the metrics column; opacity is driven
+   imperatively alongside the first metric's reveal segment */
+.scatter-metrics-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(70vw, 720px);
+  height: min(50vh, 420px);
+  z-index: 1;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--ax-pink-200) 40%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  will-change: opacity;
+}
+
 .scatter-metrics {
   position: relative;
   z-index: 2;
@@ -501,6 +521,9 @@ body {
   text-align: center;
   padding: var(--ax-space-8) var(--ax-space-6);
   will-change: transform, opacity;
+  /* Count-up text changes every frame during the reveal: containment
+     stops that layout/paint work from leaking beyond the card */
+  contain: layout style;
 }
 
 .scatter-metric-val {
@@ -510,6 +533,9 @@ body {
   line-height: 1;
   letter-spacing: -0.03em;
   color: var(--ax-fg-1);
+  /* Equal-width digits: the counting number never changes width, so
+     each frame repaints a few glyphs instead of re-laying-out the card */
+  font-variant-numeric: tabular-nums;
 }
 
 .scatter-metric-lbl {
@@ -520,7 +546,7 @@ body {
 
 @media (max-width: 640px) {
   .scatter-runway {
-    height: 240vh;
+    height: 280vh;
   }
 
   .scatter-metrics {
