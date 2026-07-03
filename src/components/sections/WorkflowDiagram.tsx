@@ -17,7 +17,7 @@ const activeConnectors = new Set([2, 3])
 
 export function WorkflowDiagram() {
   return (
-    <section className="px-12 py-24" aria-labelledby="workflow-heading">
+    <section className="px-5 sm:px-12 py-24" aria-labelledby="workflow-heading">
       <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <div>
@@ -45,7 +45,7 @@ export function WorkflowDiagram() {
         </div>
 
         <div
-          className="rounded-[24px] p-10 px-8 border border-[var(--ax-border)]"
+          className="rounded-[24px] p-6 px-4 sm:p-10 sm:px-8 border border-[var(--ax-border)]"
           style={{ background: "var(--ax-slate-100)" }}
           role="img"
           aria-label="CRM Lead Qualification workflow: Form, Enrich, Qualify, Route, Approve"

@@ -27,7 +27,7 @@ export function WorkflowNode({ type, label, icon: Icon }: Props) {
         <Icon size={18} strokeWidth={1.75} />
       </div>
       <span
-        className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[var(--ax-fg-2)] whitespace-nowrap"
+        className="wf-node-label text-[10px] font-semibold uppercase tracking-[0.06em] text-[var(--ax-fg-2)] whitespace-nowrap"
         style={{ fontFamily: "var(--ax-font-mono)" }}
       >
         {label}

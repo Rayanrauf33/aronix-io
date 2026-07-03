@@ -89,7 +89,7 @@ const services: Service[] = [
 
 export function ServicesList() {
   return (
-    <section className="px-12 py-16" aria-label="Service detail">
+    <section className="px-5 sm:px-12 py-16" aria-label="Service detail">
       <div className="max-w-[1280px] mx-auto">
         {services.map((s, i) => {
           const reversed = i % 2 === 1
@@ -157,7 +157,7 @@ export function ServicesList() {
               </div>
 
               <div
-                className={`rounded-[24px] p-8 bg-white border border-[var(--ax-border)] ${
+                className={`rounded-[24px] p-5 sm:p-8 bg-white border border-[var(--ax-border)] ${
                   reversed ? "lg:order-1" : ""
                 }`}
                 role="img"
