@@ -3,6 +3,7 @@ import { ServicesHero } from "@/components/sections/ServicesHero"
 import { ServicesList } from "@/components/sections/ServicesList"
 import { Faq } from "@/components/sections/Faq"
 import { CtaBand } from "@/components/sections/CtaBand"
+import { Reveal } from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
   title: "Services | Aronix",
@@ -55,20 +56,22 @@ const faqItems = [
 export default function ServicesPage() {
   return (
     <>
-      <ServicesHero />
-      <ServicesList />
-      <Faq items={faqItems} />
-      <CtaBand
-        title="Not sure which service fits your workflow?"
-        lead="Book a free audit. We'll identify the best starting point for your team."
-        primaryCta={{
-          label: "Book a Free Audit",
-          href: "https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session",
-          variant: "dark",
-          trailingArrow: true,
-        }}
-        secondaryCta={null}
-      />
+      <Reveal><ServicesHero /></Reveal>
+      <Reveal><ServicesList /></Reveal>
+      <Reveal><Faq items={faqItems} /></Reveal>
+      <Reveal>
+        <CtaBand
+          title="Not sure which service fits your workflow?"
+          lead="Book a free audit. We'll identify the best starting point for your team."
+          primaryCta={{
+            label: "Book a Free Audit",
+            href: "https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session",
+            variant: "dark",
+            trailingArrow: true,
+          }}
+          secondaryCta={null}
+        />
+      </Reveal>
     </>
   )
 }

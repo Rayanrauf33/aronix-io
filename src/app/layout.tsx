@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@/styles/app.css"
 import "@/styles/blog.css"
+import "@/styles/dashboard.css"
 
 export const metadata: Metadata = {
   title: {

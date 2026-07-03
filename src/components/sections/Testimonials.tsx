@@ -23,7 +23,11 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="px-12 py-24" aria-labelledby="testimonials-heading">
+    <section
+      className="px-12 py-24"
+      aria-labelledby="testimonials-heading"
+      style={{ background: "linear-gradient(180deg, var(--ax-bg) 0%, var(--ax-soft-blush) 100%)" }}
+    >
       <div className="max-w-[1280px] mx-auto">
 
         <div className="text-center mb-14">
@@ -47,11 +51,7 @@ export function Testimonials() {
           {testimonials.map(({ quote, author, role, surface }) => (
             <figure
               key={author}
-              className="relative m-0 p-10 px-8 rounded-[24px]"
-              style={{
-                background: surface === "blush" ? "var(--ax-soft-blush)" : "#fff",
-                border: surface === "white" ? "1px solid var(--ax-border)" : "none",
-              }}
+              className="relative m-0 p-10 px-8 rounded-[24px] glass-card"
             >
               <span
                 aria-hidden="true"

@@ -42,7 +42,7 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div className="bg-white border border-[var(--ax-border)] rounded-[24px] p-10 shadow-[var(--ax-shadow-md)]">
+      <div className="glass-card rounded-[24px] p-10">
         <div className="text-center py-12 px-6">
           <div
             className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
@@ -76,7 +76,7 @@ export function ContactForm() {
         e.preventDefault()
         if (canSubmit) setSent(true)
       }}
-      className="bg-white border border-[var(--ax-border)] rounded-[24px] p-10 shadow-[var(--ax-shadow-md)]"
+      className="glass-card rounded-[24px] p-10"
       aria-labelledby="contact-form-title"
     >
       <div className="mb-6">

@@ -8,7 +8,10 @@ const services = [
     title: "Automate Lead Qualification From Any Source",
     description: "Score and route every inbound lead the moment it arrives. No spreadsheets, no manual data entry.",
     accent: "pink" as const,
-    chips: ["HubSpot", "Salesforce"],
+    tools: [
+      { name: "HubSpot", icon: "/Assets/icons/icons/hubspot.png" },
+      { name: "Salesforce", icon: "/Assets/icons/icons/salesforce.png" },
+    ],
     href: "/services#crm",
   },
   {
@@ -16,7 +19,10 @@ const services = [
     title: "Close Your Books in Days, Not Weeks",
     description: "Reconcile transactions, match invoices and generate reports without manual intervention.",
     accent: "blue" as const,
-    chips: ["Xero", "QuickBooks"],
+    tools: [
+      { name: "Stripe", icon: "/Assets/icons/icons/stripe.svg" },
+      { name: "PayPal", icon: "/Assets/icons/icons/paypal.svg" },
+    ],
     href: "/services#finance",
   },
   {
@@ -24,14 +30,21 @@ const services = [
     title: "Eliminate Your Most Repetitive Admin Tasks",
     description: "From onboarding to reporting, we automate the work that quietly slows your team down.",
     accent: "indigo" as const,
-    chips: ["Notion", "Airtable"],
+    tools: [
+      { name: "Notion", icon: "/Assets/icons/icons/notion.png" },
+      { name: "Airtable", icon: "/Assets/icons/icons/airtable.svg" },
+    ],
     href: "/services#ops",
   },
 ]
 
 export function ServicesGrid() {
   return (
-    <section className="px-12 py-24" aria-labelledby="services-heading">
+    <section
+      className="px-12 py-24"
+      aria-labelledby="services-heading"
+      style={{ background: "linear-gradient(180deg, var(--ax-slate-100) 0%, var(--ax-soft-blush) 100%)" }}
+    >
       <div className="max-w-[1280px] mx-auto">
 
         <div className="mb-14 max-w-[560px]">

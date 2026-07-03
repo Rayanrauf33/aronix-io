@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import { Hero }            from "@/components/sections/Hero"
-import { MetricsStrip }    from "@/components/sections/MetricsStrip"
+import { ScatterMetrics }   from "@/components/sections/ScatterMetrics"
 import { ServicesGrid }    from "@/components/sections/ServicesGrid"
 import { HowItWorks }      from "@/components/sections/HowItWorks"
 import { WorkflowDiagram } from "@/components/sections/WorkflowDiagram"
 import { Integrations }    from "@/components/sections/Integrations"
 import { Testimonials }    from "@/components/sections/Testimonials"
 import { CtaBand }         from "@/components/sections/CtaBand"
+import { Reveal }          from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
   title: "Aronix | Business Automation for Growing Companies",
@@ -31,14 +32,14 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <MetricsStrip />
-      <ServicesGrid />
-      <HowItWorks />
-      <WorkflowDiagram />
-      <Integrations />
-      <Testimonials />
-      <CtaBand />
+      <Reveal><Hero /></Reveal>
+      <ScatterMetrics />
+      <Reveal><ServicesGrid /></Reveal>
+      <Reveal><HowItWorks /></Reveal>
+      <Reveal><WorkflowDiagram /></Reveal>
+      <Reveal><Integrations /></Reveal>
+      <Reveal><Testimonials /></Reveal>
+      <Reveal><CtaBand /></Reveal>
     </>
   )
 }

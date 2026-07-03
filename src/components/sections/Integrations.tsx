@@ -1,9 +1,19 @@
-import { Chip } from "@/components/ui/Chip"
 import { Eyebrow } from "@/components/ui/Eyebrow"
+import { ToolMarquee } from "@/components/sections/ToolMarquee"
 
 const tools = [
-  "HubSpot", "Salesforce", "Slack", "Notion", "Stripe", "Xero",
-  "Airtable", "Make", "Zapier", "Pipedrive", "QuickBooks", "ActiveCampaign",
+  { name: "HubSpot",     icon: "/Assets/icons/icons/hubspot.png" },
+  { name: "Salesforce",   icon: "/Assets/icons/icons/salesforce.png" },
+  { name: "Slack",        icon: "/Assets/icons/icons/slack.png" },
+  { name: "Notion",       icon: "/Assets/icons/icons/notion.png" },
+  { name: "Stripe",       icon: "/Assets/icons/icons/stripe.svg" },
+  { name: "Gmail",        icon: "/Assets/icons/icons/gmail-icon-3.svg" },
+  { name: "Airtable",     icon: "/Assets/icons/icons/airtable.svg" },
+  { name: "Make",         icon: "/Assets/icons/icons/make.png" },
+  { name: "Zapier",       icon: "/Assets/icons/icons/zapier.png" },
+  { name: "Monday",       icon: "/Assets/icons/icons/monday.svg" },
+  { name: "Google Sheets", icon: "/Assets/icons/icons/sheets.png" },
+  { name: "Mailchimp",    icon: "/Assets/icons/icons/mailchimp-icon-3.svg" },
 ]
 
 export function Integrations() {
@@ -30,15 +40,9 @@ export function Integrations() {
             Works with the tools you already have
           </h2>
         </div>
-
-        <div className="flex flex-wrap justify-center gap-2">
-          {tools.map((t) => (
-            <Chip key={t} variant="outline" size="md">
-              {t}
-            </Chip>
-          ))}
-        </div>
       </div>
+
+      <ToolMarquee tools={tools} pauseOnHover={false} />
     </section>
   )
 }

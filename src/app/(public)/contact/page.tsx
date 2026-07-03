@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { ContactHero } from "@/components/sections/ContactHero"
 import { ContactSection } from "@/components/sections/ContactSection"
 import { Faq } from "@/components/sections/Faq"
+import { Reveal } from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
   title: "Contact | Aronix",
@@ -49,9 +50,9 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <>
-      <ContactHero />
-      <ContactSection />
-      <Faq items={faqItems} title="Everything you need to know" />
+      <Reveal><ContactHero /></Reveal>
+      <Reveal><ContactSection /></Reveal>
+      <Reveal><Faq items={faqItems} title="Everything you need to know" /></Reveal>
     </>
   )
 }
