@@ -408,8 +408,10 @@ body {
 .scatter-sticky {
   position: sticky;
   top: 0;
+  /* Deliberately 100vh, NOT 100dvh: dvh resizes as the mobile browser
+     toolbar collapses mid-scroll, which re-centres every icon at once
+     (visible jitter during the scatter). vh stays constant on mobile. */
   height: 100vh;
-  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;

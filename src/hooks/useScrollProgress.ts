@@ -32,13 +32,28 @@ export function useScrollProgress(
 
     const response = window.innerWidth < 640 ? RESPONSE_MOBILE : RESPONSE
 
+    // Scroll span is cached, not read per frame: window.innerHeight
+    // changes continuously on mobile as the browser toolbar collapses,
+    // which warps progress mid-scroll (jitter). Width-only resize checks
+    // ignore that toolbar noise, same trick as the scatter icons.
+    let totalScroll = 0
+    let lastWidth = 0
+    const measure = () => {
+      totalScroll = el.offsetHeight - window.innerHeight
+      lastWidth = window.innerWidth
+    }
+    measure()
+    const onResize = () => {
+      if (window.innerWidth !== lastWidth) measure()
+    }
+    window.addEventListener("resize", onResize)
+
     const tick = (now: number) => {
       if (!activeRef.current) return
       const dt = Math.min((now - lastTimeRef.current) / 1000, 0.05)
       lastTimeRef.current = now
 
       const rect = el.getBoundingClientRect()
-      const totalScroll = rect.height - window.innerHeight
       const target = totalScroll > 0
         ? Math.max(0, Math.min(1, -rect.top / totalScroll))
         : 0
@@ -84,6 +99,7 @@ export function useScrollProgress(
 
     return () => {
       observer.disconnect()
+      window.removeEventListener("resize", onResize)
       activeRef.current = false
       cancelAnimationFrame(rafRef.current)
     }
