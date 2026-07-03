@@ -265,6 +265,676 @@ body {
   }
 }
 
+/* ── GLASS CHIP ────────────────────────────────────────── */
+
+.glass-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--ax-radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ax-pink-800);
+  background: rgba(255, 223, 240, 0.55);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(234, 75, 113, 0.25);
+  box-shadow:
+    0 4px 16px rgba(234, 75, 113, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px rgba(234, 75, 113, 0.08);
+}
+
+/* ── GLASS NAVBAR ─────────────────────────────────────── */
+
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.02);
+}
+
+.glass-navbar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  pointer-events: none;
+}
+
+.glass-navbar > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── GLASS CARD ────────────────────────────────────────── */
+
+.glass-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+  transition:
+    transform 0.2s ease-out,
+    box-shadow 0.2s ease-out,
+    border-color 0.2s ease-out;
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+.glass-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 16px 48px rgba(31, 38, 135, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* ── SCATTER METRICS ──────────────────────────────────── */
+
+.scatter-runway {
+  position: relative;
+  height: 300vh;
+}
+
+.scatter-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Blush to white: matches the hero wash above and the near-white
+     services section below, so both section seams are invisible */
+  background: linear-gradient(180deg, var(--ax-soft-blush) 0%, var(--ax-bg) 100%);
+}
+
+/* Outer element: scroll-driven position, written imperatively via rAF. */
+.scatter-pos {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  will-change: transform, opacity;
+}
+
+/* Liquid glass tiles over the light wash. Glass is emulated (translucent
+   fill + inset highlights + shine) instead of backdrop-filter -- visually
+   near-identical over a gentle gradient, but with zero per-frame GPU
+   resampling cost while the tiles move.
+   The perpetual float runs here on the inner element (compositor-only)
+   so it layers on top of the scroll-driven transform of the parent. */
+.scatter-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--ax-radius-lg);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 12px 32px rgba(31, 38, 135, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.04);
+  animation: scatter-float 6s ease-in-out infinite;
+}
+
+.scatter-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  pointer-events: none;
+}
+
+.scatter-icon > img {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes scatter-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25%      { transform: translate3d(3px, -5px, 0) rotate(0.8deg); }
+  50%      { transform: translate3d(-2px, -8px, 0) rotate(-0.6deg); }
+  75%      { transform: translate3d(-4px, 4px, 0) rotate(0.5deg); }
+}
+
+.scatter-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  pointer-events: none;
+}
+
+.scatter-icon > img {
+  position: relative;
+  z-index: 1;
+}
+
+.scatter-metrics {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: stretch;
+  gap: var(--ax-space-6);
+  max-width: var(--ax-container);
+  width: 100%;
+  margin: 0;
+  padding-inline: var(--ax-page-gutter);
+}
+
+.scatter-metric {
+  flex: 1;
+  text-align: center;
+  padding: var(--ax-space-8) var(--ax-space-6);
+  will-change: transform, opacity;
+}
+
+.scatter-metric-val {
+  font-family: var(--ax-font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ax-fg-1);
+}
+
+.scatter-metric-lbl {
+  font-size: var(--ax-fs-body-sm);
+  color: var(--ax-fg-2);
+  margin: var(--ax-space-2) 0 0;
+}
+
+@media (max-width: 640px) {
+  .scatter-runway {
+    height: 240vh;
+  }
+
+  .scatter-metrics {
+    flex-direction: column;
+    gap: var(--ax-space-2);
+    padding-inline: var(--ax-page-gutter-mobile);
+  }
+
+  .scatter-metric {
+    padding: var(--ax-space-4) var(--ax-space-6);
+  }
+
+  .scatter-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Keep the same logo-to-tile ratio as desktop (38/64), so the glass
+     stays visible around the logo instead of being filled by it */
+  .scatter-icon > img {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scatter-runway {
+    height: auto;
+  }
+
+  .scatter-sticky {
+    position: relative;
+    height: auto;
+    padding: var(--ax-space-16) 0;
+  }
+
+  .scatter-icon {
+    display: none;
+  }
+
+  .scatter-metric {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── SCROLL REVEAL ────────────────────────────────────── */
+
+/* One-time entrance: blocks rise and fade in the first time they enter
+   the viewport. The hidden state only applies when scripting is
+   available, so no-JS visitors and crawlers always see full content. */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.8s var(--ax-ease-smooth),
+      transform 0.8s var(--ax-ease-smooth);
+  }
+
+  .reveal.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── GLASS PILL ───────────────────────────────────────── */
+
+/* Small liquid glass badge; sits over the moving hero gradient, so real
+   backdrop blur is used here (single small element -- negligible cost) */
+.glass-pill {
+  position: relative;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 4px 16px rgba(31, 38, 135, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.03);
+}
+
+.glass-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  /* Below all content (including bare text nodes), above the glass fill */
+  z-index: -1;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  pointer-events: none;
+}
+
+/* ── HERO GRADIENT ────────────────────────────────────── */
+
+/* Soft radial blobs behind the hero content. Softness comes from the
+   gradient stops themselves -- no filter: blur() layer needed. The outer
+   wrapper carries the JS mouse-tracked transform; this inner element
+   drifts autonomously on the compositor. */
+.hero-blob {
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: hero-blob-drift 22s ease-in-out infinite;
+}
+
+.hero-blob-pink {
+  width: clamp(480px, 55vw, 900px);
+  height: clamp(480px, 55vw, 900px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--ax-pink-300) 45%, transparent) 0%,
+    color-mix(in srgb, var(--ax-pink-200) 30%, transparent) 35%,
+    transparent 70%
+  );
+}
+
+.hero-blob-indigo {
+  width: clamp(380px, 45vw, 720px);
+  height: clamp(380px, 45vw, 720px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--ax-accent) 28%, transparent) 0%,
+    color-mix(in srgb, var(--ax-sky-blue) 22%, transparent) 40%,
+    transparent 70%
+  );
+  animation-duration: 28s;
+  animation-delay: -9s;
+  animation-direction: reverse;
+}
+
+@keyframes hero-blob-drift {
+  0%, 100% { transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate(-50%, -50%) translate3d(4%, -5%, 0) scale(1.08); }
+  66%      { transform: translate(-50%, -50%) translate3d(-5%, 4%, 0) scale(0.94); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob {
+    animation: none;
+  }
+}
+
+/* ── HOW IT WORKS ─────────────────────────────────────── */
+
+/* Liquid glass step badge on the dark process section */
+.hiw-badge {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ax-radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--ax-font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ax-fg-on-dark);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  transition:
+    color 0.3s var(--ax-ease-out),
+    background 0.3s var(--ax-ease-out),
+    border-color 0.3s var(--ax-ease-out),
+    box-shadow 0.3s var(--ax-ease-out),
+    text-shadow 0.3s var(--ax-ease-out);
+}
+
+.hiw-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  pointer-events: none;
+}
+
+/* Hovering anywhere on the step (badge or its text) lights the badge up */
+.hiw-step:hover .hiw-badge {
+  color: var(--ax-pink-200);
+  background: rgba(234, 75, 113, 0.14);
+  border-color: rgba(234, 75, 113, 0.55);
+  box-shadow:
+    0 0 24px rgba(234, 75, 113, 0.45),
+    0 0 64px rgba(234, 75, 113, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 14px rgba(234, 75, 113, 0.8);
+}
+
+/* ── WORKFLOW NODES ───────────────────────────────────── */
+
+/* Liquid glass node circle; per-type accent arrives via --wf-bg / --wf-bd */
+.wf-node-circle {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--ax-radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--wf-bg) 70%, transparent);
+  border: 2px solid var(--wf-bd);
+  box-shadow:
+    0 4px 14px color-mix(in srgb, var(--wf-bd) 18%, transparent),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.25s var(--ax-ease-out);
+}
+
+.wf-node-circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  pointer-events: none;
+}
+
+.wf-node-circle > svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hovering a node lights it up from within, in its own accent colour */
+.wf-node:hover .wf-node-circle {
+  box-shadow:
+    inset 0 0 12px color-mix(in srgb, var(--wf-bd) 55%, transparent),
+    inset 0 0 26px color-mix(in srgb, var(--wf-bd) 30%, transparent),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    0 4px 14px color-mix(in srgb, var(--wf-bd) 18%, transparent);
+}
+
+/* ── TOOL MARQUEE ──────────────────────────────────────── */
+
+.marquee-section {
+  margin-top: var(--ax-space-16);
+  width: 100%;
+  max-width: calc(100% - 48px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marquee {
+  position: relative;
+  overflow: clip visible;
+  padding: var(--ax-space-12) 0;
+  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: var(--ax-space-10);
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--ax-radius-lg);
+  flex-shrink: 0;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+  transform-origin: center center;
+
+  /* Liquid glass core */
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Liquid glass shine highlight */
+.marquee-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ax-radius-lg);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ── LOGIN PAGE ────────────────────────────────────────── */
+
+.login-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  background: var(--ax-gradient-dark-cta);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--ax-gradient-underline);
+}
+
+.login-brand-inner {
+  text-align: center;
+}
+
+.login-logo {
+  height: 45px;
+  width: auto;
+}
+
+.login-tagline {
+  font-family: var(--ax-font-mono);
+  font-size: var(--ax-fs-caption);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--ax-tracking-eyebrow);
+  color: var(--ax-fg-on-dark-2);
+  margin-top: var(--ax-space-3);
+}
+
+.login-form-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ax-space-8);
+  position: relative;
+}
+
+.login-back {
+  position: absolute;
+  top: var(--ax-space-6);
+  left: var(--ax-space-6);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ax-space-2);
+  font-size: var(--ax-fs-body-sm);
+  font-weight: 500;
+  color: var(--ax-fg-3);
+  text-decoration: none;
+  transition: color var(--ax-dur-fast) var(--ax-ease-smooth);
+}
+
+.login-back:hover {
+  color: var(--ax-fg-1);
+}
+
+.login-form-wrap {
+  width: 100%;
+  max-width: 380px;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-brand {
+    width: 100%;
+    padding: var(--ax-space-10) var(--ax-space-6);
+  }
+
+  .login-form-side {
+    padding: var(--ax-space-8) var(--ax-space-6);
+  }
+}
+
 /* ── ARTICLE PROSE ──────────────────────────────────────── */
 
 .article-prose h2 {
