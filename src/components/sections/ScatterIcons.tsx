@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useImperativeHandle, forwardRef } from "react"
+import { useRef, useImperativeHandle, forwardRef, useEffect } from "react"
 import Image from "next/image"
 
 export type ScatterIconsHandle = {
@@ -35,12 +35,15 @@ const ICONS: IconDef[] = [
 // Hand-curated end positions as percent of viewport from centre.
 // Spread organically across the screen, leaving the central band
 // clear for the metrics text.
+// Order matters: mobile only shows the FIRST 15, so those are chosen
+// to spread evenly (7 up / 8 down, 8 left / 7 right). The remaining
+// 5 fill in the desktop layout.
 const END_POSITIONS: { x: number; y: number }[] = [
-  { x: -42, y: -34 }, { x: -24, y: -38 }, { x: -6,  y: -36 }, { x: 12,  y: -40 },
-  { x: 30,  y: -35 }, { x: 44,  y: -30 }, { x: -46, y: -16 }, { x: 46,  y: -14 },
-  { x: -34, y: 22 },  { x: 36,  y: 20 },  { x: -16, y: 26 },  { x: 18,  y: 24 },
-  { x: -45, y: 14 },  { x: 44,  y: 16 },  { x: -43, y: 32 },  { x: -26, y: 38 },
-  { x: -8,  y: 34 },  { x: 10,  y: 39 },  { x: 28,  y: 33 },  { x: 45,  y: 29 },
+  { x: -42, y: -34 }, { x: 12,  y: -40 }, { x: 44,  y: -30 }, { x: -6,  y: -36 },
+  { x: -46, y: -16 }, { x: -24, y: -38 }, { x: 30,  y: -35 }, { x: -34, y: 22 },
+  { x: 36,  y: 20 },  { x: -26, y: 38 },  { x: 10,  y: 39 },  { x: 45,  y: 29 },
+  { x: -45, y: 14 },  { x: 18,  y: 24 },  { x: -43, y: 32 },  { x: 46,  y: -14 },
+  { x: -16, y: 26 },  { x: 44,  y: 16 },  { x: -8,  y: 34 },  { x: 28,  y: 33 },
 ]
 
 // Scatter completes before the first metric segment begins at 0.42
@@ -88,16 +91,44 @@ function smoothstep(t: number): number {
   return t * t * (3 - 2 * t)
 }
 
+// Mobile renders only the first N icons (hidden via CSS, skipped here)
+const MOBILE_COUNT = 15
+const MOBILE_BREAKPOINT = 640
+
 export const ScatterIcons = forwardRef<ScatterIconsHandle>(
   function ScatterIcons(_, ref) {
     const elRefs = useRef<(HTMLDivElement | null)[]>([])
+    const lastWrittenRef = useRef<string[]>([])
+    // Cached viewport metrics. Reading window dims per frame on mobile is
+    // poison: the collapsing browser toolbar changes innerHeight while
+    // scrolling, so vh-based end positions drift mid-flight (jitter).
+    // We cache once and refresh only when the WIDTH changes -- height-only
+    // resizes are toolbar noise, width changes mean rotation/real resize.
+    const viewRef = useRef({ vw: 0, vh: 0, mobile: false, width: 0 })
+
+    useEffect(() => {
+      const measure = () => {
+        viewRef.current = {
+          vw: window.innerWidth / 100,
+          vh: window.innerHeight / 100,
+          mobile: window.innerWidth < MOBILE_BREAKPOINT,
+          width: window.innerWidth,
+        }
+      }
+      measure()
+      const onResize = () => {
+        if (window.innerWidth !== viewRef.current.width) measure()
+      }
+      window.addEventListener("resize", onResize)
+      return () => window.removeEventListener("resize", onResize)
+    }, [])
 
     useImperativeHandle(ref, () => ({
       applyProgress(progress: number) {
-        const vw = window.innerWidth / 100
-        const vh = window.innerHeight / 100
-        const mobile = window.innerWidth < 640
-        for (let i = 0; i < iconData.length; i++) {
+        const { vw, vh, mobile } = viewRef.current
+        if (vw === 0) return
+        const limit = mobile ? MOBILE_COUNT : iconData.length
+        for (let i = 0; i < limit; i++) {
           const el = elRefs.current[i]
           if (!el) continue
           const d = iconData[i]
@@ -134,8 +165,14 @@ export const ScatterIcons = forwardRef<ScatterIconsHandle>(
           const scale = 1 + (d.scaleEnd - 1) * t
           const rot = d.startRot + (d.endRot - d.startRot) * t
 
-          el.style.transform =
-            `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) scale(${scale})`
+          // Rounded values keep strings short (less build/parse/GC churn),
+          // and identical strings are skipped entirely
+          const transform =
+            `translate(-50%, -50%) translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg) scale(${scale.toFixed(3)})`
+          if (lastWrittenRef.current[i] !== transform) {
+            lastWrittenRef.current[i] = transform
+            el.style.transform = transform
+          }
         }
       },
     }))
