@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Menu, X, LayoutDashboard } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
 
@@ -24,11 +24,10 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 inset-x-0 z-50 border-b border-[var(--ax-border)] backdrop-blur-md"
-      style={{ background: "rgba(255,255,255,0.92)" }}
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-[1200px] rounded-2xl overflow-hidden glass-navbar"
       role="banner"
     >
-      <div className="max-w-[1280px] mx-auto px-5 sm:px-12 h-16 flex items-center justify-between gap-8">
+      <div className="px-5 sm:px-8 h-16 flex items-center justify-between gap-8">
 
         <Link href="/" aria-label="Aronix home" className="flex items-center shrink-0">
           <Image src="/aronix-logo.png" alt="Aronix" width={100} height={28} className="h-7 w-auto" priority />
@@ -52,7 +51,14 @@ export function Header() {
               </Link>
             )
           })}
-          <div className="ml-2">
+          <Link
+            href="/dashboard"
+            className="ml-1 p-2 rounded-[8px] text-[var(--ax-fg-2)] hover:text-[var(--ax-fg-1)] hover:bg-[var(--ax-slate-200)] transition-colors"
+            title="Dashboard"
+          >
+            <LayoutDashboard size={18} />
+          </Link>
+          <div className="ml-1">
             <Button
               href="https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session"
               variant="primary"
@@ -76,7 +82,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="md:hidden bg-white border-t border-[var(--ax-border)] px-5 py-4">
+        <div id="mobile-menu" className="md:hidden border-t border-white/30 px-5 py-4">
           <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
             {navLinks.map(({ label, href }) => (
               <Link
@@ -88,6 +94,14 @@ export function Header() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/dashboard"
+              onClick={() => setOpen(false)}
+              className="px-3.5 py-3 text-[15px] font-medium text-[var(--ax-fg-1)] rounded-[8px] hover:bg-[var(--ax-slate-200)] flex items-center gap-2"
+            >
+              <LayoutDashboard size={18} />
+              Dashboard
+            </Link>
             <Button
               href="https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session"
               variant="primary"
