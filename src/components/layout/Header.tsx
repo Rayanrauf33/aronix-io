@@ -24,7 +24,10 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-[1200px] rounded-2xl overflow-hidden glass-navbar"
+      className={cn(
+        "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-[1200px] rounded-2xl overflow-hidden glass-navbar",
+        open && "glass-navbar-open",
+      )}
       role="banner"
     >
       <div className="px-5 sm:px-8 h-16 flex items-center justify-between gap-8">

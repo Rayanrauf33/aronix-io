@@ -23,6 +23,14 @@ export function Reveal({ children }: Props) {
         if (entry.isIntersecting) {
           el.classList.add("reveal-visible")
           observer.disconnect()
+          // Once the entrance finishes, strip the transition and transform
+          // so the block becomes a plain static element again (no lingering
+          // transition bookkeeping, no stacking context from the transform)
+          el.addEventListener(
+            "transitionend",
+            () => el.classList.add("reveal-done"),
+            { once: true },
+          )
         }
       },
       // Fire as soon as the block crosses 80px into the viewport, so even
