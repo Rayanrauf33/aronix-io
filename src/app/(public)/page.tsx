@@ -7,6 +7,7 @@ import { WorkflowDiagram } from "@/components/sections/WorkflowDiagram"
 import { Integrations }    from "@/components/sections/Integrations"
 import { Testimonials }    from "@/components/sections/Testimonials"
 import { CtaBand }         from "@/components/sections/CtaBand"
+import { AutomationScout } from "@/components/sections/AutomationScout"
 import { Reveal }          from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
@@ -39,6 +40,7 @@ export default function HomePage() {
       <Reveal><WorkflowDiagram /></Reveal>
       <Reveal><Integrations /></Reveal>
       <Reveal><Testimonials /></Reveal>
+      <AutomationScout />
       <Reveal><CtaBand /></Reveal>
     </>
   )
