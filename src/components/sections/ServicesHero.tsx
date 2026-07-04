@@ -23,7 +23,7 @@ export function ServicesHero() {
           The right automation for every workflow
         </h1>
         <p className="text-[18px] leading-[1.6] text-[var(--ax-fg-2)] max-w-[560px]">
-          We cover every part of the operational stack &mdash; from CRM and finance
+          We cover every part of the operational stack, from CRM and finance
           to internal processes and custom integrations.
         </p>
       </div>

@@ -53,7 +53,7 @@ export function Hero() {
         {/* Lead */}
         <p className="text-[19px] leading-[1.6] text-[var(--ax-fg-2)] max-w-[600px] mx-auto mb-10">
           Aronix maps the steps your team still does by hand, then builds the
-          automation that removes them &mdash; quietly, in the background, every time.
+          automation that removes them, quietly, in the background, every time.
         </p>
 
         {/* CTAs */}

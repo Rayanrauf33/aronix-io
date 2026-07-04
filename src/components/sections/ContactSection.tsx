@@ -44,7 +44,7 @@ export function ContactSection() {
             <p className="text-[17px] leading-[1.6] text-[var(--ax-fg-2)] mb-10">
               In 45 minutes, we&apos;ll map your highest-cost manual process,
               estimate the time saved, and outline a realistic automation plan.
-              No obligation, no pitch &mdash; just a clear view of what&apos;s possible.
+              No obligation, no pitch. Just a clear view of what&apos;s possible.
             </p>
 
             <ul className="flex flex-col gap-4 list-none p-0">

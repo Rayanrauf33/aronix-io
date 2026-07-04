@@ -54,7 +54,7 @@ export function WorkflowDiagram() {
             className="text-[10px] uppercase text-[var(--ax-fg-3)] mb-6"
             style={{ fontFamily: "var(--ax-font-mono)", letterSpacing: "0.08em" }}
           >
-            CRM Lead qualification &mdash; Aronix diagram
+            CRM Lead qualification: Aronix diagram
           </div>
 
           <div className="flex items-start flex-nowrap overflow-x-auto" aria-hidden="true">

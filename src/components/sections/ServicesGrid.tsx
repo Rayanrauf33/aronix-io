@@ -63,7 +63,7 @@ export function ServicesGrid() {
             The right automation for every part of your business
           </h2>
           <p className="text-[18px] leading-[1.6] text-[var(--ax-fg-2)]">
-            From CRM and sales workflows to finance, marketing and internal ops &mdash; we build
+            From CRM and sales workflows to finance, marketing and internal ops, we build
             reliable systems that free your team from repetitive work.
           </p>
         </div>

@@ -13,7 +13,7 @@ import { Reveal }          from "@/components/ui/Reveal"
 export const metadata: Metadata = {
   title: "Aronix | Business Automation for Growing Companies",
   description:
-    "Aronix builds custom automation that connects your CRM, finance tools, and internal ops — so your team stops firefighting and starts scaling. Trusted by 40+ growing companies.",
+    "Aronix builds custom automation that connects your CRM, finance tools, and internal ops, so your team stops firefighting and starts scaling. Trusted by 40+ growing companies.",
   openGraph: {
     title: "Aronix | Business Automation for Growing Companies",
     description:
@@ -36,7 +36,7 @@ export default function HomePage() {
       <Reveal><Hero /></Reveal>
       <ScatterMetrics />
       <Reveal><ServicesGrid /></Reveal>
-      <Reveal><HowItWorks /></Reveal>
+      <HowItWorks />
       <Reveal><WorkflowDiagram /></Reveal>
       <Reveal><Integrations /></Reveal>
       <Reveal><Testimonials /></Reveal>

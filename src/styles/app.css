@@ -727,6 +727,70 @@ body {
   }
 }
 
+/* ── PROCESS REVEAL ──────────────────────────────────── */
+
+.process-runway {
+  position: relative;
+}
+
+.process-sticky {
+  background: var(--ax-surface-dark);
+}
+
+.process-content {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+/* Desktop: activate scroll-driven sticky layout */
+@media (min-width: 768px) {
+  .process-runway {
+    height: 300vh;
+  }
+
+  .process-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .process-content {
+    padding: max(64px, 12vh) 48px 0;
+  }
+}
+
+.process-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 55%,
+    rgba(234, 75, 113, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .process-glow {
+    display: block;
+  }
+}
+
+/* Mobile: force all content visible, no animation at all */
+@media (max-width: 767px) {
+  .process-content,
+  .process-content * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 /* ── HOW IT WORKS ─────────────────────────────────────── */
 
 /* Liquid glass step badge on the dark process section */
@@ -782,6 +846,45 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.25),
     inset 0 -1px 1px rgba(0, 0, 0, 0.2);
   text-shadow: 0 0 14px rgba(234, 75, 113, 0.8);
+}
+
+/* Scroll-activated glow (same visual as hover, driven by JS) */
+.hiw-badge[data-active="true"] {
+  color: var(--ax-pink-200);
+  background: rgba(234, 75, 113, 0.14);
+  border-color: rgba(234, 75, 113, 0.55);
+  box-shadow:
+    0 0 24px rgba(234, 75, 113, 0.45),
+    0 0 64px rgba(234, 75, 113, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 14px rgba(234, 75, 113, 0.8);
+}
+
+/* Ring pulse that expands outward on badge activation */
+.hiw-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: var(--ax-radius-pill);
+  border: 1.5px solid transparent;
+  pointer-events: none;
+}
+
+.hiw-ring.hiw-ring-active {
+  animation: hiw-ring-expand 0.7s var(--ax-ease-out) forwards;
+}
+
+@keyframes hiw-ring-expand {
+  0% {
+    transform: scale(0.8);
+    border-color: rgba(234, 75, 113, 0.7);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    border-color: rgba(234, 75, 113, 0);
+    opacity: 0;
+  }
 }
 
 /* ── WORKFLOW NODES ───────────────────────────────────── */
