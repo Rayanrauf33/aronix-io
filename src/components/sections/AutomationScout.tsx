@@ -1,10 +1,9 @@
 "use client"
 
 import { useRef, useEffect, useState, useCallback } from "react"
-import { Send, AlertCircle, Sparkles } from "lucide-react"
+import { Send, AlertCircle, Sparkles, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Eyebrow } from "@/components/ui/Eyebrow"
-import { Button } from "@/components/ui/Button"
 import "./AutomationScout.css"
 
 type Message = {
@@ -236,14 +235,15 @@ export function AutomationScout() {
               >
                 Want the full picture? Book a free workflow audit.
               </p>
-              <Button
+              <a
                 href={CALENDLY_URL}
-                variant="dark"
-                size="lg"
-                trailingArrow
+                className="scout-cta-btn"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Book an Automation Audit
-              </Button>
+                <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
+              </a>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
