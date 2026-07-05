@@ -8,6 +8,9 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en-GB">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body
         style={{
           margin: 0,
@@ -53,28 +56,66 @@ export default function GlobalError({
               margin: "0 0 32px",
             }}
           >
-            We hit an unexpected error. You can try reloading the page.
+            We hit an unexpected error. You can try again or go back to the
+            home page.
           </p>
-          <button
-            onClick={() => reset()}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: 44,
-              padding: "0 24px",
-              fontSize: 15,
-              fontWeight: 600,
-              color: "#FFFFFF",
-              backgroundColor: "#A82949",
-              border: "none",
-              borderRadius: 12,
-              cursor: "pointer",
-              fontFamily: "inherit",
-            }}
-          >
-            Try again
-          </button>
+          <div style={{ display: "flex", justifyContent: "center", gap: 12 }}>
+            <button
+              onClick={() => reset()}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 44,
+                padding: "0 24px",
+                fontSize: 15,
+                fontWeight: 600,
+                color: "#FFFFFF",
+                backgroundColor: "#A82949",
+                border: "none",
+                borderRadius: 12,
+                cursor: "pointer",
+                fontFamily: "inherit",
+                outline: "none",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.boxShadow = "0 0 0 2px #EA4B71"
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.boxShadow = "none"
+              }}
+            >
+              Try again
+            </button>
+            <a
+              href="/"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 44,
+                padding: "0 24px",
+                fontSize: 15,
+                fontWeight: 600,
+                color: "#0A0A0A",
+                backgroundColor: "transparent",
+                border: "1px solid #0A0A0A",
+                borderRadius: 12,
+                cursor: "pointer",
+                fontFamily: "inherit",
+                textDecoration: "none",
+                outline: "none",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.boxShadow = "0 0 0 2px #EA4B71"
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.boxShadow = "none"
+              }}
+            >
+              Go home
+            </a>
+          </div>
         </div>
       </body>
     </html>

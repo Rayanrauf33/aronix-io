@@ -1,7 +1,8 @@
 "use client"
 
-import Link from "next/link"
 import { Header } from "@/components/layout/Header"
+import { Footer } from "@/components/layout/Footer"
+import { Button } from "@/components/ui/Button"
 
 export default function Error({
   reset,
@@ -13,7 +14,10 @@ export default function Error({
     <>
       <Header />
       <main>
-        <section className="px-5 sm:px-12 pt-[144px] pb-24 text-center">
+        <section
+          className="px-5 sm:px-12 pt-[144px] pb-24 text-center"
+          aria-labelledby="error-heading"
+        >
           <div className="max-w-[560px] mx-auto">
             <span
               className="block text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--ax-primary)] mb-4"
@@ -22,6 +26,7 @@ export default function Error({
               Error
             </span>
             <h1
+              id="error-heading"
               className="text-[var(--ax-fg-1)] mb-4"
               style={{
                 fontFamily: "var(--ax-font-display)",
@@ -38,22 +43,17 @@ export default function Error({
               or head back to the home page.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <button
-                onClick={() => reset()}
-                className="inline-flex items-center justify-center font-semibold border whitespace-nowrap transition-all duration-150 ease-out focus-visible:outline-2 focus-visible:outline-[var(--ax-primary)] focus-visible:outline-offset-2 rounded-[12px] bg-[var(--ax-pink-700)] text-white border-transparent hover:bg-[var(--ax-pink-800)] hover:shadow-[var(--ax-shadow-pink)] h-11 px-6 text-[15px]"
-              >
+              <Button variant="primary" size="md" onClick={() => reset()}>
                 Try again
-              </button>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center font-semibold border whitespace-nowrap transition-all duration-150 ease-out focus-visible:outline-2 focus-visible:outline-[var(--ax-primary)] focus-visible:outline-offset-2 rounded-[12px] bg-transparent text-[var(--ax-fg-1)] border-[var(--ax-fg-1)] hover:bg-[var(--ax-fg-1)] hover:text-white h-11 px-6 text-[15px]"
-              >
+              </Button>
+              <Button href="/" variant="outline" size="md">
                 Go home
-              </Link>
+              </Button>
             </div>
           </div>
         </section>
       </main>
+      <Footer />
     </>
   )
 }

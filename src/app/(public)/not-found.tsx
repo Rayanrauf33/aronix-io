@@ -1,15 +1,23 @@
+import type { Metadata } from "next"
 import { Button } from "@/components/ui/Button"
 import { Eyebrow } from "@/components/ui/Eyebrow"
+
+export const metadata: Metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: false },
+}
 
 export default function NotFound() {
   return (
     <section
       className="px-5 sm:px-12 pt-[144px] pb-24 text-center"
       style={{ background: "var(--ax-soft-blush)" }}
+      aria-labelledby="not-found-heading"
     >
       <div className="max-w-[560px] mx-auto">
         <Eyebrow className="mb-4">404</Eyebrow>
         <h1
+          id="not-found-heading"
           className="text-[var(--ax-fg-1)] mb-4"
           style={{
             fontFamily: "var(--ax-font-display)",
