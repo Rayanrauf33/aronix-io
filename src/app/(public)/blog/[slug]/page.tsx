@@ -38,7 +38,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       publishedTime: post.created_at,
       modifiedTime: post.updated_at,
       authors: [post.author],
-      images: post.cover_image ? [{ url: post.cover_image }] : undefined,
     },
     alternates: { canonical: `/blog/${post.slug}` },
   }
