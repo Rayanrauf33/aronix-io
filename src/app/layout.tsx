@@ -31,11 +31,25 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aronix.io"),
   title: {
     template: "%s | Aronix",
-    default: "Aronix",
+    default: "Aronix | Business Automation for Growing Companies",
   },
-  description: "Editorial clarity meets operational intelligence.",
+  description:
+    "Aronix builds custom automation that connects your CRM, finance tools, and internal ops so your team stops firefighting and starts scaling.",
+  openGraph: {
+    siteName: "Aronix",
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

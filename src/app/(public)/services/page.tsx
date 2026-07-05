@@ -6,18 +6,19 @@ import { CtaBand } from "@/components/sections/CtaBand"
 import { Reveal } from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
-  title: "Services | Aronix",
+  title: "Services",
   description:
     "Custom automation for CRM, finance ops, and internal workflows. We design, build and monitor the systems that remove manual work from your team's day.",
   openGraph: {
     title: "Services | Aronix",
     description:
       "Automation services for CRM, finance and internal ops. Free audit included.",
-    url: "https://aronix.io/services",
+    url: "/services",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
   },
-  alternates: { canonical: "https://aronix.io/services" },
+  alternates: { canonical: "/services" },
 }
 
 const faqItems = [

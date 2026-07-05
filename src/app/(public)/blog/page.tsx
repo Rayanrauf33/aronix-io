@@ -6,17 +6,18 @@ import { NewsletterBand } from "@/components/sections/NewsletterBand"
 import { FeaturedPostCard, PostCard } from "@/components/cards/BlogPostCard"
 
 export const metadata: Metadata = {
-  title: "Blog | Aronix",
+  title: "Blog",
   description:
     "Insights on automation, operations and growth. Practical thinking on how growing teams remove manual work and build reliable systems.",
   openGraph: {
-    title: "Aronix Blog",
+    title: "Blog | Aronix",
     description: "Insights on automation, operations and growth.",
-    url: "https://aronix.io/blog",
+    url: "/blog",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
   },
-  alternates: { canonical: "https://aronix.io/blog" },
+  alternates: { canonical: "/blog" },
 }
 
 export const revalidate = 60

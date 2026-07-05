@@ -5,18 +5,19 @@ import { Faq } from "@/components/sections/Faq"
 import { Reveal } from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
-  title: "Contact | Aronix",
+  title: "Contact",
   description:
     "Book your free 45-minute automation audit. We'll map your highest-cost manual process and outline a realistic automation plan.",
   openGraph: {
     title: "Contact | Aronix",
     description:
       "Book your free 45-minute automation audit with Aronix.",
-    url: "https://aronix.io/contact",
+    url: "/contact",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
   },
-  alternates: { canonical: "https://aronix.io/contact" },
+  alternates: { canonical: "/contact" },
 }
 
 const faqItems = [

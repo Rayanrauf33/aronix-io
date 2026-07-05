@@ -11,15 +11,18 @@ import { AutomationScout } from "@/components/sections/AutomationScout"
 import { Reveal }          from "@/components/ui/Reveal"
 
 export const metadata: Metadata = {
-  title: "Aronix | Business Automation for Growing Companies",
+  title: {
+    absolute: "Aronix | Business Automation for Growing Companies",
+  },
   description:
     "Aronix builds custom automation that connects your CRM, finance tools, and internal ops, so your team stops firefighting and starts scaling. Trusted by 40+ growing companies.",
   openGraph: {
     title: "Aronix | Business Automation for Growing Companies",
     description:
       "Custom automation for CRM, finance ops, and internal workflows. Book a free workflow audit.",
-    url: "https://aronix.io",
+    url: "/",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
@@ -27,7 +30,7 @@ export const metadata: Metadata = {
     title: "Aronix | Business Automation",
     description: "Custom automation for growing teams. Free workflow audit.",
   },
-  alternates: { canonical: "https://aronix.io" },
+  alternates: { canonical: "/" },
 }
 
 export default function HomePage() {

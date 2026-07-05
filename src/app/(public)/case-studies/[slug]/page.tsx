@@ -19,18 +19,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const cs = await getCaseStudyBySlug(slug)
-  if (!cs) return { title: "Case Study | Aronix" }
+  if (!cs) return { title: "Case Study" }
   return {
-    title: `${cs.title} | Aronix`,
+    title: cs.title,
     description: cs.summary,
     openGraph: {
       title: `${cs.title} | Aronix`,
       description: cs.summary,
-      url: `https://aronix.io/case-studies/${cs.slug}`,
+      url: `/case-studies/${cs.slug}`,
       siteName: "Aronix",
+      locale: "en_GB",
       type: "article",
     },
-    alternates: { canonical: `https://aronix.io/case-studies/${cs.slug}` },
+    alternates: { canonical: `/case-studies/${cs.slug}` },
   }
 }
 

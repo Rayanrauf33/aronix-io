@@ -8,18 +8,19 @@ import { getPublishedCaseStudies } from "@/lib/supabase/case-studies"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Case Studies | Aronix",
+  title: "Case Studies",
   description:
     "Real automation results: lead response in 60 seconds, month-end close in 6 hours, onboarding with zero manual steps. See how growing teams automate with Aronix.",
   openGraph: {
     title: "Case Studies | Aronix",
     description:
       "Real workflows, measured results. See how growing teams automate with Aronix.",
-    url: "https://aronix.io/case-studies",
+    url: "/case-studies",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
   },
-  alternates: { canonical: "https://aronix.io/case-studies" },
+  alternates: { canonical: "/case-studies" },
 }
 
 export default async function CaseStudiesPage() {

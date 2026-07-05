@@ -23,19 +23,23 @@ function formatDate(iso: string): string {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) return { title: "Post not found | Aronix" }
+  if (!post) return { title: "Post not found" }
   return {
-    title: `${post.title} | Aronix Blog`,
+    title: post.title,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://aronix.io/blog/${post.slug}`,
+      url: `/blog/${post.slug}`,
       siteName: "Aronix",
+      locale: "en_GB",
       type: "article",
+      publishedTime: post.created_at,
+      modifiedTime: post.updated_at,
+      authors: [post.author],
       images: post.cover_image ? [{ url: post.cover_image }] : undefined,
     },
-    alternates: { canonical: `https://aronix.io/blog/${post.slug}` },
+    alternates: { canonical: `/blog/${post.slug}` },
   }
 }
 
