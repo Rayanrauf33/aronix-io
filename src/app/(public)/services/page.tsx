@@ -4,6 +4,7 @@ import { ServicesList } from "@/components/sections/ServicesList"
 import { Faq } from "@/components/sections/Faq"
 import { CtaBand } from "@/components/sections/CtaBand"
 import { Reveal } from "@/components/ui/Reveal"
+import { breadcrumbSchema, faqSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
   title: "Services",
@@ -57,6 +58,17 @@ const faqItems = [
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services" },
+        ])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(faqSchema(faqItems)) }}
+      />
       <Reveal><ServicesHero /></Reveal>
       <Reveal><ServicesList /></Reveal>
       <Reveal><Faq items={faqItems} /></Reveal>

@@ -4,6 +4,7 @@ import { BlogHero } from "@/components/sections/BlogHero"
 import { CategoryFilter } from "@/components/sections/CategoryFilter"
 import { NewsletterBand } from "@/components/sections/NewsletterBand"
 import { FeaturedPostCard, PostCard } from "@/components/cards/BlogPostCard"
+import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -41,6 +42,13 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog" },
+        ])) }}
+      />
       <BlogHero count={posts.length} />
 
       <section className="px-12 pt-14 pb-24" aria-label="Blog posts">

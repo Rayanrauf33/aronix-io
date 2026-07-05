@@ -3,6 +3,7 @@ import { ContactHero } from "@/components/sections/ContactHero"
 import { ContactSection } from "@/components/sections/ContactSection"
 import { Faq } from "@/components/sections/Faq"
 import { Reveal } from "@/components/ui/Reveal"
+import { breadcrumbSchema, faqSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -51,6 +52,17 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact" },
+        ])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(faqSchema(faqItems)) }}
+      />
       <Reveal><ContactHero /></Reveal>
       <Reveal><ContactSection /></Reveal>
       <Reveal><Faq items={faqItems} title="Everything you need to know" /></Reveal>

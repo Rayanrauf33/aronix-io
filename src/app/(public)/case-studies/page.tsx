@@ -4,6 +4,7 @@ import { CaseStudyCard } from "@/components/cards/CaseStudyCard"
 import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { getPublishedCaseStudies } from "@/lib/supabase/case-studies"
+import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 export const revalidate = 60
 
@@ -27,6 +28,13 @@ export default async function CaseStudiesPage() {
   const caseStudies = await getPublishedCaseStudies()
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Case Studies" },
+        ])) }}
+      />
       <Reveal>
         <CaseStudiesHero />
       </Reveal>

@@ -7,6 +7,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { getCaseStudyBySlug } from "@/lib/supabase/case-studies"
+import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 type Params = { slug: string }
 
@@ -46,6 +47,14 @@ export default async function CaseStudyPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Case Studies", path: "/case-studies" },
+          { name: cs.title },
+        ])) }}
+      />
       <section
         className="px-5 sm:px-12 pt-[144px] pb-14"
         style={{ background: "var(--ax-soft-blush)" }}

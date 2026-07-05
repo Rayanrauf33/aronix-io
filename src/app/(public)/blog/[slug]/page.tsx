@@ -10,6 +10,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
 import { SubscribeForm } from "@/components/ui/SubscribeForm"
 import { PostCard } from "@/components/cards/BlogPostCard"
+import { articleSchema, breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 export const revalidate = 60
 
@@ -52,6 +53,18 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(articleSchema(post)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title },
+        ])) }}
+      />
       <section
         className="px-12 pt-[120px] pb-12"
         style={{ background: "var(--ax-soft-blush)" }}
