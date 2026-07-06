@@ -111,7 +111,7 @@ export function ToolMarquee({ tools, label, pauseOnHover = true }: Props) {
               className="marquee-item"
               title={name}
             >
-              <Image src={icon} alt={name} width={40} height={40} className="object-contain" />
+              <Image src={icon} alt={name} width={40} height={40} sizes="40px" className="object-contain" />
             </div>
           ))}
         </div>

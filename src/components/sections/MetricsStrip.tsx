@@ -9,7 +9,7 @@ export function MetricsStrip() {
   return (
     <section
       aria-label="Key metrics"
-      className="px-12 py-16"
+      className="px-5 sm:px-12 py-16"
       style={{ background: "var(--ax-surface-dark)" }}
     >
       <div className="max-w-[1280px] mx-auto">

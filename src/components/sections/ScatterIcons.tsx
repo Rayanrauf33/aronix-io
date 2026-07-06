@@ -286,6 +286,7 @@ export const ScatterIcons = forwardRef<ScatterIconsHandle>(
                 alt=""
                 width={38}
                 height={38}
+                sizes="38px"
                 className="object-contain"
                 draggable={false}
                 // Decode before the section arrives: no image pop-in

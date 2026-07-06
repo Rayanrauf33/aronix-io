@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ChevronRight, Clock } from "lucide-react"
+import { Clock } from "lucide-react"
 import { getPostBySlug, getRelatedPosts } from "@/lib/supabase/blog"
 import { Avatar } from "@/components/ui/Avatar"
-import { CategoryPill } from "@/components/ui/CategoryPill"
 import { PostCover } from "@/components/ui/PostCover"
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
 import { SubscribeForm } from "@/components/ui/SubscribeForm"
@@ -65,18 +64,16 @@ export default async function ArticlePage({ params }: { params: Params }) {
         ])) }}
       />
       <section
-        className="px-12 pt-[120px] pb-12"
+        className="px-5 sm:px-12 pt-[120px] pb-12"
         style={{ background: "var(--ax-soft-blush)" }}
         aria-labelledby="article-heading"
       >
         <div className="max-w-[1280px] mx-auto">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-[13px] text-[var(--ax-fg-3)] mb-6 flex-wrap">
-            <Link href="/blog" className="hover:text-[var(--ax-fg-1)] transition-colors">
-              Blog
-            </Link>
-            <ChevronRight size={12} strokeWidth={1.75} aria-hidden="true" className="text-[var(--ax-border-strong)]" />
-            <CategoryPill category={post.category} />
-          </nav>
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: post.category },
+          ]} />
           <h1
             id="article-heading"
             className="text-[var(--ax-fg-1)] mb-7 max-w-[840px]"
@@ -109,7 +106,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <div className="max-w-[1280px] mx-auto px-12">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-12">
         <PostCover
           src={post.cover_image}
           alt={post.title}
@@ -120,7 +117,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         />
       </div>
 
-      <section className="px-12 pt-14 pb-24" aria-label="Article body">
+      <section className="px-5 sm:px-12 pt-14 pb-24" aria-label="Article body">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_292px] gap-12 lg:gap-[72px] items-start">
             <div>
@@ -202,7 +199,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
       {related.length > 0 && (
         <section
-          className="px-12 py-20"
+          className="px-5 sm:px-12 py-20"
           style={{ background: "var(--ax-soft-blush)" }}
           aria-labelledby="related-heading"
         >

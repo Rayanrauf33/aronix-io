@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, LayoutDashboard } from "lucide-react"
+import { Menu, X, LayoutDashboard, Search } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
 
@@ -55,9 +55,18 @@ export function Header() {
             )
           })}
           <Link
-            href="/dashboard"
+            href="/search"
             className="ml-1 p-2 rounded-[8px] text-[var(--ax-fg-2)] hover:text-[var(--ax-fg-1)] hover:bg-[var(--ax-slate-200)] transition-colors"
+            title="Search"
+            aria-label="Search"
+          >
+            <Search size={18} />
+          </Link>
+          <Link
+            href="/dashboard"
+            className="p-2 rounded-[8px] text-[var(--ax-fg-2)] hover:text-[var(--ax-fg-1)] hover:bg-[var(--ax-slate-200)] transition-colors"
             title="Dashboard"
+            aria-label="Dashboard"
           >
             <LayoutDashboard size={18} />
           </Link>
@@ -97,6 +106,14 @@ export function Header() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/search"
+              onClick={() => setOpen(false)}
+              className="px-3.5 py-3 text-[15px] font-medium text-[var(--ax-fg-1)] rounded-[8px] hover:bg-[var(--ax-slate-200)] flex items-center gap-2"
+            >
+              <Search size={18} />
+              Search
+            </Link>
             <Link
               href="/dashboard"
               onClick={() => setOpen(false)}

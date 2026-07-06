@@ -3,7 +3,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow"
 export function ServicesHero() {
   return (
     <section
-      className="px-12 pt-[144px] pb-16"
+      className="px-5 sm:px-12 pt-[144px] pb-16"
       style={{ background: "var(--ax-soft-blush)" }}
       aria-labelledby="services-heading"
     >

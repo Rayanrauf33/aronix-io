@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 import { Manrope, Inter, IBM_Plex_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { AnalyticsEvents } from "@/components/ui/AnalyticsEvents"
 import "@/styles/app.css"
 import "@/styles/blog.css"
 import "@/styles/dashboard.css"
@@ -46,6 +47,15 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  icons: {
+    icon: [
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "192x192", type: "image/png" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
@@ -68,6 +78,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <Analytics />
         <SpeedInsights />
+        <AnalyticsEvents />
       </body>
     </html>
   )

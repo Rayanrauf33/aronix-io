@@ -105,6 +105,7 @@ export function FeaturedPostCard({ post }: { post: BlogPost }) {
           category={post.category}
           minHeight={340}
           rounded="0"
+          priority
         />
       </Link>
     </article>

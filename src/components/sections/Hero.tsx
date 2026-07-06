@@ -18,7 +18,7 @@ const heroTools = [
 export function Hero() {
   return (
     <section
-      className="relative overflow-hidden text-center px-12 pt-[164px] pb-20"
+      className="relative overflow-hidden text-center px-5 sm:px-12 pt-[164px] pb-20"
       style={{ background: "var(--ax-gradient-hero-wash)" }}
       aria-labelledby="hero-heading"
     >

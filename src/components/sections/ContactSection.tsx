@@ -24,7 +24,7 @@ const meta: MetaItem[] = [
 
 export function ContactSection() {
   return (
-    <section className="px-12 py-16 bg-white" aria-label="Audit request">
+    <section className="px-5 sm:px-12 py-16 bg-white" aria-label="Audit request">
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 

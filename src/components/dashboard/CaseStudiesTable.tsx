@@ -82,6 +82,7 @@ export function CaseStudiesTable({ caseStudies }: { caseStudies: CaseStudy[] }) 
                         className="btn-ghost"
                         style={{ padding: "4px 8px" }}
                         title="View live"
+                        aria-label="View published case study"
                       >
                         <ExternalLink size={16} />
                       </a>
@@ -91,6 +92,7 @@ export function CaseStudiesTable({ caseStudies }: { caseStudies: CaseStudy[] }) 
                       className="btn-ghost"
                       style={{ padding: "4px 8px" }}
                       title="Edit"
+                      aria-label="Edit case study"
                     >
                       <Pencil size={16} />
                     </Link>
@@ -99,6 +101,7 @@ export function CaseStudiesTable({ caseStudies }: { caseStudies: CaseStudy[] }) 
                       disabled={deleting === cs.id}
                       className="btn-danger"
                       title="Delete"
+                      aria-label="Delete case study"
                     >
                       <Trash2 size={16} />
                     </button>

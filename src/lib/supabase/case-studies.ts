@@ -89,6 +89,53 @@ export async function deleteCaseStudy(id: string): Promise<void> {
   if (error) throw error
 }
 
+export async function searchCaseStudies(query: string, limit = 10): Promise<CaseStudy[]> {
+  const supabase = await createClient()
+  const pattern = `%${query}%`
+  const { data, error } = await supabase
+    .from("case_studies")
+    .select(COLS)
+    .eq("published", true)
+    .or(`title.ilike.${pattern},summary.ilike.${pattern},client.ilike.${pattern},industry.ilike.${pattern}`)
+    .order("created_at", { ascending: false })
+    .limit(limit)
+
+  if (error) throw error
+  return (data ?? []) as CaseStudy[]
+}
+
+export async function getRelatedCaseStudies(excludeId: string, industry: string, limit = 2): Promise<CaseStudy[]> {
+  const supabase = await createClient()
+
+  // Prefer same-industry studies
+  const { data: sameIndustry, error: e1 } = await supabase
+    .from("case_studies")
+    .select(COLS)
+    .eq("published", true)
+    .eq("industry", industry)
+    .neq("id", excludeId)
+    .order("created_at", { ascending: false })
+    .limit(limit)
+
+  if (e1) throw e1
+  const results = (sameIndustry ?? []) as CaseStudy[]
+
+  if (results.length >= limit) return results
+
+  // Fill remaining from other industries
+  const excludeIds = [excludeId, ...results.map((r) => r.id)]
+  const { data: others, error: e2 } = await supabase
+    .from("case_studies")
+    .select(COLS)
+    .eq("published", true)
+    .not("id", "in", `(${excludeIds.join(",")})`)
+    .order("created_at", { ascending: false })
+    .limit(limit - results.length)
+
+  if (e2) throw e2
+  return [...results, ...((others ?? []) as CaseStudy[])]
+}
+
 export async function caseStudySlugExists(slug: string, excludeId?: string): Promise<boolean> {
   const supabase = await createClient()
   let query = supabase.from("case_studies").select("id").eq("slug", slug)

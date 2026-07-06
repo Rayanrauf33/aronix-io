@@ -132,6 +132,7 @@ export function BlogEditor({ content, onChange }: BlogEditorProps) {
                 data-active={active}
                 disabled={disabled}
                 title={label}
+                aria-label={label}
               >
                 <Icon size={16} />
               </button>

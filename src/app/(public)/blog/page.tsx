@@ -51,7 +51,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
       />
       <BlogHero count={posts.length} />
 
-      <section className="px-12 pt-14 pb-24" aria-label="Blog posts">
+      <section className="px-5 sm:px-12 pt-14 pb-24" aria-label="Blog posts">
         <div className="max-w-[1280px] mx-auto">
           <CategoryFilter categories={categories} active={activeCategory} />
 

@@ -19,7 +19,7 @@ const tools = [
 export function Integrations() {
   return (
     <section
-      className="px-12 py-16"
+      className="px-5 sm:px-12 py-16"
       aria-labelledby="integrations-heading"
       style={{ background: "var(--ax-soft-blush)" }}
     >

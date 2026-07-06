@@ -150,7 +150,7 @@ export function AutomationScout() {
 
   return (
     <section
-      className="scout-section px-12 py-24"
+      className="scout-section px-5 sm:px-12 py-24"
       aria-labelledby="scout-heading"
     >
       {/* Ambient gradient blobs */}

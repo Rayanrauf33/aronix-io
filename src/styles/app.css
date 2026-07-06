@@ -97,11 +97,12 @@ body {
   width: 100%;
 }
 
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-  outline: none;
+.field input:focus-visible,
+.field textarea:focus-visible,
+.field select:focus-visible {
   border-color: var(--ax-primary);
+  outline: 2px solid var(--ax-primary);
+  outline-offset: 2px;
 }
 
 .btn-primary {
@@ -1256,6 +1257,7 @@ body {
   height: auto;
   border-radius: 12px;
   margin: 28px 0;
+  aspect-ratio: attr(width) / attr(height);
 }
 
 .article-prose code {

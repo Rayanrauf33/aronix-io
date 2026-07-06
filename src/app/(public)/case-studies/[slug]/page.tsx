@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
-import { getCaseStudyBySlug } from "@/lib/supabase/case-studies"
+import { CaseStudyCard } from "@/components/cards/CaseStudyCard"
+import { getCaseStudyBySlug, getRelatedCaseStudies } from "@/lib/supabase/case-studies"
 import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 type Params = { slug: string }
@@ -45,6 +45,8 @@ export default async function CaseStudyPage({
   const cs = await getCaseStudyBySlug(slug)
   if (!cs) notFound()
 
+  const related = await getRelatedCaseStudies(cs.id, cs.industry, 2)
+
   return (
     <>
       <script
@@ -61,13 +63,11 @@ export default async function CaseStudyPage({
         aria-labelledby="case-study-heading"
       >
         <div className="max-w-[880px] mx-auto">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--ax-fg-3)] hover:text-[var(--ax-fg-1)] mb-8 no-underline transition-colors"
-          >
-            <ArrowLeft size={15} strokeWidth={2} aria-hidden="true" />
-            All case studies
-          </Link>
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Case Studies", href: "/case-studies" },
+            { label: cs.title },
+          ]} />
           <Eyebrow className="mb-3.5">{cs.industry}</Eyebrow>
           <h1
             id="case-study-heading"
@@ -185,6 +185,40 @@ export default async function CaseStudyPage({
                 {cs.quote.author} &middot; {cs.quote.role}
               </figcaption>
             </figure>
+          </section>
+        </Reveal>
+      )}
+
+      {related.length > 0 && (
+        <Reveal>
+          <section
+            className="px-5 sm:px-12 py-16"
+            style={{ background: "var(--ax-soft-blush)" }}
+            aria-labelledby="related-studies-heading"
+          >
+            <div className="max-w-[1280px] mx-auto">
+              <div className="mb-10">
+                <Eyebrow className="mb-3.5">More case studies</Eyebrow>
+                <h2
+                  id="related-studies-heading"
+                  className="text-[var(--ax-fg-1)]"
+                  style={{
+                    fontFamily: "var(--ax-font-display)",
+                    fontWeight: 700,
+                    fontSize: "clamp(24px, 2.5vw, 32px)",
+                    letterSpacing: "-0.015em",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  See how other teams automated
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {related.map((r) => (
+                  <CaseStudyCard key={r.id} caseStudy={r} />
+                ))}
+              </div>
+            </div>
           </section>
         </Reveal>
       )}

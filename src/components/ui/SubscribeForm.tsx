@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
+import { analytics } from "@/lib/analytics"
 
 type Variant = "dark-band" | "sidebar"
 
@@ -17,7 +18,10 @@ export function SubscribeForm({ variant = "dark-band", buttonLabel = "Subscribe"
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (email.trim().length > 0) setDone(true)
+    if (email.trim().length > 0) {
+      analytics.newsletterSubscribe(variant === "sidebar" ? "blog-sidebar" : "newsletter-band")
+      setDone(true)
+    }
   }
 
   if (done) {

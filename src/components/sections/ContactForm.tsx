@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent } from "react"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { analytics } from "@/lib/analytics"
 
 type FormState = {
   first: string
@@ -74,7 +75,10 @@ export function ContactForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault()
-        if (canSubmit) setSent(true)
+        if (canSubmit) {
+          analytics.contactFormSubmit(form.service || "not specified")
+          setSent(true)
+        }
       }}
       className="glass-card rounded-[24px] p-10"
       aria-labelledby="contact-form-title"

@@ -35,7 +35,7 @@ export function CtaBand({
 }: Props) {
   return (
     <section
-      className="text-center px-12 py-20"
+      className="text-center px-5 sm:px-12 py-20"
       style={{ background: "var(--ax-gradient-dark-cta)" }}
       aria-labelledby="cta-heading"
     >

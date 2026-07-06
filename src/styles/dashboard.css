@@ -48,9 +48,14 @@
   color: var(--ax-fg-on-dark);
 }
 
+.dash-nav-item:focus-visible {
+  outline: 2px solid var(--ax-pink-400);
+  outline-offset: -2px;
+}
+
 .dash-nav-item[data-active="true"] {
   background: rgba(234, 75, 113, 0.15);
-  color: var(--ax-pink-400);
+  color: #FFFFFF;
 }
 
 .dash-sidebar-footer {
@@ -374,6 +379,11 @@
 .editor-toolbar button:hover {
   background: var(--ax-slate-300);
   color: var(--ax-fg-1);
+}
+
+.editor-toolbar button:focus-visible {
+  outline: 2px solid var(--ax-primary);
+  outline-offset: 2px;
 }
 
 .editor-toolbar button[data-active="true"] {

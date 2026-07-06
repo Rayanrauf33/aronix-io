@@ -31,27 +31,22 @@ const columns = [
       { label: "CRM Integration", href: "/services#crm" },
       { label: "Finance Ops",     href: "/services#finance" },
       { label: "Internal Ops",    href: "/services#ops" },
-      { label: "Marketing Ops",   href: "/services#marketing" },
-      { label: "Custom Builds",   href: "/services#custom" },
+      { label: "Contact",          href: "/contact" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About",        href: "/about" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Process",      href: "/services#process" },
       { label: "Blog",         href: "/blog" },
-      { label: "Careers",      href: "/careers" },
+      { label: "Contact",      href: "/contact" },
     ],
   },
   {
     heading: "Get Started",
     links: [
       { label: "Book an Audit", href: "https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session" },
-      { label: "Pricing",       href: "/pricing" },
-      { label: "FAQ",           href: "/faq" },
-      { label: "Contact Us",    href: "/contact" },
+      { label: "Services",      href: "/services" },
     ],
   },
 ]
@@ -59,7 +54,7 @@ const columns = [
 export function Footer() {
   return (
     <footer
-      className="px-12 pt-16 pb-8 text-[var(--ax-fg-on-dark-2)]"
+      className="px-5 sm:px-12 pt-16 pb-8 text-[var(--ax-fg-on-dark-2)]"
       style={{ background: "var(--ax-surface-dark)" }}
       role="contentinfo"
     >
@@ -138,8 +133,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-between gap-2 text-[13px] text-[var(--ax-slate-600)]">
           <span>&copy; {new Date().getFullYear()} Aronix. All rights reserved.</span>
           <div className="flex gap-6">
-            <Link href="/privacy" className="hover:text-white transition-colors duration-150 ease-out">Privacy Policy</Link>
-            <Link href="/terms"   className="hover:text-white transition-colors duration-150 ease-out">Terms of Service</Link>
+            <Link href="/contact" className="hover:text-white transition-colors duration-150 ease-out">Contact</Link>
           </div>
         </div>
       </div>

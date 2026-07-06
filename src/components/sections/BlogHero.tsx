@@ -7,7 +7,7 @@ type Props = {
 export function BlogHero({ count }: Props) {
   return (
     <section
-      className="px-12 pt-[144px] pb-16"
+      className="px-5 sm:px-12 pt-[144px] pb-16"
       style={{ background: "var(--ax-gradient-hero-wash)" }}
       aria-labelledby="blog-heading"
     >

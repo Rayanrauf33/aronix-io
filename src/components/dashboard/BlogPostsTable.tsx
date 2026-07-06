@@ -85,6 +85,7 @@ export function BlogPostsTable({ posts }: { posts: BlogPost[] }) {
                         className="btn-ghost"
                         style={{ padding: "4px 8px" }}
                         title="View live"
+                        aria-label="View published post"
                       >
                         <ExternalLink size={16} />
                       </a>
@@ -94,6 +95,7 @@ export function BlogPostsTable({ posts }: { posts: BlogPost[] }) {
                       className="btn-ghost"
                       style={{ padding: "4px 8px" }}
                       title="Edit"
+                      aria-label="Edit post"
                     >
                       <Pencil size={16} />
                     </Link>
@@ -102,6 +104,7 @@ export function BlogPostsTable({ posts }: { posts: BlogPost[] }) {
                       disabled={deleting === post.id}
                       className="btn-danger"
                       title="Delete"
+                      aria-label="Delete post"
                     >
                       <Trash2 size={16} />
                     </button>

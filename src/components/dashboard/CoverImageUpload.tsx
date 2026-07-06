@@ -55,7 +55,7 @@ export function CoverImageUpload({ value, onChange }: CoverImageUploadProps) {
       <div className="cover-upload-preview">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={value} alt="Cover preview" />
-        <button type="button" onClick={handleRemove} className="cover-remove" title="Remove image">
+        <button type="button" onClick={handleRemove} className="cover-remove" title="Remove image" aria-label="Remove cover image">
           <X size={16} />
         </button>
       </div>
@@ -64,7 +64,19 @@ export function CoverImageUpload({ value, onChange }: CoverImageUploadProps) {
 
   return (
     <>
-      <div className="cover-upload" onClick={() => inputRef.current?.click()}>
+      <div
+        className="cover-upload"
+        role="button"
+        tabIndex={0}
+        aria-label="Upload cover image"
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            inputRef.current?.click()
+          }
+        }}
+      >
         <input
           ref={inputRef}
           type="file"

@@ -24,7 +24,7 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section
-      className="px-12 py-24"
+      className="px-5 sm:px-12 py-24"
       aria-labelledby="testimonials-heading"
       style={{ background: "linear-gradient(180deg, var(--ax-bg) 0%, var(--ax-soft-blush) 100%)" }}
     >

@@ -200,14 +200,18 @@ export function BlogForm({ post }: BlogFormProps) {
 
         {/* Cover Image */}
         <div className="field form-full">
-          <label>Cover Image</label>
-          <CoverImageUpload value={coverImage} onChange={setCoverImage} />
+          <label id="cover-image-label">Cover Image</label>
+          <div aria-labelledby="cover-image-label">
+            <CoverImageUpload value={coverImage} onChange={setCoverImage} />
+          </div>
         </div>
 
         {/* Content Editor */}
         <div className="field form-full">
-          <label>Content</label>
-          <BlogEditor content={content} onChange={setContent} />
+          <label id="content-label">Content</label>
+          <div aria-labelledby="content-label">
+            <BlogEditor content={content} onChange={setContent} />
+          </div>
         </div>
 
         {/* Toggles */}
