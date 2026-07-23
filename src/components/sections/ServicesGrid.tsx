@@ -2,12 +2,12 @@
 
 import { useRef } from "react"
 import { motion, useInView, useReducedMotion } from "framer-motion"
-import { Phone, Network, Globe, ArrowRight } from "lucide-react"
+import { Phone, Network, Globe } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import Link from "next/link"
 import { Button } from "@/components/ui/Button"
 import { Eyebrow } from "@/components/ui/Eyebrow"
-import "./ServicesGrid.css"
+import { GlassServiceCard } from "@/components/cards/GlassServiceCard"
+import type { CSSProperties } from "react"
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -18,7 +18,7 @@ type Card = {
   outcome: string
   cta: string
   href: string
-  blobStyle: React.CSSProperties
+  blobStyle: CSSProperties
 }
 
 const CARDS: Card[] = [
@@ -88,90 +88,31 @@ export function ServicesGrid() {
           </p>
         </div>
 
-        {/* Cards */}
+        {/* Cards — motion.div handles entrance only; hover lives in GlassServiceCard.css */}
         <div
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch"
         >
-          {CARDS.map((card, i) => {
-            const Icon = card.icon
-            return (
-              <motion.div
-                key={card.label}
-                className="sg-card"
-                initial={reduce ? false : { opacity: 0, y: 20 }}
-                animate={(inView || !!reduce) ? { opacity: 1, y: 0 } : undefined}
-                transition={{ duration: 0.5, ease: EASE_OUT, delay: i * 0.08 }}
-              >
-                {/* Static pink blob — sits behind the glass surface */}
-                <div
-                  className="sg-blob"
-                  aria-hidden="true"
-                  style={card.blobStyle}
-                />
-
-                {/* Glass card surface */}
-                <Link href={card.href} className="sg-card-inner group">
-                  {/* Icon */}
-                  <span
-                    className="w-11 h-11 rounded-[var(--ax-radius-md)] inline-flex items-center justify-center mb-3 shrink-0"
-                    style={{ background: "var(--ax-pink-50)", color: "var(--ax-primary)" }}
-                    aria-hidden="true"
-                  >
-                    <Icon size={22} strokeWidth={1.75} />
-                  </span>
-
-                  {/* Category label */}
-                  <span
-                    className="text-[11px] font-medium uppercase mb-2 block"
-                    style={{
-                      fontFamily: "var(--ax-font-mono)",
-                      letterSpacing: "0.1em",
-                      color: "var(--ax-fg-2)",
-                    }}
-                  >
-                    {card.label}
-                  </span>
-
-                  {/* Headline */}
-                  <h3
-                    className="text-[var(--ax-fg-1)] mt-0 mb-3"
-                    style={{
-                      fontFamily: "var(--ax-font-display)",
-                      fontWeight: 600,
-                      fontSize: "22px",
-                      lineHeight: 1.25,
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {card.headline}
-                  </h3>
-
-                  {/* Outcome — grows to push CTA to bottom */}
-                  <p
-                    className="text-[15px] leading-[1.65] m-0 grow"
-                    style={{ color: "var(--ax-fg-2)" }}
-                  >
-                    {card.outcome}
-                  </p>
-
-                  {/* CTA */}
-                  <span
-                    className="inline-flex items-center gap-1.5 text-[15px] font-semibold mt-6 shrink-0"
-                    style={{ color: "var(--ax-primary)" }}
-                  >
-                    {card.cta}
-                    <ArrowRight
-                      size={16}
-                      strokeWidth={1.75}
-                      className="transition-transform duration-150 ease-out group-hover:translate-x-[3px]"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </Link>
-              </motion.div>
-            )
-          })}
+          {CARDS.map((card, i) => (
+            <motion.div
+              key={card.label}
+              className="h-full"
+              initial={reduce ? false : { opacity: 0, y: 20 }}
+              animate={(inView || !!reduce) ? { opacity: 1, y: 0 } : undefined}
+              transition={{ duration: 0.5, ease: EASE_OUT, delay: i * 0.08 }}
+            >
+              <GlassServiceCard
+                label={card.label}
+                icon={card.icon}
+                headline={card.headline}
+                outcome={card.outcome}
+                cta={card.cta}
+                href={card.href}
+                variant="on-light"
+                blobStyle={card.blobStyle}
+              />
+            </motion.div>
+          ))}
         </div>
 
         {/* View all services */}
