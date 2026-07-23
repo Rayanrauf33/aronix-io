@@ -3,6 +3,11 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-23 (3)
+
+### Changed
+- AI Voice Agents pricing updated to $0.06/min (was $45/month); supporting copy updated to reflect per-minute billing
+
 ## [Unreleased] - 2026-07-23 (2)
 
 ### Added
