@@ -1,0 +1,251 @@
+/* ── Glass Service Card ────────────────────────────────────────────── */
+/* Single source of truth for glass service cards used on:            */
+/*   - Homepage ServicesGrid  (on-light, 3 cards)                     */
+/*   - /services hub PillarServiceCards  (on-light, 7 cards)          */
+/*                                                                     */
+/* backdrop-filter is intentionally scoped to .gsc-inner only.        */
+/* Do not add backdrop-filter to any other element on these pages.    */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/* Outer wrapper — clips the blob and enforces border-radius */
+.gsc-wrap {
+  position: relative;
+  border-radius: var(--ax-radius-xl);
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Static pink blob — no animation, fixed at paint time */
+.gsc-blob {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 9999px;
+  background: var(--ax-primary);
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glass surface — the <a> element */
+.gsc-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 280px;
+  padding: 32px;
+  border-radius: var(--ax-radius-xl);
+  text-decoration: none;
+  color: inherit;
+  /* overflow: hidden clips the shimmer ::after to the card boundary */
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    -webkit-backdrop-filter 0.25s ease,
+    backdrop-filter 0.25s ease;
+}
+
+/* Variant: card sits on a light-coloured section background */
+.gsc-inner--on-light {
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Variant: card sits on a dark section background */
+.gsc-inner--on-dark {
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Shimmer streak ─────────────────────────────────────────────────
+   Diagonal light sweep simulating glass catching light at an edge.
+   Fires once on hover-in via forwards fill — does not loop.
+   pointer-events: none — clicks pass through to card content.
+   ─────────────────────────────────────────────────────────────────── */
+.gsc-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  /* Start off-screen to the left */
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+/* ── Hover states (pointer devices only) ────────────────────────── */
+@media (hover: hover) {
+  .gsc-inner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .gsc-inner--on-light:hover {
+    border-color: rgba(0, 0, 0, 0.20);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+  }
+
+  .gsc-inner--on-dark:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+  }
+
+  /* Shimmer: sweep once on hover-in, hold off-right at end */
+  .gsc-inner:hover::after {
+    animation: gsc-shimmer 0.6s ease forwards;
+  }
+
+  /* CTA arrow nudge */
+  .gsc-inner:hover .gsc-cta-arrow {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes gsc-shimmer {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(120%); }
+}
+
+/* Focus ring */
+.gsc-inner:focus-visible {
+  outline: 2px solid var(--ax-primary);
+  outline-offset: 2px;
+}
+
+/* ── Content elements ───────────────────────────────────────────────
+   All values use design tokens. No hardcoded hex.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Icon container */
+.gsc-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ax-radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+  background: var(--ax-pink-50);
+  color: var(--ax-primary);
+}
+
+.gsc-inner--on-dark .gsc-icon {
+  background: rgba(234, 75, 113, 0.15);
+}
+
+/* Category label */
+.gsc-label {
+  display: block;
+  font-family: var(--ax-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ax-fg-2);
+  margin-bottom: 8px;
+}
+
+.gsc-inner--on-dark .gsc-label {
+  color: var(--ax-fg-on-dark-2);
+}
+
+/* Headline */
+.gsc-headline {
+  font-family: var(--ax-font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ax-fg-1);
+  margin: 0 0 12px;
+}
+
+.gsc-inner--on-dark .gsc-headline {
+  color: var(--ax-fg-on-dark);
+}
+
+/* Outcome — flex: 1 pushes CTA to the bottom */
+.gsc-outcome {
+  font-family: var(--ax-font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ax-fg-2);
+  margin: 0;
+  flex: 1;
+}
+
+.gsc-inner--on-dark .gsc-outcome {
+  color: var(--ax-fg-on-dark-2);
+}
+
+/* CTA link */
+.gsc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ax-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ax-primary);
+  margin-top: 24px;
+  flex-shrink: 0;
+}
+
+.gsc-cta-arrow {
+  transition: transform 0.15s ease-out;
+}
+
+/* ── Accessibility fallbacks ────────────────────────────────────────
+   prefers-reduced-motion: disable shimmer and lift, keep border change.
+   prefers-contrast: more: replace translucent fill with solid surface.
+   ─────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .gsc-inner {
+    transition: border-color 0.25s ease;
+  }
+
+  .gsc-inner:hover {
+    transform: none;
+  }
+
+  .gsc-inner:hover::after {
+    animation: none;
+  }
+
+  .gsc-cta-arrow {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .gsc-inner--on-light {
+    background: var(--ax-surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 1px solid var(--ax-border-strong);
+  }
+
+  .gsc-inner--on-dark {
+    background: var(--ax-surface-dark-alt);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+  }
+}

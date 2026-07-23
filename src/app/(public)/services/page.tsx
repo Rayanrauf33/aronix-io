@@ -163,12 +163,11 @@ export default function ServicesPage() {
 
       {/* ── Hero ──────────────────────────────────────────── */}
       <section
-        className="px-5 sm:px-12 min-h-[100dvh] flex items-center"
+        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
         style={{ background: "var(--ax-surface-dark)" }}
         aria-labelledby="services-hero-heading"
       >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full py-24">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Left: headline, subline, CTA */}
             <div className="text-center lg:text-left">
@@ -208,11 +207,10 @@ export default function ServicesPage() {
             </div>
 
             {/* Right: live systems preview, desktop only */}
-            <div className="hidden lg:block shrink-0">
+            <div className="hidden lg:block">
               <HeroPreview />
             </div>
 
-          </div>
         </div>
       </section>
 
