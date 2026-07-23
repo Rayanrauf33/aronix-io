@@ -33,7 +33,7 @@ export function HeroPreview() {
 
       <div
         ref={ref}
-        className="rounded-[var(--ax-radius-xl)] p-7 w-[360px]"
+        className="rounded-[var(--ax-radius-xl)] p-7 w-full"
         style={{
           background: "var(--ax-surface-dark-alt)",
           border: "1px solid rgba(255,255,255,0.08)",

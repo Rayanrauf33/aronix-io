@@ -3,6 +3,20 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-23 (2)
+
+### Added
+- `GlassServiceCard` component (`src/components/cards/GlassServiceCard.tsx` + `.css`) — single canonical glass card shared by the homepage and /services hub; includes backdrop-filter blur, static pink blob, CSS shimmer sweep on hover, lift transform, and `prefers-reduced-motion` / `prefers-contrast: more` accessibility fallbacks
+
+### Changed
+- Homepage `ServicesGrid` and hub `PillarServiceCards` now both import `GlassServiceCard`; all glass visual logic lives in one place
+- `/services` hub hero layout updated to match the standard service-page template (`pt-[144px] pb-20`, `min-h-[100vh]`, `grid-cols-2`) instead of the previous `flex/justify-between` layout
+- `HeroPreview` widget changed from fixed `w-[360px]` to `w-full` so it fills its grid column identically to every other service-page hero card
+
+### Removed
+- `ServicesGrid.css` (styles consolidated into `GlassServiceCard.css`)
+- `src/components/cards/ServiceCard.tsx` (dead code, never imported)
+
 ## [Unreleased] - 2026-07-23
 
 ### Added
