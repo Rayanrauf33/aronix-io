@@ -23,8 +23,7 @@ export function TestimonialCard({
     <figure
       className={cn(
         "flex flex-col gap-6 p-6 rounded-[--ax-radius-lg]",
-        "bg-[--ax-surface] border border-[--ax-border]",
-        "transition-shadow duration-[--ax-dur-base] hover:shadow-[var(--ax-shadow-md)]",
+        "glass-card",
         className,
       )}
     >

@@ -30,6 +30,7 @@ export function Accordion({ items, defaultOpen = -1, className }: Props) {
         const expanded = open === i
         return (
           <div key={i} className="border-b border-[var(--ax-border)]">
+            <h3 className="m-0">
             <button
               type="button"
               onClick={() => toggle(i)}
@@ -48,6 +49,7 @@ export function Accordion({ items, defaultOpen = -1, className }: Props) {
                 style={{ transform: expanded ? "rotate(180deg)" : "none" }}
               />
             </button>
+            </h3>
             <div
               id={`accordion-panel-${i}`}
               role="region"

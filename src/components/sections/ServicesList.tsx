@@ -1,11 +1,12 @@
+import Image from "next/image"
 import { Check, FileText, Zap, HelpCircle, Send, UserCheck, CreditCard, GitCompare, BarChart3, Bell, ClipboardList } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { Button } from "@/components/ui/Button"
-import { Chip } from "@/components/ui/Chip"
 import { WorkflowNode, type NodeType } from "@/components/ui/WorkflowNode"
 import { Connector } from "@/components/ui/Connector"
 
 type FlowStep = { type: NodeType; label: string; icon: LucideIcon }
+type Tool = { name: string; icon: string }
 
 type Service = {
   id: string
@@ -13,7 +14,7 @@ type Service = {
   title: string
   body: string
   outcomes: string[]
-  chips: string[]
+  tools: Tool[]
   flow: FlowStep[]
 }
 
@@ -28,7 +29,11 @@ const services: Service[] = [
       "Eliminate duplicate records across CRM tools",
       "Trigger personalised follow-up without manual input",
     ],
-    chips: ["HubSpot", "Salesforce", "Pipedrive"],
+    tools: [
+      { name: "HubSpot", icon: "/Assets/icons/icons/hubspot.png" },
+      { name: "Salesforce", icon: "/Assets/icons/icons/salesforce.png" },
+      { name: "Slack", icon: "/Assets/icons/icons/slack.png" },
+    ],
     flow: [
       { type: "source",   label: "Form",   icon: FileText },
       { type: "action",   label: "Enrich", icon: Zap },
@@ -46,7 +51,11 @@ const services: Service[] = [
       "Reconcile every transaction without manual matching",
       "Generate P&L drafts with a single trigger",
     ],
-    chips: ["Stripe", "Xero", "QuickBooks"],
+    tools: [
+      { name: "Stripe", icon: "/Assets/icons/icons/stripe.svg" },
+      { name: "PayPal", icon: "/Assets/icons/icons/paypal.svg" },
+      { name: "Google Sheets", icon: "/Assets/icons/icons/sheets.png" },
+    ],
     flow: [
       { type: "source",   label: "Stripe", icon: CreditCard },
       { type: "action",   label: "Match",  icon: GitCompare },
@@ -64,7 +73,11 @@ const services: Service[] = [
       "Deliver weekly ops reports automatically",
       "Route approvals without chasing by Slack",
     ],
-    chips: ["Notion", "Airtable", "Slack"],
+    tools: [
+      { name: "Notion", icon: "/Assets/icons/icons/notion.png" },
+      { name: "Airtable", icon: "/Assets/icons/icons/airtable.svg" },
+      { name: "Slack", icon: "/Assets/icons/icons/slack.png" },
+    ],
     flow: [
       { type: "source",  label: "Trigger", icon: Zap },
       { type: "action",  label: "Notify",  icon: Bell },
@@ -76,7 +89,7 @@ const services: Service[] = [
 
 export function ServicesList() {
   return (
-    <section className="px-12 py-16" aria-label="Service detail">
+    <section className="px-5 sm:px-12 py-16" aria-label="Service detail">
       <div className="max-w-[1280px] mx-auto">
         {services.map((s, i) => {
           const reversed = i % 2 === 1
@@ -91,7 +104,7 @@ export function ServicesList() {
             >
               <div className={reversed ? "lg:order-2" : ""}>
                 <div
-                  className="text-[11px] font-medium uppercase text-[var(--ax-primary)] mb-3"
+                  className="text-[11px] font-medium uppercase text-[var(--ax-primary-dark)] mb-3"
                   style={{ fontFamily: "var(--ax-font-mono)", letterSpacing: "0.1em" }}
                 >
                   {s.eyebrow}
@@ -130,10 +143,11 @@ export function ServicesList() {
                 </ul>
 
                 <div className="flex flex-wrap gap-2 mb-7">
-                  {s.chips.map((c) => (
-                    <Chip key={c} variant="outline" size="sm">
-                      {c}
-                    </Chip>
+                  {s.tools.map(({ name, icon }) => (
+                    <span key={name} className="glass-chip">
+                      <Image src={icon} alt={name} width={18} height={18} style={{ width: 18, height: 18, objectFit: "contain" }} />
+                      {name}
+                    </span>
                   ))}
                 </div>
 
@@ -143,10 +157,9 @@ export function ServicesList() {
               </div>
 
               <div
-                className={`rounded-[24px] p-8 border border-[var(--ax-border)] ${
+                className={`rounded-[24px] p-5 sm:p-8 bg-white border border-[var(--ax-border)] ${
                   reversed ? "lg:order-1" : ""
                 }`}
-                style={{ background: "var(--ax-slate-100)" }}
                 role="img"
                 aria-label={`${s.eyebrow} automation diagram: ${s.flow.map((f) => f.label).join(", ")}`}
               >

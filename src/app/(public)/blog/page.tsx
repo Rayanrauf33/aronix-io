@@ -4,19 +4,28 @@ import { BlogHero } from "@/components/sections/BlogHero"
 import { CategoryFilter } from "@/components/sections/CategoryFilter"
 import { NewsletterBand } from "@/components/sections/NewsletterBand"
 import { FeaturedPostCard, PostCard } from "@/components/cards/BlogPostCard"
+import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
-  title: "Blog | Aronix",
+  title: "Blog",
   description:
     "Insights on automation, operations and growth. Practical thinking on how growing teams remove manual work and build reliable systems.",
   openGraph: {
-    title: "Aronix Blog",
+    title: "Blog | Aronix",
     description: "Insights on automation, operations and growth.",
-    url: "https://aronix.io/blog",
+    url: "/blog",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Blog" }],
   },
-  alternates: { canonical: "https://aronix.io/blog" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Aronix",
+    description: "Insights on automation, operations and growth. Practical thinking on how growing teams remove manual work and build reliable systems.",
+    images: ["/opengraph-image"],
+  },
+  alternates: { canonical: "/blog" },
 }
 
 export const revalidate = 60
@@ -40,9 +49,16 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog" },
+        ])) }}
+      />
       <BlogHero count={posts.length} />
 
-      <section className="px-12 pt-14 pb-24" aria-label="Blog posts">
+      <section className="px-5 sm:px-12 pt-14 pb-24" aria-label="Blog posts">
         <div className="max-w-[1280px] mx-auto">
           <CategoryFilter categories={categories} active={activeCategory} />
 

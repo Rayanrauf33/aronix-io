@@ -6,8 +6,8 @@ export function Connector({ active = false }: Props) {
   const color = active ? "var(--ax-primary)" : "var(--ax-border-strong)"
   return (
     <div
-      className="relative w-8 h-0.5 mx-0.5 shrink-0"
-      style={{ background: color, marginTop: "23px" }}
+      className="wf-connector"
+      style={{ background: color }}
       aria-hidden="true"
     >
       <span

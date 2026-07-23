@@ -29,13 +29,13 @@ const defaultSecondary: Cta = {
 
 export function CtaBand({
   title = "Ready to remove your most expensive manual process?",
-  lead = "Book a free 45-minute workflow audit. We'll identify the steps worth automating first.",
+  lead = "Book a free 15-minute workflow audit. We'll identify the steps worth automating first.",
   primaryCta = defaultPrimary,
   secondaryCta = defaultSecondary,
 }: Props) {
   return (
     <section
-      className="text-center px-12 py-20"
+      className="text-center px-5 sm:px-12 py-20"
       style={{ background: "var(--ax-gradient-dark-cta)" }}
       aria-labelledby="cta-heading"
     >

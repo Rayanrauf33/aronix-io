@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, type ChangeEvent } from "react"
-import { Check } from "lucide-react"
+import { Check, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { analytics } from "@/lib/analytics"
 
 type FormState = {
   first: string
@@ -23,26 +24,30 @@ const initial: FormState = {
 }
 
 const services = [
-  "CRM Integration",
-  "Finance Ops",
-  "Internal Ops",
-  "Marketing Ops",
-  "Custom Build",
+  "AI Voice Agents",
+  "AI Chat & Booking",
+  "Instant Lead Response",
+  "Websites",
+  "Workflow Automation",
+  "CRM Integrations",
+  "Local SEO",
   "Not sure yet",
 ]
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initial)
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const upd = (k: keyof FormState) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }))
 
-  const canSubmit = form.first.trim() !== "" && form.email.trim() !== "" && form.company.trim() !== ""
+  const canSubmit = !submitting && form.first.trim() !== "" && form.email.trim() !== "" && form.company.trim() !== ""
 
   if (sent) {
     return (
-      <div className="bg-white border border-[var(--ax-border)] rounded-[24px] p-10 shadow-[var(--ax-shadow-md)]">
+      <div className="glass-card rounded-[24px] p-10">
         <div className="text-center py-12 px-6">
           <div
             className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
@@ -72,11 +77,27 @@ export function ContactForm() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault()
-        if (canSubmit) setSent(true)
+        if (!canSubmit) return
+        setSubmitting(true)
+        setError(null)
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(form),
+          })
+          if (!res.ok) throw new Error("send failed")
+          analytics.contactFormSubmit(form.service || "not specified")
+          setSent(true)
+        } catch {
+          setError("Something went wrong. Please try again or email us directly.")
+        } finally {
+          setSubmitting(false)
+        }
       }}
-      className="bg-white border border-[var(--ax-border)] rounded-[24px] p-10 shadow-[var(--ax-shadow-md)]"
+      className="glass-card rounded-[24px] p-10"
       aria-labelledby="contact-form-title"
     >
       <div className="mb-6">
@@ -115,7 +136,7 @@ export function ContactForm() {
             id="service"
             value={form.service}
             onChange={upd("service")}
-            className="h-12 px-4 text-[16px] text-[var(--ax-fg-1)] bg-white border border-[var(--ax-border)] rounded-[12px] outline-none transition-colors duration-150 cursor-pointer focus:border-[var(--ax-primary)] focus:border-2"
+            className="h-12 px-4 text-[16px] text-[var(--ax-fg-1)] bg-white border border-[var(--ax-border)] rounded-[12px] transition-colors duration-150 cursor-pointer focus:border-[var(--ax-primary)] focus-visible:outline-2 focus-visible:outline-[var(--ax-primary)] focus-visible:outline-offset-2"
             style={{ fontFamily: "var(--ax-font-body)" }}
           >
             <option value="">Select a service area...</option>
@@ -131,16 +152,30 @@ export function ContactForm() {
             value={form.message}
             onChange={upd("message")}
             placeholder="Tell us what your team is still doing manually, and we'll handle the rest."
-            className="px-4 py-3.5 h-[120px] resize-none text-[16px] text-[var(--ax-fg-1)] bg-white border border-[var(--ax-border)] rounded-[12px] outline-none transition-colors duration-150 w-full leading-[1.6] focus:border-[var(--ax-primary)] focus:border-2 placeholder:text-[var(--ax-fg-3)]"
+            className="px-4 py-3.5 h-[120px] resize-none text-[16px] text-[var(--ax-fg-1)] bg-white border border-[var(--ax-border)] rounded-[12px] transition-colors duration-150 w-full leading-[1.6] focus:border-[var(--ax-primary)] focus-visible:outline-2 focus-visible:outline-[var(--ax-primary)] focus-visible:outline-offset-2 placeholder:text-[var(--ax-fg-3)]"
             style={{ fontFamily: "var(--ax-font-body)" }}
           />
         </Field>
 
+        {error && (
+          <div
+            role="alert"
+            className="flex items-start gap-2.5 rounded-[12px] px-4 py-3 text-[14px] leading-[1.5]"
+            style={{ background: "var(--ax-error-bg, #FEF2F2)", color: "var(--ax-error, #DC2626)" }}
+          >
+            <AlertCircle size={16} strokeWidth={2} className="shrink-0 mt-0.5" aria-hidden="true" />
+            {error}
+          </div>
+        )}
+
         <Button type="submit" variant="primary" size="lg" trailingArrow disabled={!canSubmit} className="w-full">
-          Send Audit Request
+          {submitting ? "Sending..." : "Send Audit Request"}
         </Button>
         <p className="text-[13px] text-[var(--ax-fg-3)] text-center">
           We reply to every enquiry personally within one business day.
+        </p>
+        <p className="text-[12px] text-[var(--ax-fg-3)] text-center mt-1">
+          We&apos;ll use your details to reply to your enquiry. We won&apos;t share them with third parties.
         </p>
       </div>
     </form>
@@ -164,7 +199,7 @@ function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className="h-12 px-4 text-[16px] text-[var(--ax-fg-1)] bg-white border border-[var(--ax-border)] rounded-[12px] outline-none transition-colors duration-150 focus:border-[var(--ax-primary)] focus:border-2 placeholder:text-[var(--ax-fg-3)]"
+      className="h-12 px-4 text-[16px] text-[var(--ax-fg-1)] bg-white border border-[var(--ax-border)] rounded-[12px] transition-colors duration-150 focus:border-[var(--ax-primary)] focus-visible:outline-2 focus-visible:outline-[var(--ax-primary)] focus-visible:outline-offset-2 placeholder:text-[var(--ax-fg-3)]"
       style={{ fontFamily: "var(--ax-font-body)" }}
     />
   )

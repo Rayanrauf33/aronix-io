@@ -1,8 +1,11 @@
 import { ArrowRight, Zap, DollarSign, Settings } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import type { LucideIcon } from "lucide-react"
 
 type Accent = "pink" | "blue" | "indigo"
+
+type Tool = { name: string; icon: string }
 
 const iconMap: Record<string, LucideIcon> = {
   pink: Zap,
@@ -21,18 +24,18 @@ type Props = {
   title: string
   description: string
   accent?: Accent
-  chips?: string[]
+  tools?: Tool[]
   href?: string
 }
 
-export function ServiceCard({ eyebrow, title, description, accent = "pink", chips = [], href = "#" }: Props) {
+export function ServiceCard({ eyebrow, title, description, accent = "pink", tools = [], href = "#" }: Props) {
   const Icon = iconMap[accent] ?? Zap
   const a = accentStyles[accent]
 
   return (
     <Link
       href={href}
-      className="group flex flex-col gap-4 p-8 min-h-[260px] bg-white border border-[var(--ax-border)] rounded-[24px] no-underline transition-all duration-200 ease-out hover:border-[var(--ax-border-strong)] hover:shadow-[var(--ax-shadow-md)] hover:-translate-y-0.5"
+      className="group flex flex-col gap-4 p-8 min-h-[260px] rounded-[24px] no-underline glass-card"
     >
       <span
         className="text-[11px] font-medium uppercase text-[var(--ax-fg-3)]"
@@ -64,20 +67,21 @@ export function ServiceCard({ eyebrow, title, description, accent = "pink", chip
 
       <p className="m-0 text-[15px] leading-[1.6] text-[var(--ax-fg-2)]">{description}</p>
 
-      {chips.length > 0 && (
-        <div className="flex flex-wrap gap-2">
-          {chips.slice(0, 2).map((c) => (
+      {tools.length > 0 && (
+        <div className="mt-auto flex items-center gap-2">
+          {tools.map(({ name, icon }) => (
             <span
-              key={c}
-              className="px-2.5 py-1 rounded-full text-[12px] font-medium bg-[var(--ax-slate-200)] text-[var(--ax-fg-2)]"
+              key={name}
+              className="glass-chip"
             >
-              {c}
+              <Image src={icon} alt={name} width={18} height={18} style={{ width: 18, height: 18, objectFit: "contain" }} />
+              {name}
             </span>
           ))}
         </div>
       )}
 
-      <span className="mt-auto inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--ax-pink-700)]">
+      <span className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--ax-pink-700)]">
         Explore this service
         <ArrowRight
           size={16}

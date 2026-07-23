@@ -1,15 +1,15 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ChevronRight, Clock } from "lucide-react"
+import { Clock } from "lucide-react"
 import { getPostBySlug, getRelatedPosts } from "@/lib/supabase/blog"
 import { Avatar } from "@/components/ui/Avatar"
-import { CategoryPill } from "@/components/ui/CategoryPill"
 import { PostCover } from "@/components/ui/PostCover"
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { Button } from "@/components/ui/Button"
 import { SubscribeForm } from "@/components/ui/SubscribeForm"
 import { PostCard } from "@/components/cards/BlogPostCard"
+import { articleSchema, breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 export const revalidate = 60
 
@@ -23,19 +23,29 @@ function formatDate(iso: string): string {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) return { title: "Post not found | Aronix" }
+  if (!post) return { title: "Post not found" }
   return {
-    title: `${post.title} | Aronix Blog`,
+    title: post.title,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://aronix.io/blog/${post.slug}`,
+      url: `/blog/${post.slug}`,
       siteName: "Aronix",
+      locale: "en_GB",
       type: "article",
-      images: post.cover_image ? [{ url: post.cover_image }] : undefined,
+      publishedTime: post.created_at,
+      modifiedTime: post.updated_at,
+      authors: [post.author],
+      images: [{ url: `/blog/${post.slug}/opengraph-image`, width: 1200, height: 630, alt: post.title }],
     },
-    alternates: { canonical: `https://aronix.io/blog/${post.slug}` },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [`/blog/${post.slug}/opengraph-image`],
+    },
+    alternates: { canonical: `/blog/${post.slug}` },
   }
 }
 
@@ -48,19 +58,29 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(articleSchema(post)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title },
+        ])) }}
+      />
       <section
-        className="px-12 pt-[120px] pb-12"
+        className="px-5 sm:px-12 pt-[120px] pb-12"
         style={{ background: "var(--ax-soft-blush)" }}
         aria-labelledby="article-heading"
       >
         <div className="max-w-[1280px] mx-auto">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-[13px] text-[var(--ax-fg-3)] mb-6 flex-wrap">
-            <Link href="/blog" className="hover:text-[var(--ax-fg-1)] transition-colors">
-              Blog
-            </Link>
-            <ChevronRight size={12} strokeWidth={1.75} aria-hidden="true" className="text-[var(--ax-border-strong)]" />
-            <CategoryPill category={post.category} />
-          </nav>
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: post.category },
+          ]} />
           <h1
             id="article-heading"
             className="text-[var(--ax-fg-1)] mb-7 max-w-[840px]"
@@ -93,7 +113,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <div className="max-w-[1280px] mx-auto px-12">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-12">
         <PostCover
           src={post.cover_image}
           alt={post.title}
@@ -104,7 +124,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         />
       </div>
 
-      <section className="px-12 pt-14 pb-24" aria-label="Article body">
+      <section className="px-5 sm:px-12 pt-14 pb-24" aria-label="Article body">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_292px] gap-12 lg:gap-[72px] items-start">
             <div>
@@ -127,7 +147,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  Book a free 45-minute workflow audit
+                  Book a free 15-minute workflow audit
                 </div>
                 <p className="text-[15px] leading-[1.65] text-[var(--ax-fg-2)] mb-6">
                   We&apos;ll map your highest-cost manual process and outline a realistic
@@ -168,12 +188,12 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 className="rounded-[16px] p-6"
                 style={{ background: "var(--ax-gradient-dark-cta)" }}
               >
-                <h4
+                <h2
                   className="text-white mb-2"
                   style={{ fontFamily: "var(--ax-font-display)", fontWeight: 700, fontSize: "16px", lineHeight: 1.3 }}
                 >
                   Get insights like this fortnightly
-                </h4>
+                </h2>
                 <p className="text-[13px] text-[var(--ax-fg-on-dark-2)] mb-3.5 leading-[1.55]">
                   Practical automation tactics and workflow ideas. No fluff.
                 </p>
@@ -186,7 +206,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
       {related.length > 0 && (
         <section
-          className="px-12 py-20"
+          className="px-5 sm:px-12 py-20"
           style={{ background: "var(--ax-soft-blush)" }}
           aria-labelledby="related-heading"
         >

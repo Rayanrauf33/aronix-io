@@ -2,20 +2,30 @@ import type { Metadata } from "next"
 import { ContactHero } from "@/components/sections/ContactHero"
 import { ContactSection } from "@/components/sections/ContactSection"
 import { Faq } from "@/components/sections/Faq"
+import { Reveal } from "@/components/ui/Reveal"
+import { breadcrumbSchema, faqSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
-  title: "Contact | Aronix",
+  title: "Contact",
   description:
-    "Book your free 45-minute automation audit. We'll map your highest-cost manual process and outline a realistic automation plan.",
+    "Book your free 15-minute automation audit. We'll map your highest-cost manual process and outline a realistic automation plan.",
   openGraph: {
     title: "Contact | Aronix",
     description:
-      "Book your free 45-minute automation audit with Aronix.",
-    url: "https://aronix.io/contact",
+      "Book your free 15-minute automation audit with Aronix.",
+    url: "/contact",
     siteName: "Aronix",
+    locale: "en_GB",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Contact Aronix" }],
   },
-  alternates: { canonical: "https://aronix.io/contact" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Aronix",
+    description: "Book your free 15-minute automation audit. We\u2019ll map your highest-cost manual process and outline a realistic automation plan.",
+    images: ["/opengraph-image"],
+  },
+  alternates: { canonical: "/contact" },
 }
 
 const faqItems = [
@@ -49,9 +59,20 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <>
-      <ContactHero />
-      <ContactSection />
-      <Faq items={faqItems} title="Everything you need to know" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact" },
+        ])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(faqSchema(faqItems)) }}
+      />
+      <Reveal><ContactHero /></Reveal>
+      <Reveal><ContactSection /></Reveal>
+      <Reveal><Faq items={faqItems} title="Everything you need to know" /></Reveal>
     </>
   )
 }

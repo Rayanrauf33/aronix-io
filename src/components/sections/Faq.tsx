@@ -16,7 +16,7 @@ export function Faq({
 }: Props) {
   return (
     <section
-      className="px-12 py-24"
+      className="px-5 sm:px-12 py-24"
       style={{ background: "var(--ax-soft-blush)" }}
       aria-labelledby="faq-heading"
     >

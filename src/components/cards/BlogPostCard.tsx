@@ -13,7 +13,7 @@ function formatDate(iso: string): string {
 
 export function PostCard({ post }: { post: BlogPost }) {
   return (
-    <article className="bg-white border border-[var(--ax-border)] rounded-[16px] overflow-hidden flex flex-col transition-all duration-200 ease-out hover:shadow-[var(--ax-shadow-lg)] hover:-translate-y-[3px]">
+    <article className="glass-card rounded-[16px] overflow-hidden flex flex-col">
       <Link href={`/blog/${post.slug}`} className="block">
         <PostCover src={post.cover_image} alt={post.title} category={post.category} />
       </Link>
@@ -55,7 +55,7 @@ export function PostCard({ post }: { post: BlogPost }) {
 
 export function FeaturedPostCard({ post }: { post: BlogPost }) {
   return (
-    <article className="bg-white border border-[var(--ax-border)] rounded-[24px] overflow-hidden grid grid-cols-1 lg:grid-cols-[1fr_44%] mb-12 transition-shadow duration-200 ease-out hover:shadow-[var(--ax-shadow-xl)]">
+    <article className="glass-card rounded-[24px] overflow-hidden grid grid-cols-1 lg:grid-cols-[1fr_44%] mb-12">
       <div className="p-10 lg:p-12 flex flex-col justify-between gap-7">
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-2.5">
@@ -105,6 +105,7 @@ export function FeaturedPostCard({ post }: { post: BlogPost }) {
           category={post.category}
           minHeight={340}
           rounded="0"
+          priority
         />
       </Link>
     </article>

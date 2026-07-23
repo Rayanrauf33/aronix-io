@@ -7,7 +7,7 @@ type MetaItem = { icon: LucideIcon; title: string; description: string }
 const meta: MetaItem[] = [
   {
     icon: Clock,
-    title: "45-minute session",
+    title: "15-minute session",
     description: "A focused walkthrough of your top workflow bottleneck.",
   },
   {
@@ -24,7 +24,7 @@ const meta: MetaItem[] = [
 
 export function ContactSection() {
   return (
-    <section className="px-12 py-16 bg-white" aria-label="Audit request">
+    <section className="px-5 sm:px-12 py-16 bg-white" aria-label="Audit request">
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
@@ -42,9 +42,9 @@ export function ContactSection() {
               We&apos;ll identify what&apos;s worth automating first
             </h2>
             <p className="text-[17px] leading-[1.6] text-[var(--ax-fg-2)] mb-10">
-              In 45 minutes, we&apos;ll map your highest-cost manual process,
+              In 15 minutes, we&apos;ll map your highest-cost manual process,
               estimate the time saved, and outline a realistic automation plan.
-              No obligation, no pitch &mdash; just a clear view of what&apos;s possible.
+              No obligation, no pitch. Just a clear view of what&apos;s possible.
             </p>
 
             <ul className="flex flex-col gap-4 list-none p-0">

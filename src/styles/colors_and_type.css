@@ -71,10 +71,11 @@
   --ax-border:        var(--ax-slate-300);
   --ax-border-strong: var(--ax-slate-400);
 
-  /* TYPOGRAPHY */
-  --ax-font-display:  'Manrope', 'Inter', Arial, sans-serif;
-  --ax-font-body:     'Inter', Arial, sans-serif;
-  --ax-font-mono:     'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  /* TYPOGRAPHY -- families come from next/font variables set on <html>,
+     with system fallbacks for the pre-hydration flash */
+  --ax-font-display:  var(--font-manrope, 'Manrope'), 'Inter', Arial, sans-serif;
+  --ax-font-body:     var(--font-inter, 'Inter'), Arial, sans-serif;
+  --ax-font-mono:     var(--font-plex-mono, 'IBM Plex Mono'), ui-monospace, Consolas, monospace;
 
   /* TYPE SCALE */
   --ax-fs-hero:     clamp(56px, 6vw, 80px);

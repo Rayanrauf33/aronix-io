@@ -3,7 +3,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow"
 export function ServicesHero() {
   return (
     <section
-      className="px-12 pt-[144px] pb-16"
+      className="px-5 sm:px-12 pt-[144px] pb-16"
       style={{ background: "var(--ax-soft-blush)" }}
       aria-labelledby="services-heading"
     >
@@ -23,7 +23,7 @@ export function ServicesHero() {
           The right automation for every workflow
         </h1>
         <p className="text-[18px] leading-[1.6] text-[var(--ax-fg-2)] max-w-[560px]">
-          We cover every part of the operational stack &mdash; from CRM and finance
+          We cover every part of the operational stack, from CRM and finance
           to internal processes and custom integrations.
         </p>
       </div>

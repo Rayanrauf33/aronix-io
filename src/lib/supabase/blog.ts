@@ -102,6 +102,21 @@ export async function getPostById(id: string): Promise<BlogPost | null> {
   return data as BlogPost
 }
 
+export async function searchPosts(query: string, limit = 10): Promise<BlogPost[]> {
+  const supabase = await createClient()
+  const pattern = `%${query}%`
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select(LIST_COLS)
+    .eq("published", true)
+    .or(`title.ilike.${pattern},excerpt.ilike.${pattern},category.ilike.${pattern}`)
+    .order("created_at", { ascending: false })
+    .limit(limit)
+
+  if (error) throw error
+  return (data ?? []) as BlogPost[]
+}
+
 export async function createPost(input: CreateBlogPostInput): Promise<BlogPost> {
   const supabase = await createClient()
   const { data, error } = await supabase
