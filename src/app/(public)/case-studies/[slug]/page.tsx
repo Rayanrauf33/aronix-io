@@ -31,6 +31,13 @@ export async function generateMetadata({
       siteName: "Aronix",
       locale: "en_GB",
       type: "article",
+      images: [{ url: `/case-studies/${cs.slug}/opengraph-image`, width: 1200, height: 630, alt: cs.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${cs.title} | Aronix`,
+      description: cs.summary,
+      images: [`/case-studies/${cs.slug}/opengraph-image`],
     },
     alternates: { canonical: `/case-studies/${cs.slug}` },
   }
@@ -242,7 +249,7 @@ export default async function CaseStudyPage({
               Want results like these?
             </h2>
             <p className="text-[16px] leading-[1.65] text-[var(--ax-fg-2)] mb-8">
-              Book a free 45-minute audit. We&apos;ll map your highest-cost
+              Book a free 15-minute audit. We&apos;ll map your highest-cost
               manual process and outline a realistic automation plan.
             </p>
             <Button href="/contact" variant="primary" size="lg" trailingArrow>

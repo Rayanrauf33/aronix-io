@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
+import Image from "next/image"
 import { Upload, X } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 
@@ -53,8 +54,7 @@ export function CoverImageUpload({ value, onChange }: CoverImageUploadProps) {
   if (value) {
     return (
       <div className="cover-upload-preview">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={value} alt="Cover preview" />
+        <Image src={value} alt="Cover preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         <button type="button" onClick={handleRemove} className="cover-remove" title="Remove image" aria-label="Remove cover image">
           <X size={16} />
         </button>

@@ -104,7 +104,7 @@ export function ServicesList() {
             >
               <div className={reversed ? "lg:order-2" : ""}>
                 <div
-                  className="text-[11px] font-medium uppercase text-[var(--ax-primary)] mb-3"
+                  className="text-[11px] font-medium uppercase text-[var(--ax-primary-dark)] mb-3"
                   style={{ fontFamily: "var(--ax-font-mono)", letterSpacing: "0.1em" }}
                 >
                   {s.eyebrow}

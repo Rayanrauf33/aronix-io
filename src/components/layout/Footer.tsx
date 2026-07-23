@@ -28,10 +28,13 @@ const columns = [
   {
     heading: "Services",
     links: [
-      { label: "CRM Integration", href: "/services#crm" },
-      { label: "Finance Ops",     href: "/services#finance" },
-      { label: "Internal Ops",    href: "/services#ops" },
-      { label: "Contact",          href: "/contact" },
+      { label: "AI Voice Agents",      href: "/services/ai-voice-agents" },
+      { label: "AI Chat & Booking",    href: "/services/ai-chat-booking" },
+      { label: "Instant Lead Response", href: "/services/speed-to-lead" },
+      { label: "Websites",             href: "/services/websites" },
+      { label: "Workflow Automation",   href: "/services/workflow-automation" },
+      { label: "CRM Integrations",     href: "/services/crm-integrations" },
+      { label: "Local SEO",            href: "/services/local-seo" },
     ],
   },
   {

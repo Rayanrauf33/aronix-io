@@ -1,10 +1,11 @@
 import { cn } from "@/lib/utils"
 
-type Tone = "accent" | "muted"
+type Tone = "accent" | "accent-dark" | "muted"
 
 const tones: Record<Tone, string> = {
-  accent: "text-[var(--ax-primary)]",
-  muted:  "text-[var(--ax-fg-3)]",
+  accent:        "text-[var(--ax-primary-dark)]",
+  "accent-dark": "text-[var(--ax-primary)]",
+  muted:         "text-[var(--ax-fg-3)]",
 }
 
 type Props = {

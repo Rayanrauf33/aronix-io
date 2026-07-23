@@ -20,6 +20,13 @@ export const metadata: Metadata = {
     siteName: "Aronix",
     locale: "en_GB",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Case Studies" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Case Studies | Aronix",
+    description: "Real automation results: lead response in 60 seconds, month-end close in 6 hours, onboarding with zero manual steps.",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "/case-studies" },
 }
@@ -70,7 +77,7 @@ export default async function CaseStudiesPage() {
               Your process could be the next case study
             </h2>
             <p className="text-[16px] leading-[1.65] text-[var(--ax-fg-2)] mb-8">
-              Book a free 45-minute audit. We&apos;ll map your highest-cost
+              Book a free 15-minute audit. We&apos;ll map your highest-cost
               manual process and outline a realistic automation plan.
             </p>
             <Button href="/contact" variant="primary" size="lg" trailingArrow>

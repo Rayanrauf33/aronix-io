@@ -50,7 +50,7 @@ export function CaseStudyCard({ caseStudy }: Props) {
         ))}
       </dl>
 
-      <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[var(--ax-primary)]">
+      <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[var(--ax-primary-dark)]">
         Read case study
         <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
       </span>

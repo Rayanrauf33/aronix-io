@@ -29,7 +29,7 @@ const defaultSecondary: Cta = {
 
 export function CtaBand({
   title = "Ready to remove your most expensive manual process?",
-  lead = "Book a free 45-minute workflow audit. We'll identify the steps worth automating first.",
+  lead = "Book a free 15-minute workflow audit. We'll identify the steps worth automating first.",
   primaryCta = defaultPrimary,
   secondaryCta = defaultSecondary,
 }: Props) {

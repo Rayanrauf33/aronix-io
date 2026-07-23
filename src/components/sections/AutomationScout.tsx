@@ -36,6 +36,21 @@ export function AutomationScout() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const abortRef = useRef<AbortController | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  // Pause blob animations when the section is off-screen
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        section.dataset.idle = entry.isIntersecting ? "false" : "true"
+      },
+      { threshold: 0 },
+    )
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   const hasStarted = messages.length > 0
   const userMessageCount = messages.filter((m) => m.role === "user").length
@@ -150,6 +165,7 @@ export function AutomationScout() {
 
   return (
     <section
+      ref={sectionRef}
       className="scout-section px-5 sm:px-12 py-24"
       aria-labelledby="scout-heading"
     >
@@ -160,7 +176,7 @@ export function AutomationScout() {
       <div className="max-w-[1280px] mx-auto w-full">
         {/* Header */}
         <div className="text-center mb-10 mx-auto max-w-[640px]">
-          <Eyebrow className="mb-3.5">
+          <Eyebrow tone="accent-dark" className="mb-3.5">
             <Sparkles
               size={14}
               strokeWidth={1.75}

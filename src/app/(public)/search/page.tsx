@@ -9,6 +9,23 @@ import { searchCaseStudies } from "@/lib/supabase/case-studies"
 
 export const metadata: Metadata = {
   title: "Search",
+  description: "Search articles and case studies on business automation, CRM integrations, and operational efficiency.",
+  openGraph: {
+    title: "Search | Aronix",
+    description: "Search articles and case studies on business automation, CRM integrations, and operational efficiency.",
+    url: "/search",
+    siteName: "Aronix",
+    locale: "en_GB",
+    type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Search" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Search | Aronix",
+    description: "Search articles and case studies on business automation, CRM integrations, and operational efficiency.",
+    images: ["/opengraph-image"],
+  },
+  alternates: { canonical: "/search" },
   robots: { index: false, follow: false },
 }
 

@@ -39,8 +39,8 @@ export function SubscribeForm({ variant = "dark-band", buttonLabel = "Subscribe"
 
   const inputClass =
     variant === "dark-band"
-      ? "flex-1 min-w-[220px] h-[52px] px-4.5 text-[15px] text-white bg-white/10 border border-white/20 rounded-[12px] outline-none focus:border-white/50 placeholder:text-white/40"
-      : "w-full h-[38px] px-3 text-[13px] text-white bg-white/10 border border-white/20 rounded-[8px] outline-none focus:border-white/50 placeholder:text-white/40 mb-2"
+      ? "flex-1 min-w-[220px] h-[52px] px-4.5 text-[15px] text-white bg-white/10 border border-white/20 rounded-[12px] focus:border-white/50 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 placeholder:text-white/40"
+      : "w-full h-[38px] px-3 text-[13px] text-white bg-white/10 border border-white/20 rounded-[8px] focus:border-white/50 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 placeholder:text-white/40 mb-2"
 
   return (
     <form

@@ -9,7 +9,7 @@ type Size = "sm" | "md" | "lg"
 const variantClasses: Record<Variant, string> = {
   primary: "bg-[var(--ax-pink-700)] text-white border-transparent hover:bg-[var(--ax-pink-800)] hover:shadow-[var(--ax-shadow-pink)]",
   outline: "bg-transparent text-[var(--ax-fg-1)] border-[var(--ax-fg-1)] hover:bg-[var(--ax-fg-1)] hover:text-white",
-  ghost:   "bg-transparent text-[var(--ax-primary)] border-transparent hover:bg-[var(--ax-pink-50)]",
+  ghost:   "bg-transparent text-[var(--ax-primary-dark)] border-transparent hover:bg-[var(--ax-pink-50)]",
   dark:    "bg-white text-[var(--ax-fg-1)] border-transparent hover:bg-[var(--ax-soft-blush)]",
 }
 

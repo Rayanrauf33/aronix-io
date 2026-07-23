@@ -7,7 +7,7 @@ type MetaItem = { icon: LucideIcon; title: string; description: string }
 const meta: MetaItem[] = [
   {
     icon: Clock,
-    title: "45-minute session",
+    title: "15-minute session",
     description: "A focused walkthrough of your top workflow bottleneck.",
   },
   {
@@ -42,7 +42,7 @@ export function ContactSection() {
               We&apos;ll identify what&apos;s worth automating first
             </h2>
             <p className="text-[17px] leading-[1.6] text-[var(--ax-fg-2)] mb-10">
-              In 45 minutes, we&apos;ll map your highest-cost manual process,
+              In 15 minutes, we&apos;ll map your highest-cost manual process,
               estimate the time saved, and outline a realistic automation plan.
               No obligation, no pitch. Just a clear view of what&apos;s possible.
             </p>
