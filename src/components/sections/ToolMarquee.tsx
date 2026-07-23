@@ -85,6 +85,23 @@ export function ToolMarquee({ tools, label, pauseOnHover = true }: Props) {
     return () => cancelAnimationFrame(rafRef.current)
   }, [])
 
+  // Pause the CSS marquee animation when the section is off-screen
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    const section = track.closest(".marquee-section") as HTMLElement | null
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        track.style.animationPlayState = entry.isIntersecting ? "running" : "paused"
+      },
+      { threshold: 0 },
+    )
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="marquee-section">
       {label && (

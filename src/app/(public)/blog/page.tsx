@@ -17,6 +17,13 @@ export const metadata: Metadata = {
     siteName: "Aronix",
     locale: "en_GB",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Blog" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Aronix",
+    description: "Insights on automation, operations and growth. Practical thinking on how growing teams remove manual work and build reliable systems.",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "/blog" },
 }

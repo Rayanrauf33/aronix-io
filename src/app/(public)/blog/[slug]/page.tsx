@@ -37,6 +37,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       publishedTime: post.created_at,
       modifiedTime: post.updated_at,
       authors: [post.author],
+      images: [{ url: `/blog/${post.slug}/opengraph-image`, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [`/blog/${post.slug}/opengraph-image`],
     },
     alternates: { canonical: `/blog/${post.slug}` },
   }
@@ -140,7 +147,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  Book a free 45-minute workflow audit
+                  Book a free 15-minute workflow audit
                 </div>
                 <p className="text-[15px] leading-[1.65] text-[var(--ax-fg-2)] mb-6">
                   We&apos;ll map your highest-cost manual process and outline a realistic
@@ -181,12 +188,12 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 className="rounded-[16px] p-6"
                 style={{ background: "var(--ax-gradient-dark-cta)" }}
               >
-                <h4
+                <h2
                   className="text-white mb-2"
                   style={{ fontFamily: "var(--ax-font-display)", fontWeight: 700, fontSize: "16px", lineHeight: 1.3 }}
                 >
                   Get insights like this fortnightly
-                </h4>
+                </h2>
                 <p className="text-[13px] text-[var(--ax-fg-on-dark-2)] mb-3.5 leading-[1.55]">
                   Practical automation tactics and workflow ideas. No fluff.
                 </p>

@@ -20,7 +20,7 @@ export default function Error({
         >
           <div className="max-w-[560px] mx-auto">
             <span
-              className="block text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--ax-primary)] mb-4"
+              className="block text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--ax-primary-dark)] mb-4"
               style={{ fontFamily: "var(--ax-font-mono)" }}
             >
               Error

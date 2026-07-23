@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     siteName: "Aronix",
     locale: "en_GB",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix | Business Automation for Growing Companies" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Aronix | Business Automation",
     description: "Custom automation for growing teams. Free workflow audit.",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "/" },
 }

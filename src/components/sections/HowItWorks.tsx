@@ -227,7 +227,7 @@ export function HowItWorks() {
               transform: "translate3d(0,56px,0) scale(1.03)",
             }}
           >
-            <Eyebrow className="mb-3.5">Our process</Eyebrow>
+            <Eyebrow tone="accent-dark" className="mb-3.5">Our process</Eyebrow>
             <h2
               id="hiw-heading"
               className="text-[var(--ax-fg-on-dark)] mb-4"

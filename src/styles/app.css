@@ -19,6 +19,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -244,6 +245,12 @@ body {
   0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
   70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
   100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot {
+    animation: none;
+  }
 }
 
 /* Eyebrow / overline label */
@@ -523,7 +530,7 @@ body {
   flex: 1;
   text-align: center;
   padding: var(--ax-space-8) var(--ax-space-6);
-  will-change: transform, opacity;
+  will-change: transform;
   /* Count-up text changes every frame during the reveal: containment
      stops that layout/paint work from leaking beyond the card */
   contain: layout style;
@@ -1284,4 +1291,257 @@ body {
   background: transparent;
   padding: 0;
   color: inherit;
+}
+
+/* ── VOICE AGENT PAGE ────────────────────────────────────── */
+
+/* Waveform bars: pulsing audio visualisation in the hero call card */
+@keyframes voice-waveform {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.voice-waveform-bar {
+  width: 3px;
+  border-radius: 9999px;
+  background: var(--ax-success);
+  animation: voice-waveform 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Pink left-border accent on the currently open FAQ item */
+.faq-pink > div > div:has(button[aria-expanded="true"]) {
+  border-left: 3px solid var(--ax-primary);
+  padding-left: var(--ax-space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voice-waveform-bar {
+    animation: none;
+    transform: scaleY(0.65);
+  }
+}
+
+/* ── CALL FLOW DIAGRAM ───────────────────────────────── */
+
+/* Sizing tokens */
+.cf-circle-size { width: 48px; height: 48px; }
+.cf-label-size  { font-size: 10px; letter-spacing: 0.06em; }
+.cf-conn-size   { --cf-w: 44px; width: var(--cf-w); height: 2px; margin-top: 23px; }
+
+/* Glow layer (radial gradient in node's accent colour) */
+.cf-glow {
+  background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+}
+
+/* ── Idle state (only when JS is available) ────────── */
+@media (scripting: enabled) {
+  .cf-circle     { opacity: 0.2; transform: scale(0.7); }
+  .cf-label      { opacity: 0; }
+  .cf-glow       { opacity: 0; transform: scale(0.4); }
+  .cf-conn-fill  { transform: scaleX(0); }
+  .cf-conn-arrow { opacity: 0; }
+  .cf-dot        { opacity: 0; transform: translateY(-50%); }
+  .cf-branch-div { opacity: 0; }
+}
+
+/* ── Active state (sequential reveal) ──────────────── */
+
+.cf-active .cf-circle {
+  animation: cf-pop 500ms var(--ax-ease-spring) both;
+  animation-delay: var(--d);
+}
+
+.cf-active .cf-label {
+  animation: cf-fade 350ms ease-out both;
+  animation-delay: calc(var(--d) + 80ms);
+}
+
+.cf-active .cf-glow {
+  animation: cf-glow 900ms ease-out both;
+  animation-delay: var(--d);
+}
+
+.cf-active .cf-conn-fill {
+  animation: cf-draw 300ms ease-out both;
+  animation-delay: var(--d);
+}
+
+.cf-active .cf-conn-arrow {
+  animation: cf-fade 200ms ease-out both;
+  animation-delay: calc(var(--d) + 220ms);
+}
+
+.cf-active .cf-dot {
+  animation: cf-pulse 400ms ease-out both;
+  animation-delay: var(--d);
+}
+
+.cf-active .cf-branch-div {
+  animation: cf-fade 500ms ease-out both;
+  animation-delay: var(--d);
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+
+/* Node pops in with slight overshoot */
+@keyframes cf-pop {
+  0%   { opacity: 0.2; transform: scale(0.7); }
+  60%  { opacity: 1;   transform: scale(1.12); }
+  100% { opacity: 1;   transform: scale(1); }
+}
+
+/* Generic fade-in */
+@keyframes cf-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Glow flashes bright then settles to ambient */
+@keyframes cf-glow {
+  0%   { opacity: 0;   transform: scale(0.4); }
+  25%  { opacity: 0.8; transform: scale(1.5); }
+  100% { opacity: 0.18; transform: scale(1); }
+}
+
+/* Connector draws from left to right */
+@keyframes cf-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Dot travels the connector length then fades */
+@keyframes cf-pulse {
+  0%   { opacity: 1;   transform: translateX(0) translateY(-50%); }
+  80%  { opacity: 0.5; }
+  100% { opacity: 0;   transform: translateX(var(--cf-w)) translateY(-50%); }
+}
+
+/* ── Mobile ────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .cf-circle-size { width: 36px; height: 36px; }
+  .cf-label-size  { font-size: 9px; letter-spacing: 0.02em; }
+  .cf-conn-size   { --cf-w: 18px; margin-top: 17px; }
+  .cf-glow        { inset: -6px; }
+}
+
+/* ── Reduced motion ────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-circle,
+  .cf-label,
+  .cf-conn-fill,
+  .cf-conn-arrow,
+  .cf-branch-div {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .cf-glow {
+    opacity: 0.18 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .cf-dot {
+    display: none;
+  }
+}
+
+/* =============================================================
+   Terminal cursor blink (chat booking page)
+   ============================================================= */
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-cursor {
+    animation: none;
+  }
+}
+
+/* =============================================================
+   Lead feed pulse dot (instant lead response page)
+   ============================================================= */
+
+@keyframes lead-feed-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.lead-feed-pulse {
+  animation: lead-feed-pulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-feed-pulse {
+    animation: none;
+  }
+}
+
+/* =============================================================
+   ROI calculator slider
+   ============================================================= */
+
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--ax-primary);
+  border: 2px solid var(--ax-surface-dark-alt);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(234, 75, 113, 0.3);
+}
+
+.roi-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--ax-primary);
+  border: 2px solid var(--ax-surface-dark-alt);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(234, 75, 113, 0.3);
+}
+
+.roi-slider:focus-visible {
+  outline: 2px solid var(--ax-primary);
+  outline-offset: 4px;
+  border-radius: 9999px;
+}
+
+/* ── SERVICES HUB HERO ANIMATION ──────────────────────── */
+
+@keyframes sh-hero-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sh-hero-h1 {
+  animation: sh-hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.sh-hero-sub {
+  animation: sh-hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.sh-hero-cta {
+  animation: sh-hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-hero-h1,
+  .sh-hero-sub,
+  .sh-hero-cta {
+    animation: none;
+  }
 }

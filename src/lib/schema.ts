@@ -119,3 +119,35 @@ export function faqSchema(items: FaqItem[]) {
     })),
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  Service                                                            */
+/* ------------------------------------------------------------------ */
+
+export function serviceSchema({
+  name,
+  description,
+  url,
+}: {
+  name: string
+  description: string
+  url: string
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    url: `${SITE_URL}${url}`,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "United Kingdom",
+    },
+    serviceType: name,
+  }
+}
