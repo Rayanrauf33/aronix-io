@@ -634,11 +634,11 @@ export default function AIVoiceAgentsPage() {
                     letterSpacing: "var(--ax-tracking-tight)",
                   }}
                 >
-                  $45<span className="text-[20px] font-semibold text-[var(--ax-fg-3)]">/month</span>
+                  $0.06<span className="text-[20px] font-semibold text-[var(--ax-fg-3)]">/min</span>
                 </h2>
               </div>
               <p className="text-[15px] text-[var(--ax-fg-2)] mb-6 m-0">
-                Fixed-scope build, then a monthly fee covering hosting, monitoring, and ongoing tuning.
+                Pay only for what the agent handles. No monthly minimums, no surprises.
               </p>
 
               <div
@@ -649,8 +649,8 @@ export default function AIVoiceAgentsPage() {
 
               <p className="text-[15px] leading-[1.6] text-[var(--ax-fg-2)] mb-8 m-0">
                 You&apos;ll know the full cost before we build anything. No
-                hourly billing, no surprises. If your call volume doesn&apos;t
-                justify the price, we&apos;ll tell you on the first call.
+                flat monthly fee, no surprises. If your call volume doesn&apos;t
+                justify the build, we&apos;ll tell you on the first call.
               </p>
 
               <Button href={CALENDLY} variant="primary" size="lg">
