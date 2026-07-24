@@ -25,6 +25,8 @@ export function ToolMarquee({ tools, label, pauseOnHover = true }: Props) {
   const rafRef = useRef(0)
   const mouseXRef = useRef(0)
   const hoveringRef = useRef(false)
+  // Centers cached on mouseenter (after pause) — avoids per-frame getBoundingClientRect reads
+  const cachedCentersRef = useRef<number[]>([])
 
   const applyScales = useCallback(() => {
     const track = trackRef.current
@@ -33,15 +35,14 @@ export function ToolMarquee({ tools, label, pauseOnHover = true }: Props) {
     const children = track.children
     const mx = mouseXRef.current
     const active = hoveringRef.current
+    const cached = cachedCentersRef.current
 
     for (let i = 0; i < children.length; i++) {
       const el = children[i] as HTMLElement
       let s = 1
 
-      if (active) {
-        const rect = el.getBoundingClientRect()
-        const center = rect.left + rect.width / 2
-        s = getScale(Math.abs(mx - center))
+      if (active && i < cached.length) {
+        s = getScale(Math.abs(mx - cached[i]))
       }
 
       el.style.transform = s === 1 ? "" : `scale(${s})`
@@ -65,7 +66,14 @@ export function ToolMarquee({ tools, label, pauseOnHover = true }: Props) {
     mouseXRef.current = e.clientX
     if (pauseOnHover) {
       const track = trackRef.current
-      if (track) track.style.animationPlayState = "paused"
+      if (track) {
+        track.style.animationPlayState = "paused"
+        // Batch all DOM reads before any writes — prevents forced reflow in the RAF loop
+        cachedCentersRef.current = Array.from(track.children).map((child) => {
+          const r = (child as HTMLElement).getBoundingClientRect()
+          return r.left + r.width / 2
+        })
+      }
     }
     cancelAnimationFrame(rafRef.current)
     rafRef.current = requestAnimationFrame(applyScales)
