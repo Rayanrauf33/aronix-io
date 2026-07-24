@@ -17,7 +17,7 @@ import { breadcrumbSchema, faqSchema, serviceSchema, toJsonLd } from "@/lib/sche
 export const metadata: Metadata = {
   title: "Local SEO for Service Businesses",
   description:
-    "Get found by customers searching for your services in your area. We handle Google Business Profile, local citations, and on-page SEO so you rank where it matters.",
+    "Get found by customers searching for your services locally. We handle Google Business Profile, citations, and on-page SEO so you rank where it matters.",
   openGraph: {
     title: "Local SEO for Service Businesses | Aronix",
     description:

@@ -21,7 +21,7 @@ import { breadcrumbSchema, faqSchema, serviceSchema, toJsonLd } from "@/lib/sche
 export const metadata: Metadata = {
   title: "CRM & System Integrations | Aronix",
   description:
-    "We connect the tools your business runs on so data moves between them automatically. No more copy-pasting between systems or deals falling through the cracks.",
+    "We connect the tools your business runs on, so data flows between them automatically. No more copy-pasting or deals falling through cracks.",
   openGraph: {
     title: "CRM & System Integrations | Aronix",
     description:

@@ -7,7 +7,7 @@ import { FeaturedPostCard, PostCard } from "@/components/cards/BlogPostCard"
 import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Business Automation Blog | Aronix",
   description:
     "Insights on automation, operations and growth. Practical thinking on how growing teams remove manual work and build reliable systems.",
   openGraph: {

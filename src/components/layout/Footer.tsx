@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
+// TODO: replace href values below with real social profile URLs once confirmed
 const socialLinks = [
   {
     label: "Facebook",

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal"
 import { breadcrumbSchema, faqSchema, toJsonLd } from "@/lib/schema"
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Book a Free Automation Audit | Aronix",
   description:
     "Book your free 15-minute automation audit. We'll map your highest-cost manual process and outline a realistic automation plan.",
   openGraph: {
