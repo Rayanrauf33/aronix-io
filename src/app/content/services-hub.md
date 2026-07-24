@@ -71,7 +71,7 @@ Link: /services/ai-voice-agents
 Service 2:
 Name: Speed-to-Lead Systems
 Outcome: Automated response to every new lead within 60 seconds, from any source.
-Link: /services/speed-to-lead
+Link: /services/instant-lead-response
 
 Service 3:
 Name: AI Chat & Booking

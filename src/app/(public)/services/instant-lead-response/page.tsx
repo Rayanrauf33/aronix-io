@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Instant Lead Response for Service Businesses | Aronix",
     description:
       "Respond to every new lead in under 5 minutes, automatically, over SMS, email, or WhatsApp. No more leads going cold while you\u2019re with another customer.",
-    url: "/services/speed-to-lead",
+    url: "/services/instant-lead-response",
     siteName: "Aronix",
     locale: "en_US",
     type: "website",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: "Respond to every new lead in under 5 minutes, automatically, over SMS, email, or WhatsApp.",
     images: ["/opengraph-image"],
   },
-  alternates: { canonical: "/services/speed-to-lead" },
+  alternates: { canonical: "/services/instant-lead-response" },
 }
 
 /* ------------------------------------------------------------------ */
@@ -120,7 +120,7 @@ export default function SpeedToLeadPage() {
         dangerouslySetInnerHTML={{ __html: toJsonLd(serviceSchema({
           name: "Instant Lead Response",
           description: "Respond to every new lead in under 5 minutes, automatically, over SMS, email, or WhatsApp. No more leads going cold while you're with another customer.",
-          url: "/services/speed-to-lead",
+          url: "/services/instant-lead-response",
         })) }}
       />
 
