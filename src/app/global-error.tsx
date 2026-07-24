@@ -7,7 +7,7 @@ export default function GlobalError({
   reset: () => void
 }) {
   return (
-    <html lang="en-GB">
+    <html lang="en-US">
       <head>
         <title>Something went wrong | Aronix</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

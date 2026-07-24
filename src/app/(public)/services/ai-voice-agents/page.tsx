@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "An AI receptionist that answers in two rings, books appointments into your calendar, and texts you a summary of every call. Nights and weekends included.",
     url: "/services/ai-voice-agents",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "AI Voice Agents | Aronix" }],
   },

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "Search articles and case studies on business automation, CRM integrations, and operational efficiency.",
     url: "/search",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Search" }],
   },

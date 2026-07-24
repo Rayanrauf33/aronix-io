@@ -69,7 +69,7 @@ export function BlogPostsTable({ posts }: { posts: BlogPost[] }) {
                   </span>
                 </td>
                 <td>
-                  {new Date(post.created_at).toLocaleDateString("en-GB", {
+                  {new Date(post.created_at).toLocaleDateString("en-US", {
                     day: "numeric",
                     month: "short",
                     year: "numeric",

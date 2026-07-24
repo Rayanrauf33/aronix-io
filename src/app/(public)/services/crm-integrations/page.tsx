@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "We connect the tools your business runs on so data moves between them automatically. No more copy-pasting between systems or deals falling through the cracks.",
     url: "/services/crm-integrations",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CRM & System Integrations | Aronix" }],
   },

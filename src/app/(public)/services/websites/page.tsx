@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "We build websites that turn visitors into enquiries. Fast, clear, and built around how your customers actually decide to make contact.",
     url: "/services/websites",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Conversion-Focused Websites | Aronix" }],
   },

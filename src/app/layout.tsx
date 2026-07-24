@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Aronix",
     type: "website",
-    locale: "en_GB",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
-      lang="en-GB"
+      lang="en-US"
       suppressHydrationWarning
       className={`${manrope.variable} ${inter.variable} ${plexMono.variable}`}
     >
