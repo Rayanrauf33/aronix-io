@@ -3,6 +3,16 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-24 (4)
+
+### Added
+- `/about` page with hero, founder cards (Ahmed Asif and Muhammad Rayan), mission section, and CtaBand; server component, 536 B, no Framer Motion beyond Reveal scroll fade-ins
+- `personSchema()` function in `src/lib/schema.ts`; Person JSON-LD for both founders on the About page
+- About link added to footer Company column
+
+### Changed
+- `organizationSchema()` updated with `founder` array referencing both founders with their LinkedIn profiles
+
 ## [Unreleased] - 2026-07-24 (3)
 
 ### Changed
