@@ -3,6 +3,12 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-24
+
+### Fixed
+- `/about` founder cards grid no longer capped at 900px; now fills the full 1280px container, aligning card edges with the hero heading on wide viewports
+- Route `/services/speed-to-lead` permanently redirected (301) to `/services/instant-lead-response`; all internal links and sitemap updated
+
 ## [Unreleased] - 2026-07-25
 
 ### Added
