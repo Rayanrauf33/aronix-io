@@ -56,7 +56,7 @@ const services: ServiceItem[] = [
     name: "Instant Lead Response",
     outcome:
       "Automated response to every new lead within 60 seconds, from any source.",
-    href: "/services/speed-to-lead",
+    href: "/services/instant-lead-response",
     iconName: "Zap",
     ctaText: "See the response flow",
   },
@@ -107,7 +107,7 @@ const faqItems: AccordionItem[] = [
   {
     label: "How long does it take to get something live?",
     content:
-      "Most projects are live within a few weeks depending on scope \u2014 we\u2019ll confirm an exact timeline after the audit. The voice agent and speed-to-lead systems are typically our fastest builds. Workflow automation and websites take longer depending on complexity. We give you a fixed timeline during scoping.",
+      "Most projects are live within a few weeks depending on scope \u2014 we\u2019ll confirm an exact timeline after the audit. The voice agent and instant lead response systems are typically our fastest builds. Workflow automation and websites take longer depending on complexity. We give you a fixed timeline during scoping.",
   },
   {
     label: "Do you work with specific industries?",

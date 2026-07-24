@@ -34,6 +34,15 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/services/speed-to-lead",
+        destination: "/services/instant-lead-response",
+        permanent: true,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {

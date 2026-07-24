@@ -1,5 +1,5 @@
 # Speed-to-Lead Systems: Service Page Copy
-Route: /services/speed-to-lead
+Route: /services/instant-lead-response
 Anything in [brackets] is a placeholder Ahmed fills in. Everything else is final copy, use verbatim.
 
 ---
@@ -8,7 +8,7 @@ Anything in [brackets] is a placeholder Ahmed fills in. Everything else is final
 
 Title tag: Speed-to-Lead Automation for Service Businesses | Aronix
 Meta description: Respond to every new lead in under 5 minutes, automatically, over SMS, email, or WhatsApp. No more leads going cold while you're with another customer.
-Canonical: https://aronix.io/services/speed-to-lead
+Canonical: https://aronix.io/services/instant-lead-response
 
 ---
 
