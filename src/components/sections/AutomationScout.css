@@ -346,12 +346,10 @@
   0%, 80%, 100% {
     opacity: 0.3;
     transform: scale(0.85);
-    box-shadow: 0 0 4px rgba(234, 75, 113, 0.2);
   }
   40% {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0 12px rgba(234, 75, 113, 0.6);
   }
 }
 
@@ -475,14 +473,11 @@
   white-space: nowrap;
   cursor: pointer;
   box-shadow:
-    0 0 20px rgba(234, 75, 113, 0.3),
     0 4px 12px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition:
     transform var(--ax-dur-fast) var(--ax-ease-out),
-    box-shadow var(--ax-dur-base) var(--ax-ease-out),
     background var(--ax-dur-base) var(--ax-ease-out);
-  animation: scout-cta-glow 3s ease-in-out infinite;
 }
 
 /* Soft shimmer sweep */
@@ -503,34 +498,31 @@
   pointer-events: none;
 }
 
+/* Glow halo — opacity-only animation keeps this on the compositor */
+.scout-cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(var(--ax-radius-md) + 6px);
+  background: var(--ax-primary);
+  filter: blur(14px);
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+  animation: scout-cta-glow 3s ease-in-out infinite;
+}
+
 .scout-cta-btn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow:
-    0 0 32px rgba(234, 75, 113, 0.45),
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .scout-cta-btn:active {
   transform: translateY(0) scale(0.98);
-  box-shadow:
-    0 0 16px rgba(234, 75, 113, 0.25),
-    0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes scout-cta-glow {
-  0%, 100% {
-    box-shadow:
-      0 0 20px rgba(234, 75, 113, 0.3),
-      0 4px 12px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-  50% {
-    box-shadow:
-      0 0 28px rgba(234, 75, 113, 0.45),
-      0 4px 16px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.55; }
 }
 
 @keyframes scout-cta-shimmer {
@@ -603,11 +595,11 @@
   }
 
   .scout-cta-btn {
-    animation: none;
     transition: none;
   }
 
-  .scout-cta-btn::before {
+  .scout-cta-btn::before,
+  .scout-cta-btn::after {
     animation: none;
     display: none;
   }

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-24
+
+### Changed
+- `ToolMarquee`: batch all `getBoundingClientRect` reads into a single pass on mouseenter (after marquee pauses) instead of interleaving reads and writes in the RAF loop, eliminating forced synchronous reflow
+- `app.css` / `VoiceHeroCard.tsx`: `pulse-ring` keyframes switched from `box-shadow` to `transform: scale()` + `opacity` so the ring animation runs entirely on the GPU compositor
+- `AutomationScout.css`: `scout-dot-pulse` keyframes no longer animate `box-shadow`; static shadow stays on the element; infinite `scout-cta-glow` moved from the button element to a `::after` pseudo-element with `filter: blur()` + `opacity` animation only
+- `GlassServiceCard.css`: `box-shadow` transition replaced with `filter: drop-shadow()` transition (compositor-composited)
+- `blog.css` and `dashboard.css` removed from root layout; `blog.css` now scoped to `src/app/(public)/blog/layout.tsx`, `dashboard.css` to `src/app/dashboard/layout.tsx`, cutting both stylesheets from every public page
+
+### Added
+- `browserslist` in `package.json` targeting Chrome/Edge 93+, Firefox 92+, Safari 15.4+ to eliminate legacy JS polyfills (`Array.flat`, `Object.fromEntries`, `String.trimStart`, etc.) from the production bundle
+- `src/app/(public)/blog/layout.tsx` — new blog sub-layout that imports `blog.css` so styles are only loaded on blog routes
+
 ## [Unreleased] - 2026-07-23 (3)
 
 ### Changed
