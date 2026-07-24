@@ -46,7 +46,7 @@ const founders = [
     initials: "AA",
     name: "Ahmed Asif",
     role: "Co-Founder",
-    bio: "Ahmed builds the AI systems at Aronix — voice agents, lead response automation, and agentic workflows for service businesses. Outside of client work, he writes about agentic AI security and practical deployment patterns for businesses adopting AI.",
+    bio: "Ahmed builds the AI systems at Aronix, voice agents, lead response automation, and the automated workflows in between, for service businesses. Outside of client work, he writes about agentic AI security and practical deployment patterns for businesses adopting AI.",
     linkedin: "https://www.linkedin.com/in/ahmedasifchaudhary",
     linkedinLabel: "Ahmed Asif on LinkedIn",
   },
@@ -276,7 +276,7 @@ export default function AboutPage() {
             >
               <p>
                 Service businesses run on people. Quotes, bookings, follow-ups,
-                month-end close -- all of it falls on a small team that is already
+                month-end close. All of it falls on a small team that is already
                 stretched. The result is leads going cold while someone is with
                 another customer, admin tasks pushing into evenings, and growth
                 stalling because there are not enough hours.
@@ -289,11 +289,26 @@ export default function AboutPage() {
                 It was automating the repetitive parts so the team already there
                 could focus on higher-value work.
               </p>
-              <p>
+              <p
+                style={{
+                  fontFamily: "var(--ax-font-display)",
+                  fontWeight: 700,
+                  fontSize: "clamp(20px, 2.2vw, 26px)",
+                  lineHeight: 1.35,
+                  color: "var(--ax-fg-1)",
+                  letterSpacing: "-0.01em",
+                  marginTop: "2.5rem",
+                  marginBottom: "1.25rem",
+                  paddingLeft: "1.25rem",
+                  borderLeft: "3px solid var(--ax-primary)",
+                }}
+              >
                 Most automation tools assume you have a technical team and an IT
-                budget. We assume you have a business to run. We build the systems,
-                manage them, and make sure they work. You get the results without
-                needing to become a software company.
+                budget. We assume you have a business to run.
+              </p>
+              <p>
+                We build the systems, manage them, and make sure they work. You get
+                the results without needing to become a software company.
               </p>
             </div>
           </div>
