@@ -3,6 +3,11 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-24 (5)
+
+### Fixed
+- About page bio copy polished: punctuation corrected, pull-quote styling refined
+
 ## [Unreleased] - 2026-07-24 (4)
 
 ### Added
