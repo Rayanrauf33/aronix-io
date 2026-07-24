@@ -172,7 +172,7 @@ export function ScopeCalculator() {
               fontVariantNumeric: "tabular-nums",
             }}
           >
-            ${low.toLocaleString("en-GB")} &ndash; ${high.toLocaleString("en-GB")}
+            ${low.toLocaleString("en-US")} &ndash; ${high.toLocaleString("en-US")}
           </span>
         </div>
       </div>

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       "Get found by customers searching for your services in your area. We handle Google Business Profile, local citations, and on-page SEO so you rank where it matters.",
     url: "/services/local-seo",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Local SEO for Service Businesses | Aronix" }],
   },

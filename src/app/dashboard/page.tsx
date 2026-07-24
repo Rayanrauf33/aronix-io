@@ -29,7 +29,7 @@ export default async function DashboardPage() {
   for (let i = 5; i >= 0; i--) {
     const start = new Date(now.getFullYear(), now.getMonth() - i, 1)
     const end = new Date(now.getFullYear(), now.getMonth() - i + 1, 1)
-    const label = start.toLocaleDateString("en-GB", { month: "short" })
+    const label = start.toLocaleDateString("en-US", { month: "short" })
     const count = posts.filter(p => {
       const d = new Date(p.created_at)
       return d >= start && d < end

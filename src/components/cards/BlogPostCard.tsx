@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button"
 
 function formatDate(iso: string): string {
   const d = new Date(iso)
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
+  return d.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })
 }
 
 export function PostCard({ post }: { post: BlogPost }) {

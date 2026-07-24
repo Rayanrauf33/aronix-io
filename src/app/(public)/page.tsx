@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Custom automation for CRM, finance ops, and internal workflows. Book a free workflow audit.",
     url: "/",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix | Business Automation for Growing Companies" }],
   },

@@ -21,7 +21,7 @@ function buildFeed(
     <title>Aronix Blog</title>
     <link>${SITE_URL}/blog</link>
     <description>Insights on automation, operations and growth from the Aronix team.</description>
-    <language>en-gb</language>
+    <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <image>
       <url>${SITE_URL}/icon-512x512.png</url>

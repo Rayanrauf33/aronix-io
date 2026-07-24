@@ -29,7 +29,7 @@ export async function generateMetadata({
       description: cs.summary,
       url: `/case-studies/${cs.slug}`,
       siteName: "Aronix",
-      locale: "en_GB",
+      locale: "en_US",
       type: "article",
       images: [{ url: `/case-studies/${cs.slug}/opengraph-image`, width: 1200, height: 630, alt: cs.title }],
     },
