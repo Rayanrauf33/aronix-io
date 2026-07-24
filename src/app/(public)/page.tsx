@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     absolute: "Aronix | Business Automation for Growing Companies",
   },
   description:
-    "Aronix builds custom automation that connects your CRM, finance tools, and internal ops, so your team stops firefighting and starts scaling. Trusted by 40+ growing companies.",
+    "Aronix builds custom automation that connects your CRM, finance tools, and internal ops so your team stops firefighting and starts scaling.",
   openGraph: {
     title: "Aronix | Business Automation for Growing Companies",
     description:
