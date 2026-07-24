@@ -44,7 +44,7 @@ export const metadata: Metadata = {
  */
 const founders = [
   {
-    image: "/team/Ahmed.png",
+    image: "/Team/Ahmed.png",
     name: "Ahmed Asif",
     role: "Co-Founder",
     bio: "Ahmed builds the AI systems at Aronix, voice agents, lead response automation, and the automated workflows in between, for service businesses. Outside of client work, he writes about agentic AI security and practical deployment patterns for businesses adopting AI.",
@@ -52,7 +52,7 @@ const founders = [
     linkedinLabel: "Ahmed Asif on LinkedIn",
   },
   {
-    image: "/team/Rayan-Profile-picture.png",
+    image: "/Team/Rayan-Profile-picture.png",
     imageScale: "scale(1.3)",
     name: "Muhammad Rayan",
     role: "Co-Founder",
