@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { Reveal } from "@/components/ui/Reveal"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { CtaBand } from "@/components/sections/CtaBand"
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
  */
 const founders = [
   {
-    initials: "AA",
+    image: "/team/Ahmed.png",
     name: "Ahmed Asif",
     role: "Co-Founder",
     bio: "Ahmed builds the AI systems at Aronix, voice agents, lead response automation, and the automated workflows in between, for service businesses. Outside of client work, he writes about agentic AI security and practical deployment patterns for businesses adopting AI.",
@@ -51,7 +52,8 @@ const founders = [
     linkedinLabel: "Ahmed Asif on LinkedIn",
   },
   {
-    initials: "MR",
+    image: "/team/Rayan-Profile-picture.png",
+    imageScale: "scale(1.3)",
     name: "Muhammad Rayan",
     role: "Co-Founder",
     bio: "Rayan focuses on business process automation and operations. He works directly with clients to map their existing workflows, identify where manual work is costing the most, and oversee the build of the systems that replace it.",
@@ -154,23 +156,15 @@ export default function AboutPage() {
                     border: "1px solid var(--ax-border)",
                   }}
                 >
-                  {/* Initials avatar -- replace with <Image> once real headshots are available */}
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mb-7 shrink-0"
-                    style={{ background: "var(--ax-pink-50)" }}
-                    aria-hidden="true"
-                  >
-                    <span
-                      style={{
-                        fontFamily: "var(--ax-font-display)",
-                        fontWeight: 700,
-                        fontSize: "17px",
-                        color: "var(--ax-primary)",
-                        letterSpacing: "0.04em",
-                      }}
-                    >
-                      {founder.initials}
-                    </span>
+                  <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 mb-7">
+                    <Image
+                      src={founder.image}
+                      alt={founder.name}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                      style={founder.imageScale ? { transform: founder.imageScale, transformOrigin: "center" } : undefined}
+                    />
                   </div>
 
                   {/* Name and title */}
