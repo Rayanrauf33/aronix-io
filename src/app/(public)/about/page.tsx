@@ -146,7 +146,7 @@ export default function AboutPage() {
       >
         <h2 id="founders-heading" className="sr-only">Founders</h2>
         <div className="max-w-[var(--ax-container)] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 max-w-[900px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {founders.map((founder) => (
               <Reveal key={founder.name}>
                 <article
