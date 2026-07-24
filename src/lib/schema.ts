@@ -26,8 +26,10 @@ export function organizationSchema() {
     logo: LOGO_URL,
     description:
       "Aronix builds custom automation that connects your CRM, finance tools, and internal ops so your team stops firefighting and starts scaling.",
-    // TODO: add sameAs once social profile URLs are confirmed
-    // sameAs: [],
+    sameAs: [
+      "https://www.linkedin.com/company/aronix/",
+      "https://www.instagram.com/aronix.io/",
+    ],
     // TODO: add telephone once contact number is confirmed
     // telephone: "",
     // TODO: add contactPoint once contact details are confirmed
@@ -87,7 +89,6 @@ export function articleSchema(post: BlogPost) {
       "@type": "WebPage" as const,
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
-    // TODO: confirm locale — currently en-US, may need to change to en-GB once finalized
     inLanguage: "en-US",
     isPartOf: {
       "@type": "WebPage" as const,

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Real workflows, measured results. See how growing teams automate with Aronix.",
     url: "/case-studies",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Case Studies" }],
   },

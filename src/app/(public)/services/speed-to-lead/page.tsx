@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Respond to every new lead in under 5 minutes, automatically, over SMS, email, or WhatsApp. No more leads going cold while you\u2019re with another customer.",
     url: "/services/speed-to-lead",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Instant Lead Response | Aronix" }],
   },

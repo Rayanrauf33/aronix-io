@@ -66,7 +66,7 @@ export function CaseStudiesTable({ caseStudies }: { caseStudies: CaseStudy[] }) 
                   </span>
                 </td>
                 <td>
-                  {new Date(cs.created_at).toLocaleDateString("en-GB", {
+                  {new Date(cs.created_at).toLocaleDateString("en-US", {
                     day: "numeric",
                     month: "short",
                     year: "numeric",

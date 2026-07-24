@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Book your free 15-minute automation audit with Aronix.",
     url: "/contact",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Contact Aronix" }],
   },

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-24 (3)
+
+### Changed
+- Locale standardised to `en-US` site-wide: all OpenGraph `locale` fields, HTML `lang` attribute (root layout + global-error), RSS `<language>` tag, and all `toLocaleDateString`/`toLocaleString` JS calls updated from `en-GB` to `en-US` across 30 files; no `en_GB`/`en-GB`/`en-gb` references remain
+- Footer LinkedIn link set to `https://www.linkedin.com/company/aronix/`
+- Footer Instagram link set to `https://www.instagram.com/aronix.io/`
+- `organizationSchema()` `sameAs` array populated with LinkedIn and Instagram URLs
+
 ## [Unreleased] - 2026-07-24 (2)
 
 ### Added

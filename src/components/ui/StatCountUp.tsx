@@ -16,7 +16,7 @@ function easeOutCubic(t: number): number {
 
 function fmt(n: number, comma?: boolean): string {
   const rounded = Math.round(n)
-  if (comma) return rounded.toLocaleString("en-GB")
+  if (comma) return rounded.toLocaleString("en-US")
   return String(rounded)
 }
 

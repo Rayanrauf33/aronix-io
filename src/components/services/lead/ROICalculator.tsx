@@ -60,7 +60,7 @@ function AnimatedNumber({ value, prefix }: { value: number; prefix?: string }) {
 
   return (
     <span style={{ fontVariantNumeric: "tabular-nums" }}>
-      {prefix}{displayed.toLocaleString("en-GB")}
+      {prefix}{displayed.toLocaleString("en-US")}
     </span>
   )
 }

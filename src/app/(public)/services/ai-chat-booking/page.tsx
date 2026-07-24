@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "An AI chat agent on your website that answers questions, qualifies visitors, and books appointments directly into your calendar. Works while you sleep.",
     url: "/services/ai-chat-booking",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "AI Chat & Booking | Aronix" }],
   },

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Aronix builds the systems that capture leads, automate your operations, and get your business found locally. See what we build and how it works.",
     url: "/services",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Aronix Services" }],
   },

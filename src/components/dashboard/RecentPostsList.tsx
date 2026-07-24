@@ -20,7 +20,7 @@ export function RecentPostsList({ posts }: { posts: BlogPost[] }) {
             <p className="s-body-sm" style={{ color: "var(--ax-fg-3)", fontSize: 12 }}>
               {post.category}
               {" \u00B7 "}
-              {new Date(post.created_at).toLocaleDateString("en-GB", {
+              {new Date(post.created_at).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",

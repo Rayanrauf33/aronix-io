@@ -29,7 +29,7 @@ export const metadata: Metadata = {
       "We map the manual processes slowing your team down and build automated systems that run them without human input. Less admin, fewer errors, more time on actual work.",
     url: "/services/workflow-automation",
     siteName: "Aronix",
-    locale: "en_GB",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Workflow & Process Automation | Aronix" }],
   },
