@@ -22,7 +22,7 @@ import { breadcrumbSchema, faqSchema, serviceSchema, toJsonLd } from "@/lib/sche
 export const metadata: Metadata = {
   title: "Workflow & Process Automation for Growing Businesses",
   description:
-    "We map the manual processes slowing your team down and build automated systems that run them without human input. Less admin, fewer errors, more time on actual work.",
+    "We map your manual processes and build automated systems that run them without human input. Less admin, fewer errors, more time on actual work.",
   openGraph: {
     title: "Workflow & Process Automation for Growing Businesses | Aronix",
     description:

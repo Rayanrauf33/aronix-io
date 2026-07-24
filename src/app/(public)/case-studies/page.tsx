@@ -9,9 +9,9 @@ import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Case Studies",
+  title: "Business Automation Case Studies | Aronix",
   description:
-    "Real automation results: lead response in 60 seconds, month-end close in 6 hours, onboarding with zero manual steps. See how growing teams automate with Aronix.",
+    "Real results: lead response in 60 seconds, month-end close in 6 hours, onboarding with zero manual steps. See how growing teams automate with Aronix.",
   openGraph: {
     title: "Case Studies | Aronix",
     description:

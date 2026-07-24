@@ -3,6 +3,32 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-24 (2)
+
+### Added
+- `public/llms.txt` scaffolded with site name, description, and links to all nine key pages with one-line descriptions pulled from existing meta descriptions
+- `caseStudyArticleSchema()` in `src/lib/schema.ts` — Article JSON-LD for case study pages wired into `case-studies/[slug]/page.tsx`
+- `SearchAction` added to `webSiteSchema()` pointing to `/search?q={search_term_string}`
+- `inLanguage: "en-US"` and `isPartOf` (blog index) added to `articleSchema()` for blog posts
+
+### Changed
+- Homepage meta description trimmed from 173 to 140 chars (removed trailing "Trusted by 40+ growing companies." sentence)
+- Workflow Automation meta description trimmed from 165 to 143 chars
+- CRM Integrations meta description trimmed from 158 to 139 chars
+- Local SEO meta description trimmed from 163 to 151 chars
+- Case Studies index meta description trimmed from 161 to 149 chars
+- Contact page title changed from "Contact" to "Book a Free Automation Audit | Aronix"
+- Blog page title changed from "Blog" to "Business Automation Blog | Aronix"
+- Case Studies index title changed from "Case Studies" to "Business Automation Case Studies | Aronix"
+- `serviceSchema()` — hardcoded `areaServed: { Country: "United Kingdom" }` removed; replaced with TODO comment pending geography confirmation
+- `organizationSchema()` — `sameAs`, `telephone`, `contactPoint`, `address` added as commented-out placeholders with TODO notes
+- Dashboard layout — `robots: { index: false, follow: false }` added to metadata
+- Sitemap homepage entry path fixed from `""` to `"/"`
+- Footer `socialLinks` array — added TODO comment marking `href: "#"` values as pending real URLs
+
+### Removed
+- Broken audio demo section from AI Voice Agents page (no real audio file exists; `Play` import also removed)
+
 ## [Unreleased] - 2026-07-24
 
 ### Changed

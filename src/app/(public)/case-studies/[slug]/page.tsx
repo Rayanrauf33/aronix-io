@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { CaseStudyCard } from "@/components/cards/CaseStudyCard"
 import { getCaseStudyBySlug, getRelatedCaseStudies } from "@/lib/supabase/case-studies"
-import { breadcrumbSchema, toJsonLd } from "@/lib/schema"
+import { breadcrumbSchema, caseStudyArticleSchema, toJsonLd } from "@/lib/schema"
 
 type Params = { slug: string }
 
@@ -63,6 +63,10 @@ export default async function CaseStudyPage({
           { name: "Case Studies", path: "/case-studies" },
           { name: cs.title },
         ])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(caseStudyArticleSchema(cs)) }}
       />
       <section
         className="px-5 sm:px-12 pt-[144px] pb-14"

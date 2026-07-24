@@ -8,7 +8,6 @@ import {
   Mic,
   Clock,
   Shield,
-  Play,
   Stethoscope,
   Wrench,
   UtensilsCrossed,
@@ -530,74 +529,6 @@ export default function AIVoiceAgentsPage() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* ── Demo (dark audio player card) ───────────────── */}
-      <Reveal>
-        <section
-          id="demo"
-          className="px-5 sm:px-12 py-20"
-          aria-labelledby="demo-heading"
-        >
-          <div className="max-w-[620px] mx-auto">
-            <Eyebrow className="mb-3.5">Hear it for yourself</Eyebrow>
-            <h2 id="demo-heading" className="sr-only">
-              Hear it for yourself
-            </h2>
-            <p className="text-[var(--ax-fs-body-lg)] leading-[1.6] text-[var(--ax-fg-2)] mb-8">
-              Don&apos;t take our word for how it sounds. This is the agent
-              taking a real booking call, unedited.
-            </p>
-
-            {/* Audio player card */}
-            <div
-              className="rounded-[var(--ax-radius-xl)] p-8"
-              style={{ background: "var(--ax-surface-dark)" }}
-            >
-              <div
-                className="text-[11px] uppercase tracking-[0.1em] text-[var(--ax-fg-on-dark-2)] mb-6"
-                style={{ fontFamily: "var(--ax-font-mono)" }}
-              >
-                Demo: Booking call
-              </div>
-              <div className="flex items-center gap-5">
-                <div
-                  className="w-14 h-14 rounded-[var(--ax-radius-pill)] flex items-center justify-center shrink-0 cursor-pointer"
-                  style={{ background: "var(--ax-primary)" }}
-                  role="img"
-                  aria-label="Play button (audio coming soon)"
-                >
-                  <Play
-                    size={22}
-                    fill="white"
-                    stroke="white"
-                    className="ml-0.5"
-                    aria-hidden="true"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  {/* Progress bar */}
-                  <div
-                    className="h-1.5 rounded-[var(--ax-radius-pill)] mb-2.5 overflow-hidden"
-                    style={{ background: "var(--ax-slate-800)" }}
-                  >
-                    <div
-                      className="h-full rounded-[var(--ax-radius-pill)]"
-                      style={{ background: "var(--ax-primary)", width: 0 }}
-                    />
-                  </div>
-                  <div
-                    className="flex justify-between text-[12px] text-[var(--ax-fg-on-dark-2)]"
-                    style={{ fontFamily: "var(--ax-font-mono)" }}
-                  >
-                    <span>0:00</span>
-                    <span>2:34</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>

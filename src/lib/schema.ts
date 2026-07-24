@@ -26,6 +26,14 @@ export function organizationSchema() {
     logo: LOGO_URL,
     description:
       "Aronix builds custom automation that connects your CRM, finance tools, and internal ops so your team stops firefighting and starts scaling.",
+    // TODO: add sameAs once social profile URLs are confirmed
+    // sameAs: [],
+    // TODO: add telephone once contact number is confirmed
+    // telephone: "",
+    // TODO: add contactPoint once contact details are confirmed
+    // contactPoint: { "@type": "ContactPoint", telephone: "", contactType: "customer service" },
+    // TODO: add address once physical/registered address is confirmed
+    // address: { "@type": "PostalAddress", addressCountry: "" },
   }
 }
 
@@ -39,6 +47,14 @@ export function webSiteSchema() {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   }
 }
 
@@ -70,6 +86,48 @@ export function articleSchema(post: BlogPost) {
     mainEntityOfPage: {
       "@type": "WebPage" as const,
       "@id": `${SITE_URL}/blog/${post.slug}`,
+    },
+    // TODO: confirm locale — currently en-US, may need to change to en-GB once finalized
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebPage" as const,
+      "@id": `${SITE_URL}/blog`,
+    },
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Article (case studies)                                             */
+/* ------------------------------------------------------------------ */
+
+export function caseStudyArticleSchema(cs: import("@/types").CaseStudy) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: cs.title,
+    description: cs.summary,
+    datePublished: cs.created_at,
+    dateModified: cs.updated_at,
+    author: {
+      "@type": "Organization" as const,
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization" as const,
+      name: SITE_NAME,
+      logo: {
+        "@type": "ImageObject" as const,
+        url: LOGO_URL,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage" as const,
+      "@id": `${SITE_URL}/case-studies/${cs.slug}`,
+    },
+    isPartOf: {
+      "@type": "WebPage" as const,
+      "@id": `${SITE_URL}/case-studies`,
     },
   }
 }
@@ -144,10 +202,7 @@ export function serviceSchema({
       name: SITE_NAME,
       url: SITE_URL,
     },
-    areaServed: {
-      "@type": "Country",
-      name: "United Kingdom",
-    },
+    // TODO: confirm and re-add correct areaServed once service geography is confirmed
     serviceType: name,
   }
 }

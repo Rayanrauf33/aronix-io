@@ -7,7 +7,7 @@ export const revalidate = 3600
 const SITE_URL = "https://aronix.io"
 
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
-  { path: "",                              priority: 1.0, changeFrequency: "weekly" },
+  { path: "/",                             priority: 1.0, changeFrequency: "weekly" },
   { path: "/services",                     priority: 0.9, changeFrequency: "monthly" },
   { path: "/services/ai-voice-agents",     priority: 0.8, changeFrequency: "monthly" },
   { path: "/services/speed-to-lead",       priority: 0.8, changeFrequency: "monthly" },

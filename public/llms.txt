@@ -1,0 +1,14 @@
+# Aronix
+> Aronix builds custom automation that connects CRM, finance tools, and internal ops for growing service businesses.
+
+## Pages
+
+- [Homepage](https://aronix.io/): Custom business automation — AI agents, workflow systems, and growth tools for service businesses.
+- [Services](https://aronix.io/services): Aronix builds the systems that capture leads, automate your operations, and get your business found locally.
+- [AI Voice Agents](https://aronix.io/services/ai-voice-agents): An AI receptionist that answers in two rings, books appointments into your calendar, and texts you a summary of every call.
+- [AI Chat & Booking](https://aronix.io/services/ai-chat-booking): An AI chat agent on your website that answers questions, qualifies visitors, and books appointments directly into your calendar.
+- [Instant Lead Response](https://aronix.io/services/speed-to-lead): Respond to every new lead in under 5 minutes, automatically, over SMS, email, or WhatsApp.
+- [Workflow Automation](https://aronix.io/services/workflow-automation): We map the manual processes slowing your team down and build automated systems that run them without human input.
+- [CRM Integrations](https://aronix.io/services/crm-integrations): We connect the tools your business runs on so data moves between them automatically.
+- [Websites](https://aronix.io/services/websites): We build websites that turn visitors into enquiries. Fast, clear, and built around how your customers actually decide to make contact.
+- [Local SEO](https://aronix.io/services/local-seo): Get found by customers searching for your services in your area. We handle Google Business Profile, local citations, and on-page SEO.
