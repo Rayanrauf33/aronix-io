@@ -30,12 +30,51 @@ export function organizationSchema() {
       "https://www.linkedin.com/company/aronix/",
       "https://www.instagram.com/aronix.io/",
     ],
+    founder: [
+      {
+        "@type": "Person",
+        name: "Ahmed Asif",
+        sameAs: "https://www.linkedin.com/in/ahmedasifchaudhary",
+      },
+      {
+        "@type": "Person",
+        name: "Muhammad Rayan",
+        sameAs: "https://www.linkedin.com/in/muhammad-rayan-business-process-automation/",
+      },
+    ],
     // TODO: add telephone once contact number is confirmed
     // telephone: "",
     // TODO: add contactPoint once contact details are confirmed
     // contactPoint: { "@type": "ContactPoint", telephone: "", contactType: "customer service" },
     // TODO: add address once physical/registered address is confirmed
     // address: { "@type": "PostalAddress", addressCountry: "" },
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Person                                                             */
+/* ------------------------------------------------------------------ */
+
+export function personSchema({
+  name,
+  jobTitle,
+  sameAs,
+}: {
+  name: string
+  jobTitle: string
+  sameAs: string
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    jobTitle,
+    worksFor: {
+      "@type": "Organization" as const,
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    sameAs: [sameAs],
   }
 }
 
