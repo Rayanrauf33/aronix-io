@@ -30,7 +30,7 @@ const columns = [
     links: [
       { label: "AI Voice Agents",      href: "/services/ai-voice-agents" },
       { label: "AI Chat & Booking",    href: "/services/ai-chat-booking" },
-      { label: "Instant Lead Response", href: "/services/speed-to-lead" },
+      { label: "Instant Lead Response", href: "/services/instant-lead-response" },
       { label: "Websites",             href: "/services/websites" },
       { label: "Workflow Automation",   href: "/services/workflow-automation" },
       { label: "CRM Integrations",     href: "/services/crm-integrations" },

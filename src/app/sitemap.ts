@@ -10,7 +10,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/",                             priority: 1.0, changeFrequency: "weekly" },
   { path: "/services",                     priority: 0.9, changeFrequency: "monthly" },
   { path: "/services/ai-voice-agents",     priority: 0.8, changeFrequency: "monthly" },
-  { path: "/services/speed-to-lead",       priority: 0.8, changeFrequency: "monthly" },
+  { path: "/services/instant-lead-response", priority: 0.8, changeFrequency: "monthly" },
   { path: "/services/ai-chat-booking",     priority: 0.8, changeFrequency: "monthly" },
   { path: "/services/workflow-automation",  priority: 0.8, changeFrequency: "monthly" },
   { path: "/services/crm-integrations",    priority: 0.8, changeFrequency: "monthly" },
