@@ -37,17 +37,18 @@ export function VoiceHeroCard() {
       <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
         <div className="flex items-center gap-3">
           {/* Pulse dot gated by visibility */}
-          <span
-            className="inline-block w-2 h-2 rounded-full"
-            style={{
-              background: "#22C55E",
-              boxShadow: animate ? undefined : "0 0 0 0 rgba(34,197,94,0)",
-              animation: animate
-                ? "pulse-ring 2s cubic-bezier(0.455,0.03,0.515,0.955) infinite"
-                : "none",
-            }}
-            aria-hidden="true"
-          />
+          <span className="relative inline-flex items-center justify-center" aria-hidden="true">
+            <span className="inline-block w-2 h-2 rounded-full" style={{ background: "#22C55E" }} />
+            {animate && (
+              <span
+                className="absolute inline-block w-2 h-2 rounded-full"
+                style={{
+                  background: "rgba(34,197,94,0.6)",
+                  animation: "pulse-ring 2s cubic-bezier(0.455,0.03,0.515,0.955) infinite",
+                }}
+              />
+            )}
+          </span>
           <span
             className="text-[12px] uppercase tracking-[0.08em] text-[var(--ax-success)]"
             style={{ fontFamily: "var(--ax-font-mono)" }}

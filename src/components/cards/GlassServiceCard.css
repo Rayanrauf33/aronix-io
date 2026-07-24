@@ -42,11 +42,11 @@
   color: inherit;
   /* overflow: hidden clips the shimmer ::after to the card boundary */
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.10));
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
-    box-shadow 0.25s ease,
+    filter 0.25s ease,
     -webkit-backdrop-filter 0.25s ease,
     backdrop-filter 0.25s ease;
 }
@@ -91,7 +91,7 @@
 @media (hover: hover) {
   .gsc-inner:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.14));
   }
 
   .gsc-inner--on-light:hover {

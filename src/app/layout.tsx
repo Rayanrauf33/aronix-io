@@ -5,8 +5,6 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AnalyticsEvents } from "@/components/ui/AnalyticsEvents"
 import "@/styles/app.css"
-import "@/styles/blog.css"
-import "@/styles/dashboard.css"
 
 // Self-hosted via next/font: fonts are preloaded with the page instead of
 // blocking first paint behind a CSS @import round-trip to Google
