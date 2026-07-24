@@ -44,7 +44,7 @@ export const metadata: Metadata = {
  */
 const founders = [
   {
-    image: "/Team/Ahmed-Profile-Picture.png",
+    image: "/team/Ahmed.png",
     name: "Ahmed Asif",
     role: "Co-Founder",
     bio: "Ahmed builds the AI systems at Aronix, voice agents, lead response automation, and the automated workflows in between, for service businesses. Outside of client work, he writes about agentic AI security and practical deployment patterns for businesses adopting AI.",
@@ -52,7 +52,8 @@ const founders = [
     linkedinLabel: "Ahmed Asif on LinkedIn",
   },
   {
-    image: "/Team/Rayan-Profile-picture.png",
+    image: "/team/Rayan-Profile-picture.png",
+    imageScale: "scale(1.3)",
     name: "Muhammad Rayan",
     role: "Co-Founder",
     bio: "Rayan focuses on business process automation and operations. He works directly with clients to map their existing workflows, identify where manual work is costing the most, and oversee the build of the systems that replace it.",
@@ -155,13 +156,14 @@ export default function AboutPage() {
                     border: "1px solid var(--ax-border)",
                   }}
                 >
-                  <div className="w-16 h-16 rounded-full mb-7 shrink-0 overflow-hidden">
+                  <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 mb-7">
                     <Image
                       src={founder.image}
                       alt={founder.name}
                       width={64}
                       height={64}
                       className="w-full h-full object-cover"
+                      style={founder.imageScale ? { transform: founder.imageScale, transformOrigin: "center" } : undefined}
                     />
                   </div>
 
