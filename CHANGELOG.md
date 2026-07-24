@@ -3,6 +3,18 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-25
+
+### Added
+- Service pages for Workflow Automation, CRM Integrations, AI Voice Agents, and Local SEO; each page includes a hero, feature grid, FAQ section, and schema markup
+- Contact form backend: API route with server-side validation and Supabase persistence
+- Founder headshots added to the `/about` page with per-photo scale and `object-cover` crop adjustments replacing the previous initials avatars
+
+### Changed
+- Hero sections standardised across service pages for consistent layout and copy tone
+- `GlassServiceCard` introduced as a unified service card component, consolidating previously separate card variants
+- AI Voice Agents pricing updated to $0.06/min
+
 ## [Unreleased] - 2026-07-24 (5)
 
 ### Fixed
