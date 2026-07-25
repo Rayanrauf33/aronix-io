@@ -564,10 +564,13 @@ body {
 }
 
 @media (max-width: 640px) {
-  /* Shorter pin on phones: the same phases play over less scroll, so
-     the section never feels stuck under the finger */
+  /* More scroll room on phones: combined with the lower RESPONSE_MOBILE
+     smoothing, this gives the eased animation space to play out even
+     after a fast flick. 260vh ≈ 1560px on a 600px phone -- enough that
+     the section doesn't feel endless, but enough that momentum doesn't
+     compress the whole sequence into a fraction of a second. */
   .scatter-runway {
-    height: 220vh;
+    height: 260vh;
   }
 
   .scatter-metrics {
@@ -1551,6 +1554,34 @@ body {
   .sh-hero-h1,
   .sh-hero-sub,
   .sh-hero-cta {
+    animation: none;
+  }
+}
+
+/* ── SERVICES MEGA MENU ──────────────────────────────────── */
+
+/* Uses individual scale/translate properties so they compose
+   cleanly with the transform: translateX(-50%) positioning set
+   via inline style -- no property conflict, no layout thrash. */
+@keyframes ax-megamenu-in {
+  from {
+    opacity: 0;
+    scale: 0.97;
+    translate: 0 -4px;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+.ax-megamenu {
+  animation: ax-megamenu-in var(--ax-dur-fast) var(--ax-ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ax-megamenu {
     animation: none;
   }
 }

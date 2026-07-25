@@ -4,10 +4,15 @@ import { useEffect, useRef } from "react"
 
 // Response rate for exponential smoothing: higher = snappier settle.
 // Time-based so the feel is identical at 60Hz and 120Hz.
-// Phones track the finger much more tightly: the lazy desktop glide
-// reads as lag under direct touch.
+// Desktop: 9 feels immediate without feeling tied directly to the scroll.
+// Mobile: intentionally lower than desktop. Touch momentum flicks can
+// jump raw progress by 0.3-0.5 in under 200ms; a high response rate
+// lets the animation race through the entire sequence in one flick.
+// At 5, alpha ≈ 0.08/frame @ 60fps -- enough lag to keep the animation
+// readable during momentum scrolling without feeling sluggish during
+// deliberate slow scrolling.
 const RESPONSE = 9
-const RESPONSE_MOBILE = 15
+const RESPONSE_MOBILE = 5
 
 export function useScrollProgress(
   onProgress: (progress: number) => void,

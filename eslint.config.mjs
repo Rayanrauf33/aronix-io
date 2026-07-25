@@ -1,16 +1,14 @@
-import { dirname } from "path"
-import { fileURLToPath } from "url"
-import { FlatCompat } from "@eslint/eslintrc"
+import nextPlugin from "@next/eslint-plugin-next"
+import tseslint from "typescript-eslint"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-]
-
-export default eslintConfig
+// Native flat config — no FlatCompat layer needed.
+// @next/eslint-plugin-next v16+ exposes first-class flat configs
+// ("recommended" and "core-web-vitals"); typescript-eslint does the same.
+// The old FlatCompat path crashed ESLint 10 because eslint-plugin-react's
+// internal config object has a circular reference that JSON.stringify cannot
+// serialise during schema validation.
+export default tseslint.config(
+  nextPlugin.configs["recommended"],
+  nextPlugin.configs["core-web-vitals"],
+  ...tseslint.configs.recommended,
+)
