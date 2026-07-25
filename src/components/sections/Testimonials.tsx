@@ -48,7 +48,7 @@ export function Testimonials() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {testimonials.map(({ quote, author, role, surface }) => (
+          {testimonials.map(({ quote, author, role }) => (
             <figure
               key={author}
               className="relative m-0 p-10 px-8 rounded-[24px] glass-card"
