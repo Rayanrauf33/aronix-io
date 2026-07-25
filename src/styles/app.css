@@ -1554,3 +1554,31 @@ body {
     animation: none;
   }
 }
+
+/* ── SERVICES MEGA MENU ──────────────────────────────────── */
+
+/* Uses individual scale/translate properties so they compose
+   cleanly with the transform: translateX(-50%) positioning set
+   via inline style -- no property conflict, no layout thrash. */
+@keyframes ax-megamenu-in {
+  from {
+    opacity: 0;
+    scale: 0.97;
+    translate: 0 -4px;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+.ax-megamenu {
+  animation: ax-megamenu-in var(--ax-dur-fast) var(--ax-ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ax-megamenu {
+    animation: none;
+  }
+}
