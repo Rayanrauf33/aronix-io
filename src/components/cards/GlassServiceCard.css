@@ -7,7 +7,9 @@
 /* Do not add backdrop-filter to any other element on these pages.    */
 /* ─────────────────────────────────────────────────────────────────── */
 
-/* Outer wrapper — clips the blob and enforces border-radius */
+/* Outer wrapper — clips the blob and enforces border-radius.
+   position: relative establishes the stacking context for all
+   absolutely-positioned children (blob, glow, inner). */
 .gsc-wrap {
   position: relative;
   border-radius: var(--ax-radius-xl);
@@ -28,6 +30,39 @@
   z-index: 0;
 }
 
+/* ── Cursor-tracked spotlight glow ─────────────────────────────────
+   Positioned as a sibling of .gsc-inner at z-index 2, so it floats
+   above the glass surface without interacting with the card's own
+   stacking context. pointer-events: none lets all clicks through.
+
+   --mouse-x / --mouse-y are written via element.style.setProperty()
+   inside a requestAnimationFrame callback in GlassServiceCard.tsx.
+   No React state is updated on mousemove — zero re-renders.
+
+   Opacity is controlled by the .gsc-wrap--hovering class, which the
+   same JS handler toggles on mouseenter/mouseleave. The 0.2s opacity
+   transition handles the fade-in/out; the gradient itself repaints
+   cheaply as a GPU-composited layer change (background is not layout).
+   ─────────────────────────────────────────────────────────────────── */
+.gsc-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ax-radius-xl);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  background: radial-gradient(
+    circle 360px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(234, 75, 113, 0.14),
+    transparent 100%
+  );
+}
+
+.gsc-wrap--hovering .gsc-glow {
+  opacity: 1;
+}
+
 /* Glass surface — the <a> element */
 .gsc-inner {
   position: relative;
@@ -43,12 +78,13 @@
   /* overflow: hidden clips the shimmer ::after to the card boundary */
   overflow: hidden;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.10));
+  /* ease-out-expo feel: fast start, gentle settle — reads as premium */
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    filter 0.25s ease,
+    transform     0.3s  cubic-bezier(0.16, 1, 0.3, 1),
+    border-color  0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    filter        0.3s  cubic-bezier(0.16, 1, 0.3, 1),
     -webkit-backdrop-filter 0.25s ease,
-    backdrop-filter 0.25s ease;
+    backdrop-filter         0.25s ease;
 }
 
 /* Variant: card sits on a light-coloured section background */
@@ -90,18 +126,22 @@
 /* ── Hover states (pointer devices only) ────────────────────────── */
 @media (hover: hover) {
   .gsc-inner:hover {
-    transform: translateY(-4px);
-    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.14));
+    /* +2px more lift than the previous -4px; sold by the deeper shadow */
+    transform: translateY(-6px);
+    /* Deeper, softer shadow: further down, larger blur, lower opacity —
+       selling the physical sense of the card rising off the surface */
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.09));
   }
 
+  /* Pink-tinted border — reads as a glow at the edge, not a colour swap */
   .gsc-inner--on-light:hover {
-    border-color: rgba(0, 0, 0, 0.20);
+    border-color: rgba(234, 75, 113, 0.28);
     -webkit-backdrop-filter: blur(24px);
     backdrop-filter: blur(24px);
   }
 
   .gsc-inner--on-dark:hover {
-    border-color: rgba(255, 255, 255, 0.35);
+    border-color: rgba(234, 75, 113, 0.40);
     -webkit-backdrop-filter: blur(24px);
     backdrop-filter: blur(24px);
   }
@@ -111,7 +151,18 @@
     animation: gsc-shimmer 0.6s ease forwards;
   }
 
-  /* CTA arrow nudge */
+  /* Icon: spring-like micro-scale — cubic-bezier(0.34, 1.56, 0.64, 1)
+     is a gentle overshoot-and-settle, giving the icon a little life */
+  .gsc-inner:hover .gsc-icon {
+    transform: scale(1.08);
+  }
+
+  /* CTA: text leads, arrow follows 20ms later so it reads as being
+     pulled by the text rather than moving in perfect lockstep */
+  .gsc-inner:hover .gsc-cta-text {
+    transform: translateX(3px);
+  }
+
   .gsc-inner:hover .gsc-cta-arrow {
     transform: translateX(3px);
   }
@@ -122,10 +173,36 @@
   to   { transform: translateX(120%); }
 }
 
-/* Focus ring */
+/* ── Keyboard focus (focus-visible) ────────────────────────────────
+   Identical to hover: lift, shadow, border, icon scale, CTA nudge.
+   Cursor-tracked glow is intentionally omitted (no cursor position).
+   Placed OUTSIDE @media (hover: hover) so it always applies.
+   ─────────────────────────────────────────────────────────────────── */
 .gsc-inner:focus-visible {
   outline: 2px solid var(--ax-primary);
   outline-offset: 2px;
+  transform: translateY(-6px);
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.09));
+}
+
+.gsc-inner--on-light:focus-visible {
+  border-color: rgba(234, 75, 113, 0.28);
+}
+
+.gsc-inner--on-dark:focus-visible {
+  border-color: rgba(234, 75, 113, 0.40);
+}
+
+.gsc-inner:focus-visible .gsc-icon {
+  transform: scale(1.08);
+}
+
+.gsc-inner:focus-visible .gsc-cta-text {
+  transform: translateX(3px);
+}
+
+.gsc-inner:focus-visible .gsc-cta-arrow {
+  transform: translateX(3px);
 }
 
 /* ── Content elements ───────────────────────────────────────────────
@@ -144,6 +221,8 @@
   margin-bottom: 12px;
   background: var(--ax-pink-50);
   color: var(--ax-primary);
+  /* Spring easing: gentle overshoot gives the icon a tiny bit of life */
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .gsc-inner--on-dark .gsc-icon {
@@ -181,7 +260,7 @@
   color: var(--ax-fg-on-dark);
 }
 
-/* Outcome — flex: 1 pushes CTA to the bottom */
+/* Outcome — flex: 1 pushes CTA to the card bottom */
 .gsc-outcome {
   font-family: var(--ax-font-body);
   font-size: 15px;
@@ -195,7 +274,7 @@
   color: var(--ax-fg-on-dark-2);
 }
 
-/* CTA link */
+/* CTA row — inline-flex container for text + arrow */
 .gsc-cta {
   display: inline-flex;
   align-items: center;
@@ -208,29 +287,63 @@
   flex-shrink: 0;
 }
 
+/* CTA text wrapper — display: inline-block is required for translateX
+   to apply to a text node (inline elements ignore transform) */
+.gsc-cta-text {
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Arrow — same direction, 20ms delay so it reads as being pulled by
+   the text rather than moving in lockstep */
 .gsc-cta-arrow {
-  transition: transform 0.15s ease-out;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) 20ms;
 }
 
 /* ── Accessibility fallbacks ────────────────────────────────────────
-   prefers-reduced-motion: disable shimmer and lift, keep border change.
+   prefers-reduced-motion: all transitions off, glow hidden, no
+   transforms on hover or focus — only an instant border-color change.
    prefers-contrast: more: replace translucent fill with solid surface.
    ─────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .gsc-inner {
-    transition: border-color 0.25s ease;
+  /* All motion stripped. border-color still changes on hover/focus
+     (defined in the rules above) but instantly — no transition. */
+  .gsc-inner,
+  .gsc-icon,
+  .gsc-cta-text,
+  .gsc-cta-arrow {
+    transition: none;
   }
 
-  .gsc-inner:hover {
+  /* Spotlight glow suppressed entirely */
+  .gsc-glow {
+    display: none;
+  }
+
+  /* No lift or shadow change on hover or keyboard focus */
+  .gsc-inner:hover,
+  .gsc-inner:focus-visible {
     transform: none;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.10));
   }
 
+  /* No shimmer sweep */
   .gsc-inner:hover::after {
     animation: none;
   }
 
-  .gsc-cta-arrow {
-    transition: none;
+  /* No icon scale */
+  .gsc-inner:hover .gsc-icon,
+  .gsc-inner:focus-visible .gsc-icon {
+    transform: none;
+  }
+
+  /* No CTA nudge */
+  .gsc-inner:hover .gsc-cta-text,
+  .gsc-inner:hover .gsc-cta-arrow,
+  .gsc-inner:focus-visible .gsc-cta-text,
+  .gsc-inner:focus-visible .gsc-cta-arrow {
+    transform: none;
   }
 }
 
