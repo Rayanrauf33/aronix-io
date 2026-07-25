@@ -3,6 +3,18 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-26
+
+### Added
+- Services navigation redesigned as a three-column mega menu grouped by pillar, with icons, outcome descriptions, and a bottom CTA row
+
+### Changed
+- Mobile scatter animation scroll smoothing reduced to prevent flick-through behaviour on touch devices
+
+### Fixed
+- ESLint config migrated to native flat config, resolving a circular JSON crash that blocked all lint runs
+- Gray blur artifact on Services mega menu caused by backdrop-filter paint region expanding over overflow children
+
 ## [Unreleased] - 2026-07-24
 
 ### Fixed
