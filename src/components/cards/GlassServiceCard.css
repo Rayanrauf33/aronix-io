@@ -3,70 +3,29 @@
 /*   - Homepage ServicesGrid  (on-light, 3 cards)                     */
 /*   - /services hub PillarServiceCards  (on-light, 7 cards)          */
 /*                                                                     */
+/* The card itself never moves and its background never tints. The    */
+/* only hover effect is a cursor-tracked glow that traces the card's   */
+/* edge -- brightest at the border nearest the cursor, fading around   */
+/* the rest of the perimeter. Same mask-ring technique as the         */
+/* AutomationScout search bar (.scout-input-wrap::before), except the  */
+/* conic-gradient's rotation is driven by real cursor position        */
+/* (--gsc-angle, written via rAF-throttled style.setProperty in       */
+/* GlassServiceCard.tsx) instead of an auto-spinning timer.            */
+/*                                                                     */
 /* backdrop-filter is intentionally scoped to .gsc-inner only.        */
 /* Do not add backdrop-filter to any other element on these pages.    */
 /* ─────────────────────────────────────────────────────────────────── */
 
-/* Outer wrapper — clips the blob and enforces border-radius.
-   position: relative establishes the stacking context for all
-   absolutely-positioned children (blob, glow, inner). */
 .gsc-wrap {
   position: relative;
   border-radius: var(--ax-radius-xl);
-  overflow: hidden;
   height: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-/* Static pink blob — no animation, fixed at paint time */
-.gsc-blob {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 9999px;
-  background: var(--ax-primary);
-  filter: blur(80px);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── Cursor-tracked spotlight glow ─────────────────────────────────
-   Positioned as a sibling of .gsc-inner at z-index 2, so it floats
-   above the glass surface without interacting with the card's own
-   stacking context. pointer-events: none lets all clicks through.
-
-   --mouse-x / --mouse-y are written via element.style.setProperty()
-   inside a requestAnimationFrame callback in GlassServiceCard.tsx.
-   No React state is updated on mousemove — zero re-renders.
-
-   Opacity is controlled by the .gsc-wrap--hovering class, which the
-   same JS handler toggles on mouseenter/mouseleave. The 0.2s opacity
-   transition handles the fade-in/out; the gradient itself repaints
-   cheaply as a GPU-composited layer change (background is not layout).
-   ─────────────────────────────────────────────────────────────────── */
-.gsc-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--ax-radius-xl);
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  background: radial-gradient(
-    circle 360px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(234, 75, 113, 0.14),
-    transparent 100%
-  );
-}
-
-.gsc-wrap--hovering .gsc-glow {
-  opacity: 1;
-}
-
-/* Glass surface — the <a> element */
+/* Glass surface -- the <a> element */
 .gsc-inner {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -75,16 +34,10 @@
   border-radius: var(--ax-radius-xl);
   text-decoration: none;
   color: inherit;
-  /* overflow: hidden clips the shimmer ::after to the card boundary */
-  overflow: hidden;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.10));
-  /* ease-out-expo feel: fast start, gentle settle — reads as premium */
-  transition:
-    transform     0.3s  cubic-bezier(0.16, 1, 0.3, 1),
-    border-color  0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    filter        0.3s  cubic-bezier(0.16, 1, 0.3, 1),
-    -webkit-backdrop-filter 0.25s ease,
-    backdrop-filter         0.25s ease;
+  /* No CSS transition here: --gsc-glow-opacity is already eased frame
+     by frame in JS (see GlassServiceCard.tsx), so border-color derives
+     from it live via color-mix. A transition on top would double up
+     the smoothing and make it lag/overshoot against the JS easing. */
 }
 
 /* Variant: card sits on a light-coloured section background */
@@ -92,7 +45,7 @@
   background: rgba(255, 255, 255, 0.55);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--ax-border);
 }
 
 /* Variant: card sits on a dark section background */
@@ -103,58 +56,82 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* ── Shimmer streak ─────────────────────────────────────────────────
-   Diagonal light sweep simulating glass catching light at an edge.
-   Fires once on hover-in via forwards fill — does not loop.
-   pointer-events: none — clicks pass through to card content.
-   ─────────────────────────────────────────────────────────────────── */
-.gsc-inner::after {
+/* ── Cursor-tracked edge glow ───────────────────────────────────────
+   Same dual-mask "xor" ring trick as .scout-input-wrap::before:
+   inset: -1.5px + padding: 1.5px + mask-composite: exclude leaves only
+   a thin ring visible -- the interior is fully punched out, so this
+   can never read as a fill or a wash across the card.
+
+   Unlike a plain :hover-gated effect, this tracks the cursor globally
+   (window mousemove, not element mousemove) and activates by
+   proximity -- it's visible even while the cursor is still outside
+   the card, ramping in as it gets close. Every card runs this
+   independently off the same global cursor position, so several
+   cards near each other can glow at once; there's no "only one
+   element can be :hover" constraint.
+
+   --gsc-angle (compass bearing to the cursor) and --gsc-glow-opacity
+   (0-1 proximity falloff) are both eased frame-by-frame in JS -- see
+   the tick() loop in GlassServiceCard.tsx -- rather than snapping
+   straight to their target values or CSS-transitioning, which is what
+   gives the light its smooth, slightly lagging "catching up" feel.
+
+   Colour sequence mirrors .scout-input-wrap::before's pink/indigo/pink
+   blend -- here re-centred so the indigo peak sits exactly at the
+   cursor bearing (0deg / 360deg, the wrap point) instead of opposite
+   it, with pink either side fading to transparent. */
+.gsc-inner::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.15) 50%,
-    transparent 70%
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--gsc-angle, 0deg),
+    var(--ax-accent) 0deg,
+    var(--ax-primary) 35deg,
+    transparent 70deg,
+    transparent 290deg,
+    var(--ax-primary) 325deg,
+    var(--ax-accent) 360deg
   );
-  /* Start off-screen to the left */
-  transform: translateX(-120%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  /* No transition: the JS tick() loop already eases this every frame.
+     A CSS transition on top would double-smooth against it. */
+  opacity: var(--gsc-glow-opacity, 0);
   pointer-events: none;
 }
 
-/* ── Hover states (pointer devices only) ────────────────────────── */
-@media (hover: hover) {
-  .gsc-inner:hover {
-    /* +2px more lift than the previous -4px; sold by the deeper shadow */
-    transform: translateY(-6px);
-    /* Deeper, softer shadow: further down, larger blur, lower opacity —
-       selling the physical sense of the card rising off the surface */
-    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.09));
+/* Border fades out in step with the same proximity value -- full
+   neutral border at rest, fully transparent (ring takes over) once
+   the glow is at full strength. calc() inside color-mix's percentage
+   argument reads the live custom property, so this stays in lockstep
+   with the ring's own opacity without any separate transition. */
+@media (prefers-reduced-motion: no-preference) {
+  .gsc-inner--on-light {
+    border-color: color-mix(
+      in srgb,
+      transparent calc(var(--gsc-glow-opacity, 0) * 100%),
+      var(--ax-border)
+    );
   }
 
-  /* Pink-tinted border — reads as a glow at the edge, not a colour swap */
-  .gsc-inner--on-light:hover {
-    border-color: rgba(234, 75, 113, 0.28);
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
+  .gsc-inner--on-dark {
+    border-color: color-mix(
+      in srgb,
+      transparent calc(var(--gsc-glow-opacity, 0) * 100%),
+      rgba(255, 255, 255, 0.15)
+    );
   }
+}
 
-  .gsc-inner--on-dark:hover {
-    border-color: rgba(234, 75, 113, 0.40);
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
-  }
-
-  /* Shimmer: sweep once on hover-in, hold off-right at end */
-  .gsc-inner:hover::after {
-    animation: gsc-shimmer 0.6s ease forwards;
-  }
-
-  /* Icon: spring-like micro-scale — cubic-bezier(0.34, 1.56, 0.64, 1)
-     is a gentle overshoot-and-settle, giving the icon a little life */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .gsc-inner:hover .gsc-icon {
-    transform: scale(1.08);
+    transform: scale(1.05);
   }
 
   /* CTA: text leads, arrow follows 20ms later so it reads as being
@@ -168,33 +145,30 @@
   }
 }
 
-@keyframes gsc-shimmer {
-  from { transform: translateX(-120%); }
-  to   { transform: translateX(120%); }
-}
-
 /* ── Keyboard focus (focus-visible) ────────────────────────────────
-   Identical to hover: lift, shadow, border, icon scale, CTA nudge.
-   Cursor-tracked glow is intentionally omitted (no cursor position).
-   Placed OUTSIDE @media (hover: hover) so it always applies.
+   No cursor position exists for keyboard users, so the ring shows as
+   a plain, uniform pink outline around the full perimeter instead of
+   a tracked hotspot -- background overridden to a flat colour rather
+   than the conic-gradient. Applies regardless of motion preference:
+   this is a discrete state change, not an animation.
    ─────────────────────────────────────────────────────────────────── */
 .gsc-inner:focus-visible {
   outline: 2px solid var(--ax-primary);
   outline-offset: 2px;
-  transform: translateY(-6px);
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.09));
 }
 
-.gsc-inner--on-light:focus-visible {
-  border-color: rgba(234, 75, 113, 0.28);
+.gsc-inner:focus-visible::before {
+  background: var(--ax-primary);
+  opacity: 1;
 }
 
+.gsc-inner--on-light:focus-visible,
 .gsc-inner--on-dark:focus-visible {
-  border-color: rgba(234, 75, 113, 0.40);
+  border-color: transparent;
 }
 
 .gsc-inner:focus-visible .gsc-icon {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .gsc-inner:focus-visible .gsc-cta-text {
@@ -301,49 +275,19 @@
 }
 
 /* ── Accessibility fallbacks ────────────────────────────────────────
-   prefers-reduced-motion: all transitions off, glow hidden, no
-   transforms on hover or focus — only an instant border-color change.
+   prefers-reduced-motion: the proximity glow and its border-color fade
+   are both gated behind (prefers-reduced-motion: no-preference)
+   already (see above), and GlassServiceCard.tsx skips the tracking
+   loop entirely under reduced motion, so hovering/proximity shows
+   nothing. The focus-visible ring still applies (it is a discrete
+   state, not motion) but snaps in instantly rather than fading.
    prefers-contrast: more: replace translucent fill with solid surface.
    ─────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  /* All motion stripped. border-color still changes on hover/focus
-     (defined in the rules above) but instantly — no transition. */
-  .gsc-inner,
   .gsc-icon,
   .gsc-cta-text,
   .gsc-cta-arrow {
     transition: none;
-  }
-
-  /* Spotlight glow suppressed entirely */
-  .gsc-glow {
-    display: none;
-  }
-
-  /* No lift or shadow change on hover or keyboard focus */
-  .gsc-inner:hover,
-  .gsc-inner:focus-visible {
-    transform: none;
-    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.10));
-  }
-
-  /* No shimmer sweep */
-  .gsc-inner:hover::after {
-    animation: none;
-  }
-
-  /* No icon scale */
-  .gsc-inner:hover .gsc-icon,
-  .gsc-inner:focus-visible .gsc-icon {
-    transform: none;
-  }
-
-  /* No CTA nudge */
-  .gsc-inner:hover .gsc-cta-text,
-  .gsc-inner:hover .gsc-cta-arrow,
-  .gsc-inner:focus-visible .gsc-cta-text,
-  .gsc-inner:focus-visible .gsc-cta-arrow {
-    transform: none;
   }
 }
 

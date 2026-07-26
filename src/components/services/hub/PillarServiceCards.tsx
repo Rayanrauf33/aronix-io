@@ -12,7 +12,6 @@ import {
   MapPin,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import type { CSSProperties } from "react"
 import { GlassServiceCard } from "@/components/cards/GlassServiceCard"
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -45,18 +44,6 @@ type Props = {
   services: ServiceItem[]
   variant: "on-light" | "on-dark"
 }
-
-/* ── Blob positions — cycle per card index so each card looks unique */
-
-const BLOB_POSITIONS: CSSProperties[] = [
-  { top: -40, left: -40 },
-  { top: "50%", left: "50%", transform: "translate(-50%, -50%)" },
-  { bottom: -40, right: -40 },
-  { top: -40, right: -40 },
-  { bottom: -40, left: -40 },
-  { top: "30%", right: -40 },
-  { bottom: "30%", left: -40 },
-]
 
 /* ── Component ───────────────────────────────────────────────────── */
 
@@ -91,7 +78,6 @@ export function PillarServiceCards({ services, variant }: Props) {
               cta={service.ctaText}
               href={service.href}
               variant={variant}
-              blobStyle={BLOB_POSITIONS[i % BLOB_POSITIONS.length]}
             />
           </motion.div>
         )
