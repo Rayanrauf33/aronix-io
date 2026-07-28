@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 type ContactBody = {
   first: string
   last: string
@@ -40,9 +38,16 @@ export async function POST(request: Request) {
     }
 
     const toEmail = process.env.CONTACT_TO_EMAIL
-    if (!toEmail) {
+    if (!toEmail || !process.env.RESEND_API_KEY) {
       return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 })
     }
+
+    // Constructed here, not at module scope: Resend's constructor throws
+    // immediately if the key is missing, and Next.js evaluates route
+    // modules during build-time page-data collection -- doing this at
+    // module scope crashes the build whenever the env var isn't set for
+    // whatever environment is building, not just at request time.
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     const serviceLine = service || "Not specified"
     const subject = service
