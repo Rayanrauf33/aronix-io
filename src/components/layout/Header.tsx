@@ -246,7 +246,10 @@ export function Header() {
 
       {/* ── Mobile menu ──────────────────────────────────────────── */}
       {open && (
-        <div id="mobile-menu" className="md:hidden border-t border-white/30 px-5 py-4">
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-white/30 px-5 py-4 max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain"
+        >
           <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
             {navLinks.map(({ label, href }) => {
               if (label === "Services") {
