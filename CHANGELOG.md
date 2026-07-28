@@ -3,6 +3,15 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-07-29
+
+### Added
+- Cursor-tracked edge glow on service cards, replacing the earlier fill/glass hover effect with a proximity-based glow that tracks cursor position globally
+
+### Fixed
+- Opaque mobile menu background and scrollable panel, resolving bleed-through and CTA cutoff bugs
+- Deferred Resend client construction to request time, fixing a build-time crash in the contact form API route
+
 ## [Unreleased] - 2026-07-26
 
 ### Added

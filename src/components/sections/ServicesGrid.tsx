@@ -7,7 +7,6 @@ import type { LucideIcon } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { Eyebrow } from "@/components/ui/Eyebrow"
 import { GlassServiceCard } from "@/components/cards/GlassServiceCard"
-import type { CSSProperties } from "react"
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -18,7 +17,6 @@ type Card = {
   outcome: string
   cta: string
   href: string
-  blobStyle: CSSProperties
 }
 
 const CARDS: Card[] = [
@@ -30,7 +28,6 @@ const CARDS: Card[] = [
       "An AI receptionist that picks up in two rings, answers questions about your business, and books the appointment straight into your calendar.",
     cta: "Hear it take a call",
     href: "/services/ai-voice-agents",
-    blobStyle: { top: -40, left: -40 },
   },
   {
     label: "Workflow Automation",
@@ -40,7 +37,6 @@ const CARDS: Card[] = [
       "Every business has tasks that happen the same way, every time, with a human in the middle for no good reason. We find those tasks and automate them.",
     cta: "See what we automate",
     href: "/services/workflow-automation",
-    blobStyle: { top: "50%", left: "50%", transform: "translate(-50%, -50%)" },
   },
   {
     label: "Websites",
@@ -50,7 +46,6 @@ const CARDS: Card[] = [
       "Most service business websites look fine and do very little. We build websites designed around a single outcome: getting a qualified visitor to take action.",
     cta: "See how we build",
     href: "/services/websites",
-    blobStyle: { bottom: -40, right: -40 },
   },
 ]
 
@@ -109,7 +104,6 @@ export function ServicesGrid() {
                 cta={card.cta}
                 href={card.href}
                 variant="on-light"
-                blobStyle={card.blobStyle}
               />
             </motion.div>
           ))}
