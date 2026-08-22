@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import type { ServiceItem } from "@/components/services/hub/PillarServiceCards"
-import { Button } from "@/components/ui/Button"
 import { Faq } from "@/components/sections/Faq"
 import { CtaBand } from "@/components/sections/CtaBand"
 import { PillarServiceCards } from "@/components/services/hub/PillarServiceCards"
 import { HeroPreview } from "@/components/services/hub/HeroPreview"
+import { PageHero } from "@/components/services/PageHero"
 import { breadcrumbSchema, faqSchema, serviceSchema, toJsonLd } from "@/lib/schema"
 import type { AccordionItem } from "@/components/ui/Accordion"
 
@@ -102,17 +102,17 @@ const faqItems: AccordionItem[] = [
   {
     label: "Do you work with businesses of all sizes?",
     content:
-      "We work primarily with growing service businesses \u2014 typically between 2 and 50 people. Businesses large enough to have real operational problems, small enough that the owner is still close to the work and can see the impact directly. If you\u2019re a solo operator or a large enterprise, we may not be the right fit and we\u2019ll say so on the audit call.",
+      "We work primarily with growing service businesses, typically between 2 and 50 people. Businesses large enough to have real operational problems, small enough that the owner is still close to the work and can see the impact directly. If you\u2019re a solo operator or a large enterprise, we may not be the right fit and we\u2019ll say so on the audit call.",
   },
   {
     label: "How long does it take to get something live?",
     content:
-      "Most projects are live within a few weeks depending on scope \u2014 we\u2019ll confirm an exact timeline after the audit. The voice agent and instant lead response systems are typically our fastest builds. Workflow automation and websites take longer depending on complexity. We give you a fixed timeline during scoping.",
+      "Most projects are live within a few weeks depending on scope. We\u2019ll confirm an exact timeline after the audit. The voice agent and instant lead response systems are typically our fastest builds. Workflow automation and websites take longer depending on complexity. We give you a fixed timeline during scoping.",
   },
   {
     label: "Do you work with specific industries?",
     content:
-      "Our strongest results have been in home services, dental and medical, legal, hospitality, and professional services. The common factor isn\u2019t the industry \u2014 it\u2019s that new business starts with an enquiry, whether by phone, form, or search.",
+      "Our strongest results have been in home services, dental and medical, legal, hospitality, and professional services. The common factor isn\u2019t the industry. It\u2019s that new business starts with an enquiry, whether by phone, form, or search.",
   },
   {
     label: "We\u2019ve tried agencies before and been disappointed. Why would this be different?",
@@ -162,61 +162,24 @@ export default function ServicesPage() {
       />
 
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section
-        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-        style={{ background: "var(--ax-surface-dark)" }}
-        aria-labelledby="services-hero-heading"
-      >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-            {/* Left: headline, subline, CTA */}
-            <div className="text-center lg:text-left">
-              <h1
-                id="services-hero-heading"
-                className="sh-hero-h1 text-white m-0 max-w-[640px] mx-auto lg:mx-0"
-                style={{
-                  fontFamily: "var(--ax-font-display)",
-                  fontWeight: 800,
-                  fontSize: "var(--ax-fs-hero)",
-                  lineHeight: "var(--ax-lh-tight)",
-                  letterSpacing: "var(--ax-tracking-tight)",
-                }}
-              >
-                Systems that grow your business while you run it.
-              </h1>
-              <p
-                className="sh-hero-sub mt-6 m-0 max-w-[480px] mx-auto lg:mx-0"
-                style={{
-                  fontSize: "var(--ax-fs-body-lg)",
-                  lineHeight: "1.65",
-                  color: "var(--ax-fg-on-dark-2)",
-                }}
-              >
-                We build AI and automation systems for service businesses.
-              </p>
-              <div className="sh-hero-cta mt-8 flex justify-center lg:justify-start">
-                <Button
-                  href="https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session"
-                  variant="dark"
-                  size="lg"
-                  trailingArrow
-                >
-                  Book an Audit
-                </Button>
-              </div>
-            </div>
-
-            {/* Right: live systems preview, desktop only */}
-            <div className="hidden lg:block">
-              <HeroPreview />
-            </div>
-
-        </div>
-      </section>
+      <PageHero
+        headingId="services-hero-heading"
+        eyebrow="Services"
+        headline="Systems that run your business for you."
+        subhead="We build the systems that capture leads, automate your operations, and get your business found locally."
+        statPill="Trusted by 40+ growing companies"
+        primaryCta={{ label: "See all services", href: "#all-services" }}
+        secondaryCta={{
+          label: "Book an Audit",
+          href: "https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session",
+        }}
+        visual={<HeroPreview />}
+      />
 
       {/* ── Seven service cards ───────────────────────────── */}
       <section
-        className="px-5 sm:px-12 py-20"
+        id="all-services"
+        className="px-5 sm:px-12 py-20 scroll-mt-24"
         style={{ background: "var(--ax-slate-100)" }}
         aria-label="Our services"
       >

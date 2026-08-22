@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs"
 import { Eyebrow } from "@/components/ui/Eyebrow"
@@ -10,6 +11,21 @@ import { getCaseStudyBySlug, getRelatedCaseStudies } from "@/lib/supabase/case-s
 import { breadcrumbSchema, caseStudyArticleSchema, toJsonLd } from "@/lib/schema"
 
 type Params = { slug: string }
+
+// Which service page(s) each case study's work maps to, for a contextual
+// in-body link. Keyed by slug since case studies have no service reference column.
+const RELATED_SERVICES: Record<string, { path: string; label: string }[]> = {
+  "crm-lead-qualification": [
+    { path: "/services/crm-integrations", label: "CRM Integrations" },
+    { path: "/services/instant-lead-response", label: "Instant Lead Response" },
+  ],
+  "finance-month-end-close": [
+    { path: "/services/workflow-automation", label: "Workflow Automation" },
+  ],
+  "ops-employee-onboarding": [
+    { path: "/services/workflow-automation", label: "Workflow Automation" },
+  ],
+}
 
 export const revalidate = 60
 
@@ -178,6 +194,23 @@ export default async function CaseStudyPage({
                 </span>
               ))}
             </div>
+            {RELATED_SERVICES[cs.slug] && (
+              <p className="mt-6 text-[15px] leading-[1.6] text-[var(--ax-fg-2)]">
+                This is the kind of work our{" "}
+                {RELATED_SERVICES[cs.slug].map((service, i, arr) => (
+                  <span key={service.path}>
+                    <Link
+                      href={service.path}
+                      className="underline underline-offset-2 hover:text-[var(--ax-fg-1)]"
+                    >
+                      {service.label}
+                    </Link>
+                    {i < arr.length - 2 ? ", " : i === arr.length - 2 ? " and " : ""}
+                  </span>
+                ))}{" "}
+                service is built for.
+              </p>
+            )}
           </div>
         </section>
       </Reveal>

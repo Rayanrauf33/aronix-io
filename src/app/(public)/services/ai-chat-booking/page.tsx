@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import { Eyebrow } from "@/components/ui/Eyebrow"
-import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { FAQAccordion } from "@/components/services/FAQAccordion"
 import { ServiceCTA } from "@/components/services/ServiceCTA"
 import { ChatHeroBrowser } from "@/components/services/chat/ChatHeroBrowser"
+import { PageHero } from "@/components/services/PageHero"
 import { BeforeAfterCards } from "@/components/services/chat/BeforeAfterCards"
 import { ChatFeatureReveal } from "@/components/services/chat/ChatFeatureReveal"
 import { ChatFlowTimeline } from "@/components/services/chat/ChatFlowTimeline"
@@ -59,7 +59,7 @@ const faqItems = [
   {
     question: "Is this just a basic chatbot with preset answers?",
     answer:
-      "No. It\u2019s a conversational AI agent that handles open-ended questions, not a button tree. It can respond to questions it wasn\u2019t explicitly trained on by reasoning from your knowledge base, the same way a well-briefed member of staff would.",
+      "No. It\u2019s a conversational AI agent that handles open ended questions, not a button tree. It can respond to questions it wasn\u2019t explicitly trained on by reasoning from your knowledge base, the same way a well briefed member of staff would.",
   },
   {
     question: "What if it gets something wrong?",
@@ -124,49 +124,18 @@ export default function AIChatBookingPage() {
         })) }}
       />
 
-      {/* -- Hero --------------------------------------------------- */}
-      <section
-        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-        style={{ background: "var(--ax-surface-dark)" }}
-        aria-labelledby="chat-hero-heading"
-      >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: copy */}
-          <div>
-            <Eyebrow className="mb-4" tone="muted">AI Chat &amp; Booking</Eyebrow>
-            <h1
-              id="chat-hero-heading"
-              className="text-[var(--ax-fg-on-dark)] mb-6"
-              style={{
-                fontFamily: "var(--ax-font-display)",
-                fontWeight: 800,
-                fontSize: "var(--ax-fs-display)",
-                lineHeight: "var(--ax-lh-tight)",
-                letterSpacing: "var(--ax-tracking-tight)",
-              }}
-            >
-              Your website, working while you sleep.
-            </h1>
-            <p className="text-[var(--ax-fs-body-lg)] leading-[1.6] text-[var(--ax-fg-on-dark-2)] mb-10">
-              Most business websites are expensive brochures. Visitors land,
-              read a bit, and leave without making contact. An AI chat agent
-              changes that. It greets them, answers their questions, and books
-              the appointment before they close the tab.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="#demo" variant="primary" size="lg">
-                See a live demo
-              </Button>
-              <Button href={CALENDLY} variant="outline" size="lg">
-                Book an Audit
-              </Button>
-            </div>
-          </div>
-
-          {/* Right: browser mockup */}
-          <ChatHeroBrowser />
-        </div>
-      </section>
+      {/* -- Hero ----------------------------------------------------- */}
+      <PageHero
+        headingId="chat-hero-heading"
+        eyebrow="AI Chat & Booking"
+        headline="Your website, working while you sleep."
+        subhead="A chat agent that answers visitor questions and books appointments on your website, day or night."
+        statPill="42% of visitors expect a response within 60 seconds"
+        primaryCta={{ label: "See a live demo", href: "#demo" }}
+        secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
+        visual={<ChatHeroBrowser />}
+        visualId="demo"
+      />
 
       {/* -- Stat strip --------------------------------------------- */}
       <section
@@ -226,6 +195,15 @@ export default function AIChatBookingPage() {
               >
                 Your visitors have questions. Your website has a contact form.
               </h2>
+              <p className="text-[var(--ax-fs-body-lg)] leading-[1.7] text-[var(--ax-fg-2)] mt-4">
+                AI Chat &amp; Booking puts a chat agent on your website that answers
+                visitor questions and books appointments straight into your
+                calendar, day or night. Most business websites are expensive
+                brochures. Visitors land, read a bit, and leave without making
+                contact. An AI chat agent changes that. It greets them, answers
+                their questions, and books the appointment before they close the
+                tab.
+              </p>
             </div>
             <BeforeAfterCards />
           </div>
@@ -301,7 +279,7 @@ export default function AIChatBookingPage() {
                 letterSpacing: "var(--ax-tracking-tight)",
               }}
             >
-              From setup to first booking
+              How long does it take to launch AI Chat &amp; Booking?
             </h2>
           </div>
           <HorizontalScrollSteps />
@@ -329,7 +307,7 @@ export default function AIChatBookingPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Everything in the package
+                What&apos;s included with an AI Chat &amp; Booking build?
               </h2>
             </div>
             <TerminalWindow />
@@ -360,7 +338,7 @@ export default function AIChatBookingPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Who it works for
+                Which businesses is AI Chat &amp; Booking built for?
               </h2>
               <p className="text-[var(--ax-fs-body-lg)] leading-[1.7] text-[var(--ax-fg-on-dark-2)] mt-4">
                 If you&apos;re running Google Ads or investing in SEO to bring
@@ -390,7 +368,7 @@ export default function AIChatBookingPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Simple, fixed pricing
+                How much does AI Chat &amp; Booking cost?
               </h2>
             </div>
             <ChatPricingCard />

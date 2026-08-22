@@ -130,7 +130,7 @@ export function LeadFeedHero() {
   }, [reduce, visible])
 
   return (
-    <div ref={ref} className="hidden lg:block w-full">
+    <div ref={ref} className="w-full">
       <div
         className="rounded-[var(--ax-radius-xl)] overflow-hidden border border-white/10"
         style={{

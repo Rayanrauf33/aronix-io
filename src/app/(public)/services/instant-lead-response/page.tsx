@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import { Eyebrow } from "@/components/ui/Eyebrow"
-import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { FAQAccordion } from "@/components/services/FAQAccordion"
 import { ServiceCTA } from "@/components/services/ServiceCTA"
 import { LeadFeedHero } from "@/components/services/lead/LeadFeedHero"
+import { PageHero } from "@/components/services/PageHero"
 import { ClockProblem } from "@/components/services/lead/ClockProblem"
 import { SourceMap } from "@/components/services/lead/SourceMap"
 import { RaceTrackFlow } from "@/components/services/lead/RaceTrackFlow"
@@ -77,14 +77,19 @@ const faqItems = [
       "Usually yes. We\u2019ve worked with HubSpot, GoHighLevel, and several others. We check compatibility during the audit. If your CRM can\u2019t connect, we\u2019ll tell you upfront.",
   },
   {
-    question: "What happens after the first follow-up sequence?",
+    question: "What happens after the first follow up sequence?",
     answer:
-      "If a lead hasn\u2019t responded after the follow-up sequence, we can either stop or move them into a longer nurture sequence. Monthly touchpoints to stay in front of them until they\u2019re ready. We set that up based on what makes sense for your sales cycle.",
+      "If a lead hasn\u2019t responded after the follow up sequence, we can either stop or move them into a longer nurture sequence. Monthly touchpoints to stay in front of them until they\u2019re ready. We set that up based on what makes sense for your sales cycle.",
   },
   {
     question: "How do I know it\u2019s working?",
     answer:
       "The dashboard shows you every lead, every message sent, and every reply received. We also review the conversion data monthly and show you what\u2019s booking versus what\u2019s dropping off.",
+  },
+  {
+    question: "What is speed to lead and why does it matter?",
+    answer:
+      "Speed to lead is how fast your business responds to a new lead after they fill out a form, click an ad, or send a message. It matters because response speed is one of the strongest predictors of whether a lead converts. Businesses that respond within 5 minutes are up to 100x more likely to connect than those that wait 30 minutes, and 78% of deals go to whoever responds first.",
   },
 ]
 
@@ -124,49 +129,17 @@ export default function SpeedToLeadPage() {
         })) }}
       />
 
-      {/* -- Hero --------------------------------------------------- */}
-      <section
-        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-        style={{ background: "var(--ax-surface-dark)" }}
-        aria-labelledby="stl-hero-heading"
-      >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: copy */}
-          <div>
-            <Eyebrow className="mb-4" tone="muted">Instant Lead Response</Eyebrow>
-            <h1
-              id="stl-hero-heading"
-              className="text-[var(--ax-fg-on-dark)] mb-6"
-              style={{
-                fontFamily: "var(--ax-font-display)",
-                fontWeight: 800,
-                fontSize: "var(--ax-fs-display)",
-                lineHeight: "var(--ax-lh-tight)",
-                letterSpacing: "var(--ax-tracking-tight)",
-              }}
-            >
-              The first business to respond wins.
-            </h1>
-            <p className="text-[var(--ax-fs-body-lg)] leading-[1.6] text-[var(--ax-fg-on-dark-2)] mb-10">
-              When someone fills out your form, clicks your ad, or sends a
-              message, they&apos;re ready to buy right now. An instant lead
-              response system responds in seconds, qualifies them, and books
-              the call before they&apos;ve finished checking their phone.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="#diagram" variant="primary" size="lg">
-                See how it works
-              </Button>
-              <Button href={CALENDLY} variant="outline" size="lg">
-                Book an Audit
-              </Button>
-            </div>
-          </div>
-
-          {/* Right: lead feed */}
-          <LeadFeedHero />
-        </div>
-      </section>
+      {/* -- Hero ----------------------------------------------------- */}
+      <PageHero
+        headingId="stl-hero-heading"
+        eyebrow="Instant Lead Response"
+        headline="The first business to respond wins."
+        subhead="Respond to every new lead within minutes, automatically, over SMS or email, before a competitor gets the chance."
+        statPill="78% of deals go to the first business that responds"
+        primaryCta={{ label: "See how it works", href: "#diagram" }}
+        secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
+        visual={<LeadFeedHero />}
+      />
 
       {/* -- Stat strip --------------------------------------------- */}
       <section
@@ -230,6 +203,12 @@ export default function SpeedToLeadPage() {
               >
                 While you&apos;re on the job, they&apos;re booking your competitor
               </h2>
+              <p className="text-[var(--ax-fs-body-lg)] leading-[1.6] text-[var(--ax-fg-on-dark-2)] mt-4">
+                When someone fills out your form, clicks your ad, or sends a
+                message, they&apos;re ready to buy right now. An instant lead
+                response system responds in seconds, qualifies them, and books
+                the call before they&apos;ve finished checking their phone.
+              </p>
             </div>
             <ClockProblem />
           </div>
@@ -348,7 +327,7 @@ export default function SpeedToLeadPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Everything in the package
+                What&apos;s included with an Instant Lead Response build?
               </h2>
             </div>
             <ResponseTimeline />
@@ -375,7 +354,7 @@ export default function SpeedToLeadPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                See what slow follow-up is costing you
+                See what slow follow up is costing you
               </h2>
             </div>
             <ROICalculator />
@@ -400,7 +379,7 @@ export default function SpeedToLeadPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Simple, fixed pricing
+                How much does Instant Lead Response cost?
               </h2>
             </div>
             <ChatPricingCard />
@@ -441,7 +420,7 @@ export default function SpeedToLeadPage() {
       {/* -- Final CTA ---------------------------------------------- */}
       <Reveal>
         <ServiceCTA
-          headline="Find out how many leads you're losing to slow follow-up."
+          headline="Find out how many leads you're losing to slow follow up."
           sub={"Book a 15-minute call. We\u2019ll look at where your leads come from and what\u2019s happening to the ones that don\u2019t convert. If instant lead response isn\u2019t the fix, we\u2019ll say so."}
           buttonLabel="Book an Audit"
         />

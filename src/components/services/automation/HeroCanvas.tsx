@@ -350,7 +350,7 @@ export function HeroCanvas() {
   }, [])
 
   return (
-    <div ref={ref} className="hidden lg:block">
+    <div ref={ref}>
       <style dangerouslySetInnerHTML={{ __html: CSS_KEYFRAMES }} />
 
       <div

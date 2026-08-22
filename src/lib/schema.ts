@@ -30,6 +30,10 @@ export function organizationSchema() {
       "https://www.linkedin.com/company/aronix/",
       "https://www.instagram.com/aronix.io/",
     ],
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
     founder: [
       {
         "@type": "Person",
@@ -42,12 +46,6 @@ export function organizationSchema() {
         sameAs: "https://www.linkedin.com/in/muhammad-rayan-business-process-automation/",
       },
     ],
-    // TODO: add telephone once contact number is confirmed
-    // telephone: "",
-    // TODO: add contactPoint once contact details are confirmed
-    // contactPoint: { "@type": "ContactPoint", telephone: "", contactType: "customer service" },
-    // TODO: add address once physical/registered address is confirmed
-    // address: { "@type": "PostalAddress", addressCountry: "" },
   }
 }
 
@@ -242,7 +240,10 @@ export function serviceSchema({
       name: SITE_NAME,
       url: SITE_URL,
     },
-    // TODO: confirm and re-add correct areaServed once service geography is confirmed
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
     serviceType: name,
   }
 }

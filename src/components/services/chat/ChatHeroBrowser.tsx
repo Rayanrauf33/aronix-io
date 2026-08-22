@@ -32,7 +32,7 @@ export function ChatHeroBrowser() {
   const bookingDelay = msgBase + messages.length * msgGap + d(0.3)
 
   return (
-    <div className="hidden lg:block w-full">
+    <div className="w-full">
       {/* Browser chrome */}
       <div
         className="rounded-[var(--ax-radius-xl)] overflow-hidden border border-white/10"

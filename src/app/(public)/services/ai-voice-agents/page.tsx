@@ -20,6 +20,7 @@ import { ServiceCTA } from "@/components/services/ServiceCTA"
 import { StatCountUp } from "@/components/ui/StatCountUp"
 import { CallFlowDiagram } from "@/components/services/voice/CallFlowDiagram"
 import { VoiceHeroCard } from "@/components/services/voice/VoiceHeroCard"
+import { PageHero } from "@/components/services/PageHero"
 import { breadcrumbSchema, faqSchema, serviceSchema, toJsonLd } from "@/lib/schema"
 
 /* ------------------------------------------------------------------ */
@@ -128,7 +129,7 @@ const faqItems = [
   {
     question: "Will it sound robotic?",
     answer:
-      "Listen to the demo above and judge for yourself. We tune the voice, pacing, and script to match how your front desk actually talks. Callers are informed they\u2019re speaking with an AI assistant where that\u2019s required.",
+      "See the call simulation above. We tune the voice, pacing, and script to match how your front desk actually talks. Callers are informed they\u2019re speaking with an AI assistant where that\u2019s required.",
   },
   {
     question: "What happens when it can\u2019t answer something?",
@@ -141,19 +142,29 @@ const faqItems = [
       "No. It runs on your existing number. We can have it answer every call, or only pick up when your team hasn\u2019t answered within a few rings.",
   },
   {
-    question: "Can it double-book me or make up prices?",
+    question: "Can it double book me or make up prices?",
     answer:
       "It books through your real calendar, so it can only take open slots. Prices and policies come from the information you approve during setup, and every call is recorded so anything off gets caught and fixed.",
   },
   {
     question: "How long until it\u2019s live?",
     answer:
-      "A few weeks from kickoff to launch depending on scope \u2014 we\u2019ll confirm an exact timeline after the audit. Most of that is testing, because we don\u2019t put it on live calls until you\u2019ve approved how it handles the hard ones.",
+      "A few weeks from kickoff to launch depending on scope. We\u2019ll confirm an exact timeline after the audit. Most of that is testing, because we don\u2019t put it on live calls until you\u2019ve approved how it handles the hard ones.",
   },
   {
     question: "What if it doesn\u2019t work for my business?",
     answer:
-      "Then we\u2019ll say so before you pay for a build. The audit exists to check whether your call volume and job value actually justify this. Sometimes the honest answer is a simple missed-call text-back instead, and that\u2019s a smaller project.",
+      "Then we\u2019ll say so before you pay for a build. The audit exists to check whether your call volume and job value actually justify this. Sometimes the honest answer is a simple missed call text back instead, and that\u2019s a smaller project.",
+  },
+  {
+    question: "How is an AI voice agent different from a traditional answering service or IVR?",
+    answer:
+      "A traditional IVR routes callers through a menu of recorded options, and a basic answering service just takes a message. An AI voice agent has a real conversation. It answers questions about your business, checks availability, and books the appointment directly into your calendar, all without a human on the line.",
+  },
+  {
+    question: "How much does an AI voice agent cost?",
+    answer:
+      "Our AI voice agents are priced at $0.06 per minute of call time, so cost scales with your call volume rather than a flat monthly fee. We estimate your typical cost during the free audit based on your current call volume.",
   },
 ]
 
@@ -193,53 +204,18 @@ export default function AIVoiceAgentsPage() {
         })) }}
       />
 
-      {/* ── Hero (split layout) ────────────────────────── */}
-      <Reveal>
-        <section
-          className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-          style={{ background: "var(--ax-soft-blush)" }}
-          aria-labelledby="voice-hero-heading"
-        >
-          <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: copy */}
-            <div>
-              <Eyebrow className="mb-4">AI Voice Agents</Eyebrow>
-              <h1
-                id="voice-hero-heading"
-                className="text-[var(--ax-fg-1)] mb-6"
-                style={{
-                  fontFamily: "var(--ax-font-display)",
-                  fontWeight: 800,
-                  fontSize: "var(--ax-fs-display)",
-                  lineHeight: "var(--ax-lh-tight)",
-                  letterSpacing: "var(--ax-tracking-tight)",
-                }}
-              >
-                Every call answered. Every job booked.
-              </h1>
-              <p className="text-[var(--ax-fs-body-lg)] leading-[1.6] text-[var(--ax-fg-2)] mb-10">
-                An AI receptionist that picks up in two rings, answers questions
-                about your business, and books the appointment straight into your
-                calendar. Built for service businesses where a missed call is a
-                lost job.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Button href="#demo" variant="primary" size="lg">
-                  Hear it take a real call
-                </Button>
-                <Button href={CALENDLY} variant="outline" size="lg">
-                  Book an Audit
-                </Button>
-              </div>
-            </div>
-
-            {/* Right: call simulation card */}
-            <div className="hidden lg:block">
-              <VoiceHeroCard />
-            </div>
-          </div>
-        </section>
-      </Reveal>
+      {/* ── Hero ─────────────────────────────────────────── */}
+      <PageHero
+        headingId="voice-hero-heading"
+        eyebrow="AI Voice Agents"
+        headline="Every call answered. Every job booked."
+        subhead="An AI receptionist that answers every call, books the appointment, and never lets a lead go to voicemail."
+        statPill="62% of calls to small businesses go unanswered"
+        primaryCta={{ label: "See how a call plays out", href: "#demo" }}
+        secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
+        visual={<VoiceHeroCard />}
+        visualId="demo"
+      />
 
       {/* ── The problem ─────────────────────────────────── */}
       <Reveal>
@@ -250,9 +226,15 @@ export default function AIVoiceAgentsPage() {
               id="problem-heading"
               className="sr-only"
             >
-              Why this matters
+              Why does a missed call cost service businesses money?
             </h2>
             <div className="text-[var(--ax-fs-body-lg)] leading-[1.7] text-[var(--ax-fg-2)] flex flex-col gap-5">
+              <p className="m-0">
+                An AI receptionist that picks up in two rings, answers questions
+                about your business, and books the appointment straight into your
+                calendar. Built for service businesses where a missed call is a
+                lost job.
+              </p>
               <p className="m-0">
                 62% of calls to small businesses go unanswered. Of the people
                 who don&apos;t reach you, 85% never call back. They call the
@@ -303,7 +285,7 @@ export default function AIVoiceAgentsPage() {
                     letterSpacing: "var(--ax-tracking-tight)",
                   }}
                 >
-                  What we build
+                  What does an AI voice agent actually do?
                 </h2>
               </div>
 
@@ -372,7 +354,7 @@ export default function AIVoiceAgentsPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                From first call to fully live
+                How long does it take to launch an AI voice agent?
               </h2>
             </div>
 
@@ -441,7 +423,7 @@ export default function AIVoiceAgentsPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Everything in the box
+                What&apos;s included with an AI voice agent build?
               </h2>
             </div>
 
