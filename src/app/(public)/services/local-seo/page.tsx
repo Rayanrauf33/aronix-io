@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { Reveal } from "@/components/ui/Reveal"
 import { FAQAccordion } from "@/components/services/FAQAccordion"
 import { ServiceCTA } from "@/components/services/ServiceCTA"
-import { LocalPackHero } from "@/components/services/seo/LocalPackHero"
+import { LocalPackVisual } from "@/components/services/seo/LocalPackVisual"
+import { PageHero } from "@/components/services/PageHero"
 import { VisibilityGap } from "@/components/services/seo/VisibilityGap"
 import { WorkStack } from "@/components/services/seo/WorkStack"
 import { RankingProgression } from "@/components/services/seo/RankingProgression"
@@ -41,6 +42,8 @@ export const metadata: Metadata = {
 /*  Data                                                               */
 /* ------------------------------------------------------------------ */
 
+const CALENDLY = "https://calendly.com/rayanrauf33/muhammad-rayan-15-minute-session"
+
 const stats = [
   { val: "46%", lbl: "Of all Google searches have local intent" },
   { val: "76%", lbl: "Of people who search locally on their phone visit a business within 24 hours" },
@@ -57,7 +60,7 @@ const faqItems = [
   {
     question: "We\u2019ve tried SEO before and it didn\u2019t work. Why would this be different?",
     answer:
-      "The most common reason local SEO doesn\u2019t work is that the work stops too early or the wrong things are prioritised. A one-off set of changes doesn\u2019t maintain rankings, because Google\u2019s algorithm updates regularly, competitors keep working, and reviews keep accumulating. We do this as an ongoing engagement for exactly that reason.",
+      "The most common reason local SEO doesn\u2019t work is that the work stops too early or the wrong things are prioritised. A one time set of changes doesn\u2019t maintain rankings, because Google\u2019s algorithm updates regularly, competitors keep working, and reviews keep accumulating. We do this as an ongoing engagement for exactly that reason.",
   },
   {
     question: "Do we need to be on social media for this to work?",
@@ -72,7 +75,7 @@ const faqItems = [
   {
     question: "What if we have multiple locations?",
     answer:
-      "Multi-location local SEO is more complex but follows the same principles. Each location needs its own Google Business Profile, its own location page on the website, and its own citation consistency. We scope multi-location work separately.",
+      "Multi location local SEO is more complex but follows the same principles. Each location needs its own Google Business Profile, its own location page on the website, and its own citation consistency. We scope multi location work separately.",
   },
   {
     question: "How do we get more Google reviews?",
@@ -120,7 +123,16 @@ export default function LocalSEOPage() {
       />
 
       {/* ── Hero ── */}
-      <LocalPackHero />
+      <PageHero
+        headingId="seo-hero-heading"
+        eyebrow="Local SEO"
+        headline="Show up when local customers are searching."
+        subhead="We help you rank in the top local results so nearby customers find and choose you."
+        statPill="76% of local searches lead to a visit within 24 hours"
+        primaryCta={{ label: "Get a free SEO audit", href: CALENDLY }}
+        secondaryCta={{ label: "Book a Call", href: CALENDLY }}
+        visual={<LocalPackVisual />}
+      />
 
       {/* ── Stats band ── */}
       <section
@@ -225,7 +237,7 @@ export default function LocalSEOPage() {
               What it costs
             </span>
             <h2 id="seo-pricing-heading" className="sr-only">
-              What it costs
+              How much does Local SEO cost?
             </h2>
             <div
               className="text-[var(--ax-fg-2)] flex flex-col gap-5"

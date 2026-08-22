@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import { Eyebrow } from "@/components/ui/Eyebrow"
-import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { FAQAccordion } from "@/components/services/FAQAccordion"
 import { ServiceCTA } from "@/components/services/ServiceCTA"
 import { SplitHero } from "@/components/services/web/SplitHero"
+import { PageHero } from "@/components/services/PageHero"
 import { AnnotatedMockup } from "@/components/services/web/AnnotatedMockup"
 import { WebFeatureReveal } from "@/components/services/web/WebFeatureReveal"
 import { ContrastColumns } from "@/components/services/web/ContrastColumns"
@@ -84,7 +84,7 @@ const faqItems = [
   {
     question: "How long does a build take?",
     answer:
-      "From discovery to launch, typically a few weeks depending on scope and how quickly content reviews happen on your end \u2014 we\u2019ll confirm an exact timeline after the audit. We\u2019ll give you a timeline at the start and flag early if anything is likely to shift it.",
+      "From discovery to launch, typically a few weeks depending on scope and how quickly content reviews happen on your end. We\u2019ll confirm an exact timeline after the audit. We\u2019ll give you a timeline at the start and flag early if anything is likely to shift it.",
   },
 ]
 
@@ -124,54 +124,17 @@ export default function WebsitesPage() {
         })) }}
       />
 
-      {/* -- Hero (split-screen before/after) ----------------------- */}
-      <section
-        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-        style={{ background: "var(--ax-surface-dark)" }}
-        aria-labelledby="web-hero-heading"
-      >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <Eyebrow className="mb-4" tone="muted">Websites</Eyebrow>
-            <h1
-              id="web-hero-heading"
-              className="text-[var(--ax-fg-on-dark)] mb-6"
-              style={{
-                fontFamily: "var(--ax-font-display)",
-                fontWeight: 800,
-                fontSize: "var(--ax-fs-display)",
-                lineHeight: "var(--ax-lh-tight)",
-                letterSpacing: "var(--ax-tracking-tight)",
-              }}
-            >
-              A website that actually brings in business.
-            </h1>
-            <p className="text-[var(--ax-fs-body-lg)] leading-[1.6] text-[var(--ax-fg-on-dark-2)] mb-10">
-              Most service business websites look fine and do very little.
-              Visitors arrive, scroll briefly, and leave without making contact.
-              We build websites designed around a single outcome: getting a
-              qualified visitor to take action.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="#work" variant="primary" size="lg">
-                See our work
-              </Button>
-              <Button
-                href={CALENDLY}
-                variant="outline"
-                size="lg"
-                className="border-white/20 text-white hover:border-white/40 hover:bg-white/5"
-              >
-                Book an Audit
-              </Button>
-            </div>
-          </div>
-
-          <div className="hidden lg:block">
-            <SplitHero />
-          </div>
-        </div>
-      </section>
+      {/* -- Hero ----------------------------------------------------- */}
+      <PageHero
+        headingId="web-hero-heading"
+        eyebrow="Websites"
+        headline="A website that actually brings in business."
+        subhead="We build websites designed around one outcome: turning visitors into qualified enquiries for your business."
+        statPill="88% of visitors won't return after one bad experience"
+        primaryCta={{ label: "See our work", href: "#work" }}
+        secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
+        visual={<SplitHero />}
+      />
 
       {/* -- Stat strip --------------------------------------------- */}
       <section
@@ -232,6 +195,14 @@ export default function WebsitesPage() {
                 Why most service websites don&apos;t convert
               </h2>
               <div className="text-[var(--ax-fs-body-lg)] leading-[1.7] text-[var(--ax-fg-2)] flex flex-col gap-5">
+                <p className="m-0">
+                  A conversion-focused website is built around a single goal:
+                  turning visitors into enquiries, not just looking professional.
+                  Most service business websites look fine and do very little.
+                  Visitors arrive, scroll briefly, and leave without making
+                  contact. We build websites designed around a single outcome:
+                  getting a qualified visitor to take action.
+                </p>
                 <p className="m-0">
                   A website that looks professional is not the same as a website
                   that performs. The average service business website converts
@@ -317,7 +288,7 @@ export default function WebsitesPage() {
                 letterSpacing: "var(--ax-tracking-tight)",
               }}
             >
-              From brief to live
+              How long does it take to build a website?
             </h2>
           </div>
           <MagazineSteps />
@@ -341,7 +312,7 @@ export default function WebsitesPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Everything in the build
+                What&apos;s included with a website build?
               </h2>
             </div>
             <IncludedGrid />
@@ -373,7 +344,7 @@ export default function WebsitesPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Who it works for
+                Which businesses is this website service built for?
               </h2>
               <div className="text-[var(--ax-fs-body-lg)] leading-[1.7] text-[var(--ax-fg-on-dark-2)] mt-4 flex flex-col gap-5">
                 <p className="m-0">
@@ -416,7 +387,7 @@ export default function WebsitesPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Scope your project
+                How much does a conversion focused website cost?
               </h2>
               <p className="text-[14px] leading-[1.6] text-[var(--ax-fg-on-dark-2)] mt-3 max-w-[480px] mx-auto">
                 Website projects are scoped based on the number of pages, the

@@ -59,6 +59,11 @@ export function Button({
 
   if ("href" in rest && rest.href) {
     const { href, ...linkRest } = rest as LinkProps
+    // Next.js's router doesn't reliably scroll to same-page hash fragments
+    // on click, so anchor-only links use a plain <a> for native browser scroll.
+    if (href.startsWith("#")) {
+      return <a href={href} className={classes} {...(linkRest as object)}>{content}</a>
+    }
     return <Link href={href} className={classes} {...(linkRest as object)}>{content}</Link>
   }
   return (

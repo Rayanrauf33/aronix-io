@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal"
 import { FAQAccordion } from "@/components/services/FAQAccordion"
 import { ServiceCTA } from "@/components/services/ServiceCTA"
 import { HeroCanvas } from "@/components/services/automation/HeroCanvas"
+import { PageHero } from "@/components/services/PageHero"
 import { CostCards } from "@/components/services/automation/CostCards"
 import { ProcessConstructor } from "@/components/services/automation/ProcessConstructor"
 import { PipelineSteps } from "@/components/services/automation/PipelineSteps"
@@ -65,17 +66,17 @@ const faqItems = [
   {
     question: "What happens if the automation breaks?",
     answer:
-      "Every automation we build includes error handling and alerts. If something fails, you get a notification immediately with enough information to understand what happened. It doesn\u2019t fail silently. We also include post-launch support so we can fix issues that come up in the first weeks of live running.",
+      "Every automation we build includes error handling and alerts. If something fails, you get a notification immediately with enough information to understand what happened. It doesn\u2019t fail silently. We also include post launch support so we can fix issues that come up in the first weeks of live running.",
   },
   {
     question: "Can you automate a process that involves someone making a decision partway through?",
     answer:
-      "Yes. We build decision gates into workflows: points where the automation pauses, notifies the right person with the relevant context, and waits for their input before continuing. The automated parts still run automatically. The human steps are just cleaner and better-informed than they were before.",
+      "Yes. We build decision gates into workflows: points where the automation pauses, notifies the right person with the relevant context, and waits for their input before continuing. The automated parts still run automatically. The human steps are just cleaner and better informed than they were before.",
   },
   {
     question: "How long does a typical build take?",
     answer:
-      "A simple automation connecting two tools with a straightforward trigger and action typically takes a few weeks depending on scope \u2014 we\u2019ll confirm an exact timeline after the audit. A multi-step process involving several systems and conditional logic takes longer. We give you a timeline during scoping, and it\u2019s included in the fixed-price quote.",
+      "A simple automation connecting two tools with a straightforward trigger and action typically takes a few weeks depending on scope. We\u2019ll confirm an exact timeline after the audit. A multi step process involving several systems and conditional logic takes longer. We give you a timeline during scoping, and it\u2019s included in the fixed price quote.",
   },
   {
     question: "What if our process changes after the automation is built?",
@@ -125,55 +126,17 @@ export default function WorkflowAutomationPage() {
         })) }}
       />
 
-      {/* -- Hero --------------------------------------------------- */}
-      <section
-        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-        style={{ background: "var(--ax-surface-dark)" }}
-        aria-labelledby="wfa-hero-heading"
-      >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <Eyebrow className="mb-4" tone="muted">Workflow Automation</Eyebrow>
-            <h1
-              id="wfa-hero-heading"
-              className="text-[var(--ax-fg-on-dark)] mb-6"
-              style={{
-                fontFamily: "var(--ax-font-display)",
-                fontWeight: 800,
-                fontSize: "var(--ax-fs-display)",
-                lineHeight: "var(--ax-lh-tight)",
-                letterSpacing: "var(--ax-tracking-tight)",
-              }}
-            >
-              Stop doing manually what a system can do automatically.
-            </h1>
-            <p
-              className="leading-[1.6] text-[var(--ax-fg-on-dark-2)] mb-10"
-              style={{ fontSize: "var(--ax-fs-body-lg)" }}
-            >
-              Every business has tasks that happen the same way, every time,
-              with a human in the middle for no good reason. We find those
-              tasks, map the process, and build an automated system that runs
-              them without anyone touching them.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="#examples" variant="primary" size="lg">
-                See what we&apos;ve automated
-              </Button>
-              <Button
-                href={CALENDLY}
-                variant="outline"
-                size="lg"
-                className="border-white/20 text-white hover:border-white/40 hover:bg-white/5"
-              >
-                Book an Audit
-              </Button>
-            </div>
-          </div>
-
-          <HeroCanvas />
-        </div>
-      </section>
+      {/* -- Hero ----------------------------------------------------- */}
+      <PageHero
+        headingId="wfa-hero-heading"
+        eyebrow="Workflow Automation"
+        headline="Turn manual work into an automated system."
+        subhead="We map the manual processes slowing your team down and build systems that run them automatically."
+        statPill="60% of workers spend 3+ hours a day on tasks that could be automated"
+        primaryCta={{ label: "See what we've automated", href: "#examples" }}
+        secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
+        visual={<HeroCanvas />}
+      />
 
       {/* -- Stat strip --------------------------------------------- */}
       <section
@@ -238,6 +201,14 @@ export default function WorkflowAutomationPage() {
                 style={{ fontSize: "var(--ax-fs-body-lg)" }}
               >
                 <p className="m-0">
+                  Workflow automation replaces repetitive manual tasks with a
+                  system that runs them the same way, every time, without a
+                  person doing it by hand. Every business has tasks that happen
+                  the same way, every time, with a human in the middle for no
+                  good reason. We find those tasks, map the process, and build an
+                  automated system that runs them without anyone touching them.
+                </p>
+                <p className="m-0">
                   The obvious cost is time. When your team spends hours each week
                   on data entry, status updates, report generation, approval
                   routing, or copying information between tools, that&apos;s real
@@ -284,7 +255,7 @@ export default function WorkflowAutomationPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                What we build
+                What does workflow automation actually build?
               </h2>
               <div
                 className="leading-[1.7] text-[var(--ax-fg-on-dark-2)] flex flex-col gap-5"
@@ -331,7 +302,7 @@ export default function WorkflowAutomationPage() {
                 letterSpacing: "var(--ax-tracking-tight)",
               }}
             >
-              From messy process to clean system
+              How does workflow automation actually work?
             </h2>
           </div>
           <PipelineSteps />
@@ -394,7 +365,7 @@ export default function WorkflowAutomationPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Everything in the build
+                What&apos;s included with a workflow automation build?
               </h2>
             </div>
             <ZigzagSteps />
@@ -522,7 +493,7 @@ export default function WorkflowAutomationPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                Custom quote
+                How much does workflow automation cost?
               </h2>
               <p
                 className="leading-[1.6] m-0"

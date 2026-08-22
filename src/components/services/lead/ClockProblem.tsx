@@ -62,10 +62,10 @@ function ClockFace({ inView, reduce }: { inView: boolean; reduce: boolean }) {
       {/* Hour markers */}
       {Array.from({ length: 12 }, (_, i) => {
         const angle = (i * 30 * Math.PI) / 180
-        const x1 = 100 + 78 * Math.sin(angle)
-        const y1 = 100 - 78 * Math.cos(angle)
-        const x2 = 100 + 86 * Math.sin(angle)
-        const y2 = 100 - 86 * Math.cos(angle)
+        const x1 = (100 + 78 * Math.sin(angle)).toFixed(2)
+        const y1 = (100 - 78 * Math.cos(angle)).toFixed(2)
+        const x2 = (100 + 86 * Math.sin(angle)).toFixed(2)
+        const y2 = (100 - 86 * Math.cos(angle)).toFixed(2)
         return (
           <line
             key={i}
