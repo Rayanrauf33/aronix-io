@@ -3,6 +3,28 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-08-23
+
+### Added
+- Shared `PageHero` component powering the hero section on all 7 service pages and the services hub, with a fluid type scale that resizes smoothly between mobile and desktop instead of a fixed font size
+- One-sentence subhead and a stat-pill trust line on every service hero
+- Explicit AI crawler allow rules in robots.txt (OAI-SearchBot, ClaudeBot, PerplexityBot, and others)
+- Contextual internal links from blog posts and case studies to the service pages they relate to
+
+### Changed
+- Trimmed and standardised hero headlines across all 8 marketing pages, including the services hub, for a consistent two-to-three-line mobile layout
+- Consistent primary-plus-outline call-to-action pattern across all 8 hero sections
+- Section headers on service pages rewritten as direct questions to match how people search and ask AI assistants
+- Sitemap now uses real last-modified dates per page instead of always reporting the current time
+- Organization and service structured data now declare a United States service area instead of an incorrect implicit region
+
+### Fixed
+- AI Voice Agents hero rendering with the wrong background color
+- Mobile hero sections leaving a large empty gap where the desktop-only illustration used to sit
+- Service page call-to-action buttons that did not reliably scroll to the right section on click
+- A hydration warning on the Instant Lead Response page caused by unrounded floating-point coordinates
+- Broken and placeholder links inside two blog posts
+
 ## [Unreleased] - 2026-07-29
 
 ### Added
