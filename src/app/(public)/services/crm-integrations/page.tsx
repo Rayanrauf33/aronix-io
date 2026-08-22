@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import { Eyebrow } from "@/components/ui/Eyebrow"
-import { Button } from "@/components/ui/Button"
 import { Reveal } from "@/components/ui/Reveal"
 import { FAQAccordion } from "@/components/services/FAQAccordion"
 import { ServiceCTA } from "@/components/services/ServiceCTA"
 import { SyncStatusCard } from "@/components/services/crm/SyncStatusCard"
+import { PageHero } from "@/components/services/PageHero"
 import { DisconnectedTools } from "@/components/services/crm/DisconnectedTools"
 import { FeatureBlocks } from "@/components/services/crm/FeatureBlocks"
 import { IntegrationMap } from "@/components/services/crm/IntegrationMap"
@@ -124,59 +124,17 @@ export default function CRMIntegrationsPage() {
         })) }}
       />
 
-      {/* -- Hero --------------------------------------------------- */}
-      <section
-        className="px-5 sm:px-12 pt-[144px] pb-20 min-h-[100vh] flex items-center"
-        style={{ background: "var(--ax-surface-dark)" }}
-        aria-labelledby="crm-hero-heading"
-      >
-        <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: copy */}
-          <div>
-            <Eyebrow tone="muted" className="mb-4">CRM &amp; System Integrations</Eyebrow>
-            <h1
-              id="crm-hero-heading"
-              className="text-white mb-6"
-              style={{
-                fontFamily: "var(--ax-font-display)",
-                fontWeight: 800,
-                fontSize: "var(--ax-fs-display)",
-                lineHeight: "var(--ax-lh-tight)",
-                letterSpacing: "var(--ax-tracking-tight)",
-              }}
-            >
-              Your tools, actually talking to each other.
-            </h1>
-            <p
-              className="text-[var(--ax-fs-body-lg)] leading-[1.6] mb-10"
-              style={{ color: "var(--ax-fg-on-dark-2)" }}
-            >
-              Most businesses run on five or more tools that don&apos;t connect
-              to each other. Leads live in one place, jobs in another, invoices
-              somewhere else. We wire them together so data flows automatically
-              and nothing gets lost between systems.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="#diagram" variant="primary" size="lg">
-                See how we connect systems
-              </Button>
-              <Button
-                href={CALENDLY}
-                variant="outline"
-                size="lg"
-                className="border-white/20 text-white hover:border-white/40 hover:bg-white/5"
-              >
-                Book an Audit
-              </Button>
-            </div>
-          </div>
-
-          {/* Right: sync status card (hidden on mobile) */}
-          <div className="hidden lg:block">
-            <SyncStatusCard />
-          </div>
-        </div>
-      </section>
+      {/* -- Hero ----------------------------------------------------- */}
+      <PageHero
+        headingId="crm-hero-heading"
+        eyebrow="CRM & System Integrations"
+        headline="Your tools, actually talking to each other."
+        subhead="We connect the tools you already use, so leads, jobs, and invoices flow automatically between them."
+        statPill="67% of CRM data goes stale within a year without upkeep"
+        primaryCta={{ label: "See how we connect systems", href: "#diagram" }}
+        secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
+        visual={<SyncStatusCard />}
+      />
 
       {/* -- Stat strip (unchanged) --------------------------------- */}
       <section
@@ -240,6 +198,15 @@ export default function CRMIntegrationsPage() {
               className="max-w-[640px] mx-auto text-[var(--ax-fs-body-lg)] leading-[1.7] text-[var(--ax-fg-2)] flex flex-col gap-5"
             >
               <p className="m-0">
+                CRM integrations connect the tools your business already uses,
+                so leads, jobs, and invoices sync automatically instead of
+                living in separate systems. Most businesses run on five or more
+                tools that don&apos;t connect to each other. Leads live in one
+                place, jobs in another, invoices somewhere else. We wire them
+                together so data flows automatically and nothing gets lost
+                between systems.
+              </p>
+              <p className="m-0">
                 When your systems don&apos;t talk to each other, a human
                 becomes the connection. Someone copies the new lead from the
                 form into the CRM. Someone updates the job status in the
@@ -273,7 +240,7 @@ export default function CRMIntegrationsPage() {
         >
           <div className="max-w-[1080px] mx-auto">
             <Eyebrow tone="muted" className="mb-8">What we build</Eyebrow>
-            <h2 id="crm-build-heading" className="sr-only">What we build</h2>
+            <h2 id="crm-build-heading" className="sr-only">What does CRM integrations actually build?</h2>
             <FeatureBlocks />
 
             {/* Additional copy below feature blocks */}
@@ -364,7 +331,7 @@ export default function CRMIntegrationsPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                What&apos;s included
+                What&apos;s included with a CRM integrations build?
               </h2>
             </div>
             <HealthDashboard />
@@ -426,7 +393,7 @@ export default function CRMIntegrationsPage() {
                   letterSpacing: "var(--ax-tracking-tight)",
                 }}
               >
-                What it costs
+                How much do CRM integrations cost?
               </h2>
             </div>
             <div

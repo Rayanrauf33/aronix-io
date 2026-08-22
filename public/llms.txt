@@ -1,9 +1,9 @@
 # Aronix
-> Aronix builds custom automation that connects CRM, finance tools, and internal ops for growing service businesses.
+> Aronix builds custom automation that connects your CRM, finance tools, and internal ops so your team stops firefighting and starts scaling.
 
 ## Pages
 
-- [Homepage](https://aronix.io/): Custom business automation — AI agents, workflow systems, and growth tools for service businesses.
+- [Homepage](https://aronix.io/): Custom business automation, AI agents, workflow systems, and growth tools for service businesses.
 - [Services](https://aronix.io/services): Aronix builds the systems that capture leads, automate your operations, and get your business found locally.
 - [AI Voice Agents](https://aronix.io/services/ai-voice-agents): An AI receptionist that answers in two rings, books appointments into your calendar, and texts you a summary of every call.
 - [AI Chat & Booking](https://aronix.io/services/ai-chat-booking): An AI chat agent on your website that answers questions, qualifies visitors, and books appointments directly into your calendar.
@@ -12,3 +12,7 @@
 - [CRM Integrations](https://aronix.io/services/crm-integrations): We connect the tools your business runs on so data moves between them automatically.
 - [Websites](https://aronix.io/services/websites): We build websites that turn visitors into enquiries. Fast, clear, and built around how your customers actually decide to make contact.
 - [Local SEO](https://aronix.io/services/local-seo): Get found by customers searching for your services in your area. We handle Google Business Profile, local citations, and on-page SEO.
+- [About](https://aronix.io/about): Ahmed and Rayan built Aronix to help service businesses stop losing leads and drowning in manual work.
+- [Blog](https://aronix.io/blog): Insights on automation, operations, and growth for teams that want to remove manual work and build reliable systems.
+- [Case Studies](https://aronix.io/case-studies): Real automation results, including lead response in 60 seconds and month-end close in 6 hours.
+- [Contact](https://aronix.io/contact): Book a free 15-minute automation audit to map your highest-cost manual process and outline a realistic automation plan.

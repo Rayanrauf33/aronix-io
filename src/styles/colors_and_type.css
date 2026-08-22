@@ -89,6 +89,10 @@
   --ax-fs-body-sm:  14px;
   --ax-fs-caption:  12px;
 
+  /* HERO TYPE SCALE (shared by PageHero across all 8 hero pages) */
+  --hero-heading:  clamp(1.75rem, 1.3rem + 3vw, 3rem);
+  --hero-subhead:  clamp(1rem, 0.95rem + 0.5vw, 1.125rem);
+
   --ax-lh-tight:    1.05;
   --ax-lh-snug:     1.2;
   --ax-lh-normal:   1.5;

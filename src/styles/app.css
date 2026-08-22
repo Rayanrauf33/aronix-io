@@ -1532,33 +1532,6 @@ body {
   border-radius: 9999px;
 }
 
-/* ── SERVICES HUB HERO ANIMATION ──────────────────────── */
-
-@keyframes sh-hero-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.sh-hero-h1 {
-  animation: sh-hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
-}
-
-.sh-hero-sub {
-  animation: sh-hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-}
-
-.sh-hero-cta {
-  animation: sh-hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sh-hero-h1,
-  .sh-hero-sub,
-  .sh-hero-cta {
-    animation: none;
-  }
-}
-
 /* ── SERVICES MEGA MENU ──────────────────────────────────── */
 
 /* Uses individual scale/translate properties so they compose

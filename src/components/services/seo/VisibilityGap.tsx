@@ -175,6 +175,7 @@ export function VisibilityGap() {
             What happens when you&apos;re not ranking locally
           </h2>
           {[
+            "When someone searches \u201cdentist near me\u201d or \u201cHVAC repair [your city],\u201d there are three businesses at the top of Google and then there\u2019s everyone else. Local SEO is the work that puts your business in those three spots instead of a competitor\u2019s.",
             "Local search is where buying intent is highest. Someone searching for a plumber, a dental clinic, or an electrician in their area is ready to book, not browsing. If your business isn\u2019t showing in the local pack (the three results with the map on Google), they\u2019re calling one of the businesses that is.",
             "Most local businesses aren\u2019t ranking because of problems that are completely fixable. An incomplete Google Business Profile. Inconsistent name, address, and phone number across directories. A website that loads slowly or has no local content. These aren\u2019t technical mysteries; they\u2019re maintenance problems that compound over time when nobody\u2019s paying attention to them.",
             "The businesses ranking at the top aren\u2019t necessarily better than you. They\u2019ve just done the work to be more visible.",

@@ -32,7 +32,7 @@ const faqItems = [
   {
     label: "How long does an automation project take?",
     content:
-      "Most projects run 4–6 weeks from kick-off to go-live. Simpler automations (single workflow, one integration) can be live in two weeks.",
+      "Most projects run 4 to 6 weeks from kickoff to launch. Simpler automations (single workflow, one integration) can be live in two weeks.",
   },
   {
     label: "Do you work with companies that have no existing automation?",
@@ -52,7 +52,7 @@ const faqItems = [
   {
     label: "Do you offer ongoing support?",
     content:
-      "Yes. Retainer plans include monitoring, updates, and new automations as your workflows evolve. We're also available ad-hoc.",
+      "Yes. Retainer plans include monitoring, updates, and new automations as your workflows evolve. We're also available for ad hoc requests.",
   },
 ]
 
