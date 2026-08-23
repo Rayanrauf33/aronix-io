@@ -135,7 +135,6 @@ export default function SpeedToLeadPage() {
         eyebrow="Instant Lead Response"
         headline="The first business to respond wins."
         subhead="Respond to every new lead within minutes, automatically, over SMS or email, before a competitor gets the chance."
-        statPill="78% of deals go to the first business that responds"
         primaryCta={{ label: "See how it works", href: "#diagram" }}
         secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
         visual={<LeadFeedHero />}

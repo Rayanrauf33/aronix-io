@@ -130,7 +130,6 @@ export default function AIChatBookingPage() {
         eyebrow="AI Chat & Booking"
         headline="Your website, working while you sleep."
         subhead="A chat agent that answers visitor questions and books appointments on your website, day or night."
-        statPill="42% of visitors expect a response within 60 seconds"
         primaryCta={{ label: "See a live demo", href: "#demo" }}
         secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
         visual={<ChatHeroBrowser />}

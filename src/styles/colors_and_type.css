@@ -93,6 +93,13 @@
   --hero-heading:  clamp(1.75rem, 1.3rem + 3vw, 3rem);
   --hero-subhead:  clamp(1rem, 0.95rem + 0.5vw, 1.125rem);
 
+  /* HERO MOBILE TUNING (below lg only; PageHero resets to --ax-lh-tight /
+     --ax-tracking-tight / --ax-lh-relaxed at lg, matching pre-tuning desktop
+     exactly. Approved and verified on ai-voice-agents before this rollout. */
+  --hero-heading-lh-mobile:  1.03;
+  --hero-heading-ls-mobile:  -0.028em;
+  --hero-subhead-lh-mobile:  1.5;
+
   --ax-lh-tight:    1.05;
   --ax-lh-snug:     1.2;
   --ax-lh-normal:   1.5;

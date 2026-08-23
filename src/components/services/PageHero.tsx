@@ -13,7 +13,6 @@ type Props = {
   eyebrow: string
   headline: string
   subhead: string
-  statPill?: string
   primaryCta: Cta
   secondaryCta?: Cta
   visual?: ReactNode
@@ -25,7 +24,6 @@ export function PageHero({
   eyebrow,
   headline,
   subhead,
-  statPill,
   primaryCta,
   secondaryCta,
   visual,
@@ -40,28 +38,23 @@ export function PageHero({
       >
         <div className="max-w-[var(--ax-container)] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <Eyebrow className="mb-4 tracking-[0.06em]" tone="muted">
+            <Eyebrow className="mb-2 lg:mb-4 lg:tracking-[0.06em]" tone="muted">
               {eyebrow}
             </Eyebrow>
             <h1
               id={headingId}
-              className="text-[var(--ax-fg-on-dark)] mb-10"
+              className="text-[var(--ax-fg-on-dark)] mb-4 lg:mb-10 leading-[var(--hero-heading-lh-mobile)] tracking-[var(--hero-heading-ls-mobile)] lg:leading-[var(--ax-lh-tight)] lg:tracking-[var(--ax-tracking-tight)]"
               style={{
                 fontFamily: "var(--ax-font-display)",
                 fontWeight: 800,
                 fontSize: "var(--hero-heading)",
-                lineHeight: "var(--ax-lh-tight)",
-                letterSpacing: "var(--ax-tracking-tight)",
               }}
             >
               {headline}
             </h1>
             <p
-              className="text-[var(--ax-fg-on-dark-2)] mb-16"
-              style={{
-                fontSize: "var(--hero-subhead)",
-                lineHeight: "var(--ax-lh-relaxed)",
-              }}
+              className="text-[var(--ax-fg-on-dark-2)] mb-16 leading-[var(--hero-subhead-lh-mobile)] lg:leading-[var(--ax-lh-relaxed)]"
+              style={{ fontSize: "var(--hero-subhead)" }}
             >
               {subhead}
             </p>
@@ -80,14 +73,6 @@ export function PageHero({
                 </Button>
               )}
             </div>
-            {statPill && (
-              <p
-                className="mt-4 text-[14px] font-medium text-[var(--ax-fg-on-dark)]"
-                style={{ fontFamily: "var(--ax-font-mono)" }}
-              >
-                {statPill}
-              </p>
-            )}
           </div>
 
           {visual && (

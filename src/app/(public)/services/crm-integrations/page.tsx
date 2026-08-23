@@ -130,7 +130,6 @@ export default function CRMIntegrationsPage() {
         eyebrow="CRM & System Integrations"
         headline="Your tools, actually talking to each other."
         subhead="We connect the tools you already use, so leads, jobs, and invoices flow automatically between them."
-        statPill="67% of CRM data goes stale within a year without upkeep"
         primaryCta={{ label: "See how we connect systems", href: "#diagram" }}
         secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
         visual={<SyncStatusCard />}
