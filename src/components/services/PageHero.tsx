@@ -81,7 +81,10 @@ export function PageHero({
               )}
             </div>
             {statPill && (
-              <p className="mt-4 text-[13px] text-[var(--ax-fg-on-dark-2)]">
+              <p
+                className="mt-4 text-[14px] font-medium text-[var(--ax-fg-on-dark)]"
+                style={{ fontFamily: "var(--ax-font-mono)" }}
+              >
                 {statPill}
               </p>
             )}

@@ -167,7 +167,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         headline="Systems that run your business for you."
         subhead="We build the systems that capture leads, automate your operations, and get your business found locally."
-        statPill="Trusted by 40+ growing companies"
+        statPill="40+ businesses automated"
         primaryCta={{ label: "See all services", href: "#all-services" }}
         secondaryCta={{
           label: "Book an Audit",
