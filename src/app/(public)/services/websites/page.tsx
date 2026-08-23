@@ -130,7 +130,6 @@ export default function WebsitesPage() {
         eyebrow="Websites"
         headline="A website that actually brings in business."
         subhead="We build websites designed around one outcome: turning visitors into qualified enquiries for your business."
-        statPill="88% of visitors won't return after one bad experience"
         primaryCta={{ label: "See our work", href: "#work" }}
         secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
         visual={<SplitHero />}

@@ -132,7 +132,6 @@ export default function WorkflowAutomationPage() {
         eyebrow="Workflow Automation"
         headline="Turn manual work into an automated system."
         subhead="We map the manual processes slowing your team down and build systems that run them automatically."
-        statPill="60% of workers spend 3+ hours a day on tasks that could be automated"
         primaryCta={{ label: "See what we've automated", href: "#examples" }}
         secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
         visual={<HeroCanvas />}
