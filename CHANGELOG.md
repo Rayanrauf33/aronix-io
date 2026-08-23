@@ -17,6 +17,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Section headers on service pages rewritten as direct questions to match how people search and ask AI assistants
 - Sitemap now uses real last-modified dates per page instead of always reporting the current time
 - Organization and service structured data now declare a United States service area instead of an incorrect implicit region
+- Services hub stat pill replaced a vague trust line with a specific, sourced claim, matching the pattern used on every other hero
+- Stat-pill trust line across all 8 heroes given slightly more visual weight so a specific number doesn't read as an afterthought caption
 
 ### Fixed
 - AI Voice Agents hero rendering with the wrong background color
