@@ -6,19 +6,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased] - 2026-08-23
 
 ### Added
-- Shared `PageHero` component powering the hero section on all 7 service pages and the services hub, with a fluid type scale that resizes smoothly between mobile and desktop instead of a fixed font size
-- One-sentence subhead and a stat-pill trust line on every service hero
+- Shared `PageHero` component powering the hero section on all 8 service pages, including AI Voice Agents, and the services hub, with a fluid type scale and shared mobile typography/spacing tokens
 - Explicit AI crawler allow rules in robots.txt (OAI-SearchBot, ClaudeBot, PerplexityBot, and others)
 - Contextual internal links from blog posts and case studies to the service pages they relate to
 
 ### Changed
 - Trimmed and standardised hero headlines across all 8 marketing pages, including the services hub, for a consistent two-to-three-line mobile layout
 - Consistent primary-plus-outline call-to-action pattern across all 8 hero sections
+- Mobile hero typography tightened across all 8 service pages: tighter eyebrow/headline/subhead spacing and a larger deliberate gap before the call-to-action row, replacing the earlier stat-pill treatment
 - Section headers on service pages rewritten as direct questions to match how people search and ask AI assistants
 - Sitemap now uses real last-modified dates per page instead of always reporting the current time
 - Organization and service structured data now declare a United States service area instead of an incorrect implicit region
-- Services hub stat pill replaced a vague trust line with a specific, sourced claim, matching the pattern used on every other hero
-- Stat-pill trust line across all 8 heroes given slightly more visual weight so a specific number doesn't read as an afterthought caption
+
+### Removed
+- Stat-pill trust line under the hero call-to-action row, removed from all 8 service pages
 
 ### Fixed
 - AI Voice Agents hero rendering with the wrong background color

@@ -210,7 +210,6 @@ export default function AIVoiceAgentsPage() {
         eyebrow="AI Voice Agents"
         headline="Every call answered. Every job booked."
         subhead="An AI receptionist that answers every call, books the appointment, and never lets a lead go to voicemail."
-        statPill="62% of calls to small businesses go unanswered"
         primaryCta={{ label: "See how a call plays out", href: "#demo" }}
         secondaryCta={{ label: "Book an Audit", href: CALENDLY }}
         visual={<VoiceHeroCard />}

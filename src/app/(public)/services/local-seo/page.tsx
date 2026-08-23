@@ -128,7 +128,6 @@ export default function LocalSEOPage() {
         eyebrow="Local SEO"
         headline="Show up when local customers are searching."
         subhead="We help you rank in the top local results so nearby customers find and choose you."
-        statPill="76% of local searches lead to a visit within 24 hours"
         primaryCta={{ label: "Get a free SEO audit", href: CALENDLY }}
         secondaryCta={{ label: "Book a Call", href: CALENDLY }}
         visual={<LocalPackVisual />}
