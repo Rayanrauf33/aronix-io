@@ -219,7 +219,7 @@ function HubSpoke() {
 
 export function SourceMap() {
   const gridRef = useRef<HTMLDivElement>(null)
-  const gridInView = useInView(gridRef, { once: true, amount: 0.2 })
+  const gridInView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px" })
   const reduce = useReducedMotion()
   const showGrid = gridInView || !!reduce
 

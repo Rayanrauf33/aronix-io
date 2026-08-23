@@ -27,6 +27,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Service page call-to-action buttons that did not reliably scroll to the right section on click
 - A hydration warning on the Instant Lead Response page caused by unrounded floating-point coordinates
 - Broken and placeholder links inside two blog posts
+- Mobile "who it's for" / examples / tool-grid card sections leaving a large dead gap before their cards appeared, caused by a scroll-fraction reveal trigger that tall mobile-stacked grids couldn't satisfy without extra scrolling
 
 ## [Unreleased] - 2026-07-29
 

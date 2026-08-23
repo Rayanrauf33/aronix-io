@@ -20,7 +20,7 @@ const rows = [
 
 export function ContrastColumns() {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.2 })
+  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" })
   const reduce = useReducedMotion()
   const show = inView || !!reduce
 
