@@ -51,7 +51,7 @@ const CARDS: Card[] = [
 
 export function ServicesGrid() {
   const gridRef = useRef<HTMLDivElement>(null)
-  const inView = useInView(gridRef, { once: true, amount: 0.2 })
+  const inView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px" })
   const reduce = useReducedMotion()
 
   return (
